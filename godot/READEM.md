@@ -1,0 +1,1 @@
+The Godot game that will be created during this workshop.

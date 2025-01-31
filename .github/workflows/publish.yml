@@ -6,9 +6,11 @@ on:
       - main
     paths:
       - 'workshop-book/**'
+      - '.github/workflows/publish.yml'
   pull_request:
     paths:
       - 'workshop-book/**'
+      - '.github/workflows/publish.yml'
 
 jobs:
   deploy:

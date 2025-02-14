@@ -1,0 +1,94 @@
+[gd_scene load_steps=15 format=3 uid="uid://doth4owerie10"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_mtw3a"]
+[ext_resource type="PackedScene" uid="uid://damyfgqm5cvrj" path="res://jearl.gltf" id="2_6b38n"]
+[ext_resource type="Script" path="res://camera_arm.gd" id="3_qo2ag"]
+[ext_resource type="Texture2D" uid="uid://bk4qntc1ygiqq" path="res://tile.png" id="4_prupw"]
+[ext_resource type="Script" path="res://spike.gd" id="5_he83c"]
+[ext_resource type="PackedScene" uid="uid://dkfoo07yukp6f" path="res://spike.gltf" id="6_78ttx"]
+[ext_resource type="PackedScene" uid="uid://dghgcvd4pmmgc" path="res://win.tscn" id="7_r7jgc"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wfck2"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_0te3k"]
+sky_material = SubResource("ProceduralSkyMaterial_wfck2")
+
+[sub_resource type="Environment" id="Environment_bi86m"]
+background_mode = 2
+sky = SubResource("Sky_0te3k")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oweuo"]
+size = Vector3(1, 1.03308, 0.787109)
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_f0mip"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nijn3"]
+albedo_texture = ExtResource("4_prupw")
+uv1_offset = Vector3(0, 0.5, 0)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_twaij"]
+
+[node name="LevelOne" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bi86m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78825, 0)
+script = ExtResource("1_mtw3a")
+
+[node name="Jearl" parent="Player" instance=ExtResource("2_6b38n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.280099, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.304187, 0)
+shape = SubResource("BoxShape3D_oweuo")
+
+[node name="Camera Arm" type="SpringArm3D" parent="Player"]
+shape = SubResource("SeparationRayShape3D_f0mip")
+spring_length = 3.0
+script = ExtResource("3_qo2ag")
+
+[node name="Camera3D" type="Camera3D" parent="Player/Camera Arm"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.4964)
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Map"]
+material_override = SubResource("StandardMaterial3D_nijn3")
+use_collision = true
+size = Vector3(16, 1, 16)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3)
+material_override = SubResource("StandardMaterial3D_nijn3")
+use_collision = true
+size = Vector3(4, 3, 2)
+
+[node name="Spike" type="Area3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 1.5)
+script = ExtResource("5_he83c")
+
+[node name="blockbench_export" parent="Map/Spike" instance=ExtResource("6_78ttx")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_twaij")
+
+[node name="Win" parent="Map" instance=ExtResource("7_r7jgc")]
+
+[node name="Win2" parent="Map" instance=ExtResource("7_r7jgc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 3)
+next_level = null
+
+[connection signal="body_entered" from="Map/Spike" to="Map/Spike" method="collision"]

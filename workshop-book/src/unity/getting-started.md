@@ -17,4 +17,4 @@
 6. Click "Create project" and it will create and launch the editor automatically. 
 7. Now we get to the fun stuff!
 
-<img style="display: block; margin-left: auto; margin-right: auto;" src="workshop-book/src/unity/editor_hmpage.png" alt="Unity Editor Home Page">
+<img style="display: block; margin-left: auto; margin-right: auto;" src="editor_hmpage.png" alt="Unity Editor Home Page">

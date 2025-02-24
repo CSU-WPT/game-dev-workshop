@@ -14,7 +14,11 @@
 3. In the sidebar, click "All templates".
 4. We will be using the "Universal 3D" template
 5. On the side, give your project a name and place it in your desired directory. 
-6. Click "Create project" and it will create and launch the editor automatically. 
-7. Now we get to the fun stuff!
+6. Click "Create project" and it will create and launch the editor automatically.
+<br/>
+- This is what it looks like... 
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="editor_hmpage.png" alt="Unity Editor Home Page">
+<br/>
+
+[Now, we get to the fun stuff!](./unity_scene_setup.md)

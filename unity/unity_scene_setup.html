@@ -3,8 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>The CPT&#x27;s Game Development Workshop</title>
-        <meta name="robots" content="noindex">
+        <title>Scene/Project Setup - The CPT&#x27;s Game Development Workshop</title>
 
 
         <!-- Custom HTML head -->
@@ -13,32 +12,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
 
         <!-- Provide site root to javascript -->
         <script>
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc.js"></script>
+        <script src="../toc.js"></script>
     </head>
     <body>
     <div id="body-container">
@@ -90,7 +89,7 @@
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
             <noscript>
-                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
             </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -124,7 +123,7 @@
                     <h1 class="menu-title">The CPT&#x27;s Game Development Workshop</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
 
@@ -153,47 +152,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="what-is-unity"><a class="header" href="#what-is-unity">What is Unity?</a></h1>
-<img style="display: block; margin_left = auto; margin_right = auto;" src="unity/unity_img1.png" alt="Unity Screenshot">
-<p>Unity is a modern, powerful game engine and editor that allows one to create fun and beautiful games using C#. Unity offers a built-in physics engine, a flexible and usable scene system, and licensing freedom as open source software. In addition, developers get access to the Unity Asset Store, which offers thousands of assets for use in your game!</p>
-<p><a href="unity/./getting-started.html">Let's get Started!</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h1>
-<h3 id="downloading-unity"><a class="header" href="#downloading-unity">Downloading Unity</a></h3>
-<ol>
-<li>Go to <a href="https://unity.com/download">unity.com/download</a></li>
-<li>Click "Dowload" at the top to download the installer for Unity Hub.</li>
-<li>Follow the installer's instructions to download the Unity Hub.</li>
-<li>Once finished, the Hub should launch automatically and prompt you to download the Unity Editor. Please do so.</li>
-</ol>
-<ul>
-<li>Caution: This is a <strong>LARGE</strong> installation. Ensure you have ample storage space before proceeding.</li>
-</ul>
-<h3 id="creating-a-new-project"><a class="header" href="#creating-a-new-project">Creating a new project</a></h3>
-<ol>
-<li>Once Unity Hub is installed, navigate to the "Projects" sidebar</li>
-<li>Click "New Project"</li>
-<li>In the sidebar, click "All templates".</li>
-<li>We will be using the "Universal 3D" template</li>
-<li>On the side, give your project a name and place it in your desired directory.</li>
-<li>Click "Create project" and it will create and launch the editor automatically.
-<br/></li>
-</ol>
-<ul>
-<li>This is what it looks like...</li>
-</ul>
-<ol start="6">
-<li>Click "Create project" and it will create and launch the editor automatically.
-<br/></li>
-</ol>
-<ul>
-<li>This is what it looks like...</li>
-</ul>
-<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/editor_hmpage.png" alt="Unity Editor Home Page">
-<br/>
-<p><a href="unity/./unity_scene_setup.html">Now, we get to the fun stuff!</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h3 id="general-layout"><a class="header" href="#general-layout">General Layout</a></h3>
-<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/unity_component.png" alt="Unity Editor Home Page">
+                        <h3 id="general-layout"><a class="header" href="#general-layout">General Layout</a></h3>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity_component.png" alt="Unity Editor Home Page">
 <br/>
 <h5 id="counterclockwise"><a class="header" href="#counterclockwise">Counterclockwise...</a></h5>
 <ul>
@@ -250,7 +210,7 @@
 <li>Now, in the corner on the left, look for a plus icon with a dropdown menu triangle next to it
 <ul>
 <li>Should look something like this:
-<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/project_manager_dropdown.png" alt="project manager dropdown button"></li>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="project_manager_dropdown.png" alt="project manager dropdown button"></li>
 </ul>
 </li>
 <li>Expand the dropdown menu and find the <em>Install package by name...</em> option</li>
@@ -266,53 +226,18 @@
 <li><strong>ProBuilder</strong> will allow us to create custom shapes and obstacles to place in our scene. Once we learn how to use it, we can let our imaginations run wild!</li>
 <li><strong>Unity glTFast</strong> will allow us to actually use .gltf files (and the asset files in the folder you downloaded up above).</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="what-is-godot"><a class="header" href="#what-is-godot">What is Godot?</a></h1>
-<img style="display: block; margin-left: auto; margin-right: auto;" src="godot/image0.png" alt="Godot Screenshot">
-<p>Godot is a powerful, lightweight, and beginner friendly game engine that allows people to rapidly create games in GDScript, C#, C++, and many other programming languages. It features a flexible node based scene system, a robust animation system, and a built in physics engine, while offering transparancy and licensing freedom as open source software.</p>
-<p><a href="godot/./getting-started.html">Let's get Started!</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started-1"><a class="header" href="#getting-started-1">Getting Started</a></h1>
-<h3 id="downloading-the-engine"><a class="header" href="#downloading-the-engine">Downloading the Engine</a></h3>
-<ol>
-<li>Go to <a href="https://www.godotengine.org">godotengine.org</a></li>
-<li>Click "Download Latest"</li>
-<li>Click the blue "Godot Engine" button</li>
-<li>Unzip the downloaded file, and run the program (the one without "console" in the file name)</li>
-</ol>
-<h3 id="making-a-project"><a class="header" href="#making-a-project">Making a Project</a></h3>
-<ul>
-<li>Now that the window program is open, hit the <code>Create</code> button, give your project a name, location, and set the renderer to <code>Forward+</code>, then hit <code>Create &amp; Edit</code></li>
-</ul>
-<h3 id="learning-the-layout"><a class="header" href="#learning-the-layout">Learning the Layout</a></h3>
-<img style="display: block; margin-left: auto; margin-right: auto;" src="godot/image1.png" alt="Godot UI">
-<p>There are a few major parts of the UI here, let's go through them one by one:</p>
-<ul>
-<li>Scene tree - This is the top left window, it contains a heirarchical representation of every node in the scene (we'll go over what nodes are later)</li>
-<li>Filesystem - This is the botton left window, it contains all the files in your project</li>
-<li>Properties editor - This is the window on the right, if you have a node selected in the scene tree, it will show all the properties of that node for you to edit</li>
-<li>Scene viewer - This is the large pane in the middle, it has four modes, <code>2D</code>, <code>3D</code>, <code>Script</code>, and <code>AssetLib</code>. <code>2D</code> Allows you to view and edit the 2D component of the scene (this can be a menu, a 2D game, or a GUI on top of the 3D game). <code>3D</code> allows you to view and edit the 3D component of the scene. <code>Script</code> opens the script editor and allows you to write code in GDScript (you will need an external program if you choose to use a different language). And <code>AssetLib</code> allows you to download community assets and plugins to give you access to more features.</li>
-</ul>
-<p><a href="godot/./making-a-game.html">Let's start making a game!</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="making-a-game"><a class="header" href="#making-a-game">Making a Game</a></h1>
-<h3 id="getting-the-assets"><a class="header" href="#getting-the-assets">Getting the Assets</a></h3>
-<ol>
-<li>Download the premade assets <a href="https://github.com/CSU-WPT/game-dev-workshop/releases/download/godot/assets.zip">here</a>.</li>
-<li>Extract the zip file and drag the files into Godot's filesystem, it should now look like this:</li>
-</ol>
-<img style="display: block; margin-left: auto; margin-right: auto;" src="godot/image2.png" alt="Assets in Godot">
-<ul>
-<li>Notice how the gltf files (which contain models) were split into png images, since Godot converts models to scenes which reference the textures externally.</li>
-<li>There is a problem though, Godot automatically compresses imported textures to save space. This is fine most of the time, since most textures are large and single pixels won't make a difference, but these assets use pixel art, which involves small textures where each pixel matters. This causes the model to look wrong. To fix this we can change the import settings of the textures.</li>
-</ul>
-<h3 id="fixing-the-assets"><a class="header" href="#fixing-the-assets">Fixing the Assets</a></h3>
-<ul>
-<li>Select a texture,  go to the "Import" tab, change the "Mode" to "Lossless", then hit "Reimport (*)". Repeat this process for all the textures.</li>
-</ul>
-<img style="display: block; margin-left: auto; margin-right: auto;" src="godot/image3.png" alt="Reimporting the textures">
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../unity/getting-started.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
+                            <a rel="next prefetch" href="../godot/what-is-godot.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -320,7 +245,13 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../unity/getting-started.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
+                    <a rel="next prefetch" href="../godot/what-is-godot.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>
@@ -333,21 +264,16 @@
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
 
-        <script>
-        window.addEventListener('load', function() {
-            window.setTimeout(window.print, 100);
-        });
-        </script>
 
     </div>
     </body>

@@ -30,3 +30,10 @@ Let's start by adding a ground object:
 <br/>
 
 
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_5.png" alt="Unity Editor Home Page">
+
+4. Repeat step 4 but, this time, drag and drop the *motor_oil* asset onto the ground (Be sure to place it somewhat far away).
+<br/>
+
+
+#### This concludes our scene setup (for now). We will now proceed to the [input configuration](input_config.md)

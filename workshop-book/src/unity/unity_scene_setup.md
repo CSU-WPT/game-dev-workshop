@@ -5,7 +5,7 @@
 
 ##### Counterclockwise...
 
-* **Scene View**
+* **Scene Panel**
     - This panel contains what scene you're on currently as well as all the game objects that that scene holds (ex: camera, light source, ground object, your player asset, obstacles).
 
 * **File System**

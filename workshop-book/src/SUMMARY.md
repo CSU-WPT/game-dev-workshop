@@ -8,6 +8,7 @@
 - [Getting Started](./unity/getting-started.md)
 - [Scene/Project Setup](./unity/unity_scene_setup.md)
 - [Placing a ground object](./unity/groundwork.md)
+- [Setting up Input](./unity/input_config.md)
 
 # The Godot Game Engine
 

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>What is Godot? - The CPT&#x27;s Game Development Workshop</title>
+        <title>Setting up Input - The CPT&#x27;s Game Development Workshop</title>
 
 
         <!-- Custom HTML head -->
@@ -152,20 +152,154 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="what-is-godot"><a class="header" href="#what-is-godot">What is Godot?</a></h1>
-<img style="display: block; margin-left: auto; margin-right: auto;" src="image0.png" alt="Godot Screenshot">
-<p>Godot is a powerful, lightweight, and beginner friendly game engine that allows people to rapidly create games in GDScript, C#, C++, and many other programming languages. It features a flexible node based scene system, a robust animation system, and a built in physics engine, while offering transparancy and licensing freedom as open source software.</p>
-<p><a href="./getting-started.html">Let's get Started!</a></p>
+                        <h3 id="input-configuration"><a class="header" href="#input-configuration">Input Configuration</a></h3>
+<ul>
+<li>For this tutorial, we will be using the new Unity Input system.</li>
+<li>Those w/ prior Unity experience may still know how inputs were taken from the user before the addition of the new system (done mostly within code)</li>
+</ul>
+<br/>
+<ul>
+<li>However, with the new system, we can easily configure different actions for our player asset with custom made action maps and key bindings (you can even configure controllers!)</li>
+</ul>
+<h5 id="lets-get-started"><a class="header" href="#lets-get-started">Let's get started!</a></h5>
+<br/>
+<ol>
+<li>Navigate out of the assets folder (if you're following along from the previous page).
+<br/></li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_6.png" alt="Unity Editor Home Page">
+<ol start="2">
+<li>Right-click, hover over <em>Create</em> and scroll down until you see <em>Input Actions</em>. Click it to create a new Input Actions Asset.
+<ul>
+<li>I named mine "Player_Control" but you can name it whatever you want.</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_7.png" alt="Unity Editor Home Page">
+<ol start="3">
+<li>On the right, click <em>Assign as the Project-wide Input Actions</em>. This ensures that our inputs stay consistent and that we don't run into any unexpected errors.</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_7.png" alt="Unity Editor Home Page">
+<ol start="4">
+<li>On the right, click <em>Assign as the Project-wide Input Actions</em>. This ensures that our inputs stay consistent and that we don't run into any unexpected errors.</li>
+</ol>
+<br/>
+<p>Now, double-click to open it in a separate window and dock it next to the <em>Scene</em> and <em>Game</em> view.</p>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_8.png" alt="Unity Editor Home Page">
+<ol start="5">
+<li>
+<p>On the left, create a new action map called <em>Player</em> by clicking the plus icon</p>
+<ul>
+<li>An action map is essentially a container that holds bindings (either for a keyboard or for a controller). Once established, this action map (and its associated bindings) can be assigned to whatever asset we want (like <strong>jearl_backwards</strong>).
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_10.png" alt="Unity Editor Home Page">
+<ol start="6">
+<li>On the right panel, change the action type to <strong>Value</strong>.
+<ul>
+<li>The reason is because, conventionally, movement in games is always done by pressing and holding a button (i.e. it generates a <em>continuous</em> value like "WWWWWWWWW..." for forward movement) unlike jumping, for example, where we press once and don't hold.</li>
+<li>The game engine (and our script) will read that continuous string of W's, interpret it to mean forward movement and, consequently, move our player forward so long as it keeps getting those continuous W's.
+<ul>
+<li>It's not exactly like this but hopefully you get the idea 😁
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_11.png" alt="Unity Editor Home Page">
+<ol start="7">
+<li>
+<p>In the additional dropdown menu that is spawned underneath <em>Action Type</em>, change <em>Control Type</em> to <strong>Vector 2</strong>.</p>
+<ul>
+<li>This is because our movement is only in 2 directions (the x-axis and the z-axis). This is unlike Creative Mode in Minecraft, for example, where we can freely move in any direction.
+<ul>
+<li>We will move in the y-axis (via jumping) but <strong>not</strong> with continuous movement.
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_12.png" alt="Unity Editor Home Page">
+<ol start="8">
+<li>Find the plus icon next to <em>Movement</em> (in the center panel). Click it and then, in the dropdown menu, click <em>Add Up/Down/Left/Right Composite</em>
+<ul>
+<li>This will automatically create placeholders for 4 movement bindings (WASD) and bind/aggregate them into a single Vector 2 vector.
+<ul>
+<li>I haven't tried it but you could try manually creating each key binding (without the composite). However, you will have to aggregate them yourself in your script.</li>
+<li>Using the composite, therefore, will result in less headaches and a cleaner setup.
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_13.png" alt="Unity Editor Home Page">
+<ol start="9">
+<li>Expand the newly created <em>2D Vector</em> dropdown to show the 4 empty bindings.
+<ul>
+<li>Now, for each binding:
+<ul>
+<li>Click on it in the center panel</li>
+<li>On the right, open the <em>Path</em> dropdown.</li>
+<li>Here, either search for the key to bind or click the <em>Listen</em> button and press the key you'd wish to bind and it will pop up in the dropdown below.</li>
+<li>Click your desired key to attach it to the <em>Up</em> binding.</li>
+<li>Repeat for all 4 bindings.
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_14.png" alt="Unity Editor Home Page">
+<ol start="10">
+<li>Up top, in the right corner, click <em>Save Asset</em> to save changes.
+<br/></li>
+</ol>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_15.png" alt="Unity Editor Home Page">
+<ol start="10">
+<li>Let's navigate back to the Scene View.
+<ul>
+<li>Click on <strong>jearl_backwards</strong> in the scene view itself (or in the scene panel on the right)</li>
+<li>In the component panel on the right, we will add a <strong>Player Input</strong> component to attach our newly made action map and key bindings to our player asset
+<ul>
+<li>In the search bar, start typing <strong>Player Input</strong> and you'll see it below.</li>
+<li>Click it to add it to the <strong>jearl_backwards</strong> asset.</li>
+</ul>
+</li>
+<li>Notice that Unity will automatically assign our custom-made Input Actions asset here.
+<ul>
+<li>The <em>Actions</em> attribute will be the <em>Player_Control</em> Input Actions asset (which, you can see, is visible below in our assets folder)</li>
+<li>The <em>Default Map</em> attribute will be the <em>Player</em> binding map (which we just made).
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="now-its-time-to-put-all-this-together-in-a-c-script"><a class="header" href="#now-its-time-to-put-all-this-together-in-a-c-script">Now, it's time to put all this together in a C# script.</a></h4>
+<br/>
+<h4 id="but-now-we-need-to-set-up-our-code-editors"><a class="header" href="#but-now-we-need-to-set-up-our-code-editors">But, now we need to set up our code editors.</a></h4>
+<ul>
+<li>For my Mac folks, we are gonna have to use <a href="./IDE_setup/VSCode.html"><strong>Visual Studio Code</strong></a>.</li>
+<li>For my Windows folks, you guys are free to choose between VS Code and <a href="./IDE_setup/Visual_Studio.html"><strong>Visual Studio</strong></a> (the purple one).</li>
+</ul>
+<h4 id="for-this-tutorial-as-a-mac-user-i-will-use-vs-code-but-you-guys-are-free-to-use-whatever-is-most-convenient-for-you"><a class="header" href="#for-this-tutorial-as-a-mac-user-i-will-use-vs-code-but-you-guys-are-free-to-use-whatever-is-most-convenient-for-you">For this tutorial, as a Mac user, I will use VS Code. But, you guys are free to use whatever is most convenient for you.</a></h4>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../unity/input_config.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../unity/groundwork.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../godot/getting-started.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../godot/what-is-godot.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -175,11 +309,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../unity/input_config.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../unity/groundwork.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../godot/getting-started.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../godot/what-is-godot.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

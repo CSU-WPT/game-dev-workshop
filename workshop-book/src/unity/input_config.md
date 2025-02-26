@@ -36,3 +36,94 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <br/>
 
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_8.png" alt="Unity Editor Home Page">
+
+5. On the left, create a new action map called *Player* by clicking the plus icon
+
+    - An action map is essentially a container that holds bindings (either for a keyboard or for a controller). Once established, this action map (and its associated bindings) can be assigned to whatever asset we want (like **jearl_backwards**).
+<br/>
+
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_10.png" alt="Unity Editor Home Page">
+
+6. On the right panel, change the action type to **Value**. 
+    - The reason is because, conventionally, movement in games is always done by pressing and holding a button (i.e. it generates a *continuous* value like "WWWWWWWWW..." for forward movement) unlike jumping, for example, where we press once and don't hold.
+    - The game engine (and our script) will read that continuous string of W's, interpret it to mean forward movement and, consequently, move our player forward so long as it keeps getting those continuous W's.
+        - It's not exactly like this but hopefully you get the idea 😁
+<br/>
+
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_11.png" alt="Unity Editor Home Page">
+
+7. In the additional dropdown menu that is spawned underneath *Action Type*, change *Control Type* to **Vector 2**.
+
+    - This is because our movement is only in 2 directions (the x-axis and the z-axis). This is unlike Creative Mode in Minecraft, for example, where we can freely move in any direction.
+        - We will move in the y-axis (via jumping) but **not** with continuous movement.
+<br/>
+
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_12.png" alt="Unity Editor Home Page">
+
+8. Find the plus icon next to *Movement* (in the center panel). Click it and then, in the dropdown menu, click *Add Up/Down/Left/Right Composite*
+    - This will automatically create placeholders for 4 movement bindings (WASD) and bind/aggregate them into a single Vector 2 vector. 
+        - I haven't tried it but you could try manually creating each key binding (without the composite). However, you will have to aggregate them yourself in your script. 
+        - Using the composite, therefore, will result in less headaches and a cleaner setup.
+<br/>
+
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_13.png" alt="Unity Editor Home Page">
+
+9. Expand the newly created *2D Vector* dropdown to show the 4 empty bindings. 
+    - Now, for each binding: 
+        - Click on it in the center panel
+        - On the right, open the *Path* dropdown.
+        - Here, either search for the key to bind or click the *Listen* button and press the key you'd wish to bind and it will pop up in the dropdown below. 
+        - Click your desired key to attach it to the *Up* binding.
+        - Repeat for all 4 bindings. 
+<br/>
+
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_14.png" alt="Unity Editor Home Page">
+
+10. Up top, in the right corner, click *Save Asset* to save changes.
+<br/>
+
+
+<br/>
+
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_15.png" alt="Unity Editor Home Page">
+
+10. Let's navigate back to the Scene View.
+    - Click on **jearl_backwards** in the scene view itself (or in the scene panel on the right)
+    - In the component panel on the right, we will add a **Player Input** component to attach our newly made action map and key bindings to our player asset
+        - In the search bar, start typing **Player Input** and you'll see it below.
+        - Click it to add it to the **jearl_backwards** asset.
+    - Notice that Unity will automatically assign our custom-made Input Actions asset here.
+        - The *Actions* attribute will be the *Player_Control* Input Actions asset (which, you can see, is visible below in our assets folder)
+        - The *Default Map* attribute will be the *Player* binding map (which we just made).
+<br/>
+
+
+#### Now, it's time to put all this together in a C# script.
+
+<br/>
+
+#### But, now we need to set up our code editors.
+
+- For my Mac folks, we are gonna have to use [**Visual Studio Code**](./IDE_setup/VSCode.md).
+- For my Windows folks, you guys are free to choose between VS Code and [**Visual Studio**](./IDE_setup/Visual_Studio.md) (the purple one). 
+
+#### For this tutorial, as a Mac user, I will use VS Code. But, you guys are free to use whatever is most convenient for you. 
+
+
+
+
+
+
+
+
+
+
+

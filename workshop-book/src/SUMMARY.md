@@ -7,6 +7,7 @@
 - [What is Unity?](./unity/what-is-unity.md)
 - [Getting Started](./unity/getting-started.md)
 - [Scene/Project Setup](./unity/unity_scene_setup.md)
+- [Placing a ground object](./unity/groundwork.md)
 
 # The Godot Game Engine
 

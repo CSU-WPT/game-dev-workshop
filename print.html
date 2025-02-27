@@ -432,7 +432,125 @@
 <li>For my Windows folks, you guys are free to choose between VS Code and <a href="unity/./IDE_setup/Visual_Studio.html"><strong>Visual Studio</strong></a> (the purple one).</li>
 </ul>
 <h4 id="for-this-tutorial-as-a-mac-user-i-will-use-vs-code-but-you-guys-are-free-to-use-whatever-is-most-convenient-for-you"><a class="header" href="#for-this-tutorial-as-a-mac-user-i-will-use-vs-code-but-you-guys-are-free-to-use-whatever-is-most-convenient-for-you">For this tutorial, as a Mac user, I will use VS Code. But, you guys are free to use whatever is most convenient for you.</a></h4>
-<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="what-is-godot"><a class="header" href="#what-is-godot">What is Godot?</a></h1>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_16.png" alt="Unity Editor Home Page">
+<ol start="11">
+<li>Click on <strong>jearl_backwards</strong>
+<ul>
+<li>In its component panel, at the bottom, click <em>Add Component</em></li>
+<li>In the search bar, start typing <em>New Script</em>
+<ul>
+<li>You should see the option shown in the image above.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_17.png" alt="Unity Editor Home Page">
+<ol start="12">
+<li>Name the script something like <em>Player_Movement</em>. Then, click Create and Add. This will create the script and add it as a component to this object (jearl_backwards)</li>
+</ol>
+<br/>
+<h4 id="now-when-you-double-click-the-script-inside-the-script-component-assuming-you-set-up-your-respective-ide-correctly-it-should-automatically-open-the-script-in-said-ide-for-me-in-vscode-it-looks-something-like-this"><a class="header" href="#now-when-you-double-click-the-script-inside-the-script-component-assuming-you-set-up-your-respective-ide-correctly-it-should-automatically-open-the-script-in-said-ide-for-me-in-vscode-it-looks-something-like-this">Now, when you double-click the script (inside the script component), assuming you set up your respective IDE correctly, it should automatically open the script in said IDE. For me, in VSCode, it looks something like this:</a></h4>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_18.png" alt="Unity Editor Home Page">
+<div style="break-before: page; page-break-before: always;"></div><h3 id="lets-get-visual-studio-code-set-up"><a class="header" href="#lets-get-visual-studio-code-set-up">Let's get Visual Studio Code set up!</a></h3>
+<ol>
+<li>
+<p>Download <a href="https://code.visualstudio.com/download">Visual Studio Code.</a></p>
+</li>
+<li>
+<p>In VSCode, navigate to the extensions page on the sidebar and download the following extensions:</p>
+<ul>
+<li><strong>C# Dev Kit</strong> (by Microsoft)</li>
+<li><strong>Unity</strong> (by Microsoft)</li>
+</ul>
+</li>
+<li>
+<p>Next, open your Unity Project and do the following:</p>
+<ul>
+<li>For <em>Mac</em>
+<ul>
+<li>Go to <em>Unity</em> and then click <em>Settings</em></li>
+<li>In the left sidebar, find and click <em>External Tools</em></li>
+<li>In the <em>External Script Editor</em> sidebar, find Visual Studio Code.
+<ul>
+<li>If not there, click <em>Browse...</em></li>
+<li>Go to Applications and find Visual Studio Code then click <em>Choose</em></li>
+</ul>
+</li>
+<li>Close out of <em>Settings</em></li>
+</ul>
+</li>
+<li>For <em>Windows</em>
+<ul>
+<li>Go to <em>Edit</em> (up top), click it, and then find and click <em>Preferences</em></li>
+<li>On the left sidebar, find and click <em>External Tools</em>.</li>
+<li>In the <em>External Script Editor</em>, find Visual Studio Code.
+<ul>
+<li>If not there, click <em>Browse...</em></li>
+<li>In File Explorer, on the top right, search for the Visual Studio code <strong>.exe</strong> file (the actual application itself)</li>
+<li>Double click it.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Upon returning to the Unity Editor, inside the dropdown bar, you should see something like this:
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/IDE_setup/./Setup_photos/VSCode_confirmation.png" alt="Unity Editor Home Page"></p>
+</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h3 id="lets-get-visual-studio-code-set-up-1"><a class="header" href="#lets-get-visual-studio-code-set-up-1">Let's get Visual Studio Code set up!</a></h3>
+<ol>
+<li>
+<p>Download <a href="https://code.visualstudio.com/download">Visual Studio Code.</a></p>
+</li>
+<li>
+<p>In VSCode, navigate to the extensions page on the sidebar and download the following extensions:</p>
+<ul>
+<li><strong>C# Dev Kit</strong> (by Microsoft)</li>
+<li><strong>Unity</strong> (by Microsoft)</li>
+</ul>
+</li>
+<li>
+<p>Next, open your Unity Project and do the following:</p>
+<ul>
+<li>For <em>Mac</em>
+<ul>
+<li>Go to <em>Unity</em> and then click <em>Settings</em></li>
+<li>In the left sidebar, find and click <em>External Tools</em></li>
+<li>In the <em>External Script Editor</em> sidebar, find Visual Studio Code.
+<ul>
+<li>If not there, click <em>Browse...</em></li>
+<li>Go to Applications and find Visual Studio Code then click <em>Choose</em></li>
+</ul>
+</li>
+<li>Close out of <em>Settings</em></li>
+</ul>
+</li>
+<li>For <em>Windows</em>
+<ul>
+<li>Go to <em>Edit</em> (up top), click it, and then find and click <em>Preferences</em></li>
+<li>On the left sidebar, find and click <em>External Tools</em>.</li>
+<li>In the <em>External Script Editor</em>, find Visual Studio Code.
+<ul>
+<li>If not there, click <em>Browse...</em></li>
+<li>In File Explorer, on the top right, search for the Visual Studio code <strong>.exe</strong> file (the actual application itself)</li>
+<li>Double click it.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Upon returning to the Unity Editor, inside the dropdown bar, you should see something like this:
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/IDE_setup/./Setup_photos/VSCode_confirmation.png" alt="Unity Editor Home Page"></p>
+</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="what-is-godot"><a class="header" href="#what-is-godot">What is Godot?</a></h1>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="godot/image0.png" alt="Godot Screenshot">
 <p>Godot is a powerful, lightweight, and beginner friendly game engine that allows people to rapidly create games in GDScript, C#, C++, and many other programming languages. It features a flexible node based scene system, a robust animation system, and a built in physics engine, while offering transparancy and licensing freedom as open source software.</p>
 <p><a href="godot/./getting-started.html">Let's get Started!</a></p>

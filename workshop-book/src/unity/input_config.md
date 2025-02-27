@@ -118,6 +118,28 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 #### For this tutorial, as a Mac user, I will use VS Code. But, you guys are free to use whatever is most convenient for you. 
 
 
+<br/>
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_16.png" alt="Unity Editor Home Page">
+
+11. Click on **jearl_backwards**
+    - In its component panel, at the bottom, click *Add Component*
+    - In the search bar, start typing *New Script* 
+        - You should see the option shown in the image above.
+
+<br/>
+
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_17.png" alt="Unity Editor Home Page">
+
+12. Name the script something like *Player_Movement*. Then, click Create and Add. This will create the script and add it as a component to this object (jearl_backwards)
+
+<br/>
+
+#### Now, when you double-click the script (inside the script component), assuming you set up your respective IDE correctly, it should automatically open the script in said IDE. For me, in VSCode, it looks something like this:
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_18.png" alt="Unity Editor Home Page">
+
 
 
 

@@ -144,7 +144,25 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 #### Let's write some code to allow player movement!
 
 
-13.
+13. In the Update function, type *MovePlayer()* (we'll define this function later).
+    - This function, as per the description of the Update() function, will run every single frame of the gameplay (which is what we want)
+
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_19.png" alt="Unity Editor Home Page">
+
+12. Add three variables before Start() but inside our main method:
+    - *public float speed*
+        - This will dictate, well, the speed of our movement (we will be able to set the value of this variable inside our editor before hitting the play button as it is **public**)
+    - *public Vector2 move*
+        - If you remember from earlier, our movement (inside our action map) is strictly in 2 directions (that's what we want). We limited our key bindings to Vector2. 
+        - Thus, when we read our player's movements, they will be in a **2D vector** and will be placed inside an onject of type **Vector2**
+    - *public Vector3 movement*
+        - Since our game world is a **3D space**, we need to translate our 2-dimensional movement into a 3D vector w/ the y-axis (straight up) set to 0.
+            - Bonus question: why would we set the y-axis to 0 in our 3D vector?
+
+<br/>
+
+
 
 
 

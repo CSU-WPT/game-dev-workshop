@@ -141,8 +141,10 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_18.png" alt="Unity Editor Home Page">
 
 
+#### Let's write some code to allow player movement!
 
 
+13.
 
 
 

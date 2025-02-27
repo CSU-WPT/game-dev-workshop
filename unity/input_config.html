@@ -314,8 +314,40 @@
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_18.png" alt="Unity Editor Home Page">
 <h4 id="lets-write-some-code-to-allow-player-movement"><a class="header" href="#lets-write-some-code-to-allow-player-movement">Let's write some code to allow player movement!</a></h4>
 <ol start="13">
-<li></li>
+<li>In the Update function, type <em>MovePlayer()</em> (we'll define this function later).
+<ul>
+<li>This function, as per the description of the Update() function, will run every single frame of the gameplay (which is what we want)</li>
+</ul>
+</li>
 </ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_19.png" alt="Unity Editor Home Page">
+<ol start="12">
+<li>Add three variables before Start() but inside our main method:
+<ul>
+<li><em>public float speed</em>
+<ul>
+<li>This will dictate, well, the speed of our movement (we will be able to set the value of this variable inside our editor before hitting the play button as it is <strong>public</strong>)</li>
+</ul>
+</li>
+<li><em>public Vector2 move</em>
+<ul>
+<li>If you remember from earlier, our movement (inside our action map) is strictly in 2 directions (that's what we want). We limited our key bindings to Vector2.</li>
+<li>Thus, when we read our player's movements, they will be in a <strong>2D vector</strong> and will be placed inside an onject of type <strong>Vector2</strong></li>
+</ul>
+</li>
+<li><em>public Vector3 movement</em>
+<ul>
+<li>Since our game world is a <strong>3D space</strong>, we need to translate our 2-dimensional movement into a 3D vector w/ the y-axis (straight up) set to 0.
+<ul>
+<li>Bonus question: why would we set the y-axis to 0 in our 3D vector?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br/>
 
                     </main>
 

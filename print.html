@@ -490,6 +490,198 @@
 </li>
 </ol>
 <br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_20.png" alt="Unity Editor Home Page">
+<ol start="13">
+<li>
+<p>Add the following function after <em>Update()</em>:</p>
+<ul>
+<li>public void OnMove(InputAction.CallbackContext context) {
+move = context.ReadValue&lt; Vector 2 &gt;();
+}
+<br/></li>
+<li>Imagine your player asset is a toy remote car:
+<ul>
+<li>
+<p>Your keyboard/controller is the remote</p>
+</li>
+<li>
+<p>Unity's Input System is the "messenger"</p>
+</li>
+<li>
+<p>The function <em>OnMove</em> is the car receiving the message</p>
+</li>
+<li>
+<p>The <em>CallbackContext</em> is the message itself (the message that you send to the function upon a button press)</p>
+<ul>
+<li>The message says what you (the person controlling the car) want the car to do.
+<ul>
+<li>Move? Move where? How fast? Is this gonna happen once or continuously?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>In this case, the message is a 2D Vector indicating which direction you're moving in.
+<br/></p>
+</li>
+<li>
+<p>Consider the following example:</p>
+<ul>
+<li>In a 2D space like the one below:
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_21.png" alt="Unity Editor Home Page"></li>
+<li>(0,1) would mean "move in the +y axis" (i.e. upward)</li>
+<li>But now, when we translate this 2 dimensional movement into a 3 dimensional world, we have to be careful.
+<ul>
+<li>The y-axis is now upwards (directly upwards). The newly added z-axis is the new "forward" axis. And x is still for left/right movement.</li>
+</ul>
+</li>
+<li>So, when we map (0,1) from 2D to 3D, we would have to assign it in some way like this (assume our 2D vector is called "move", like above, and our 3D vector is still "movement"):
+<ul>
+<li>movement = new Vector3(move.x, 0f, move.y);</li>
+</ul>
+</li>
+<li>Why?
+<ul>
+<li>Like I said earlier, we don't move upwards with WASD. We only move along the x and z axes.</li>
+<li>Since our 2D vector is (0,1), our 3D translation of this 2D vector <strong>(0, 0f, 1)</strong>. Which means that we are now moving (in the 3D space) <strong>1 unit in the positive z-axis (AKA forward)</strong></li>
+<li>Now, since this action is repeated every frame, in 60 fps gameplay, our character will have smooth forward movement.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="this-is-the-perfect-segue-to-our-next-addition-to-this-script"><a class="header" href="#this-is-the-perfect-segue-to-our-next-addition-to-this-script">This is the perfect segue to our next addition to this script!</a></h4>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_22.png" alt="Unity Editor Home Page">
+<ol start="14">
+<li>We now add a new function which we place inside of <em>Update()</em> (so that it is called every frame). Inside of that function:
+<ul>
+<li>We placed the <em>movement = new Vector3(move.x, 0f, move.y)</em> line</li>
+<li>We also placed a new line:
+*tranform.Translate(movement * speed * Time.deltaTime, Space.World);</li>
+<li>What does this mean?
+<ul>
+<li><em>transform</em>
+<ul>
+<li>Refers to this game object (the one that this script is attached to)</li>
+</ul>
+</li>
+<li><em>.Translate</em>
+<ul>
+<li>Allows us to move the object from its current position.</li>
+</ul>
+</li>
+<li><em>movement * speed * time.DeltaTime</em>
+<ul>
+<li>We multiply our speed value by our movement vector (so that we're not at a speed of 1 unit per frame)</li>
+<li><em>time.deltaTime</em>
+<ul>
+<li>What is that?</li>
+<li>This allows our player movement to be <strong>frame-independent</strong>
+<ul>
+<li>Imagine that your computer runs the game at 60 fps (frames per second)</li>
+<li>We can calculate the total # of units moved by the player by doing:
+<ul>
+<li>60 * 5 (our speed, let's say) * movement ([0, 0, 1], let's say)</li>
+<li>Thus, we moved <strong>300 units</strong> in total</li>
+</ul>
+</li>
+<li>Let's assume your buddy's PC runs at 120 fps
+<ul>
+<li>Then, by the same calculation (with the same movement), I moved <strong>600 units</strong> in total when I run the game on his PC.
+<ul>
+<li>That's not good! This means that the higher the FPS is, the faster we move.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>This is why we multiply this expression by <strong>time.deltaTime</strong> (whose value is roughly equal to 1/your fps amount).
+<ul>
+<li>60 * 1/60 = 1 &amp; 120 * 1/120 = 1. Therefore, our overall movement stays <strong>consistent</strong> across different machines (since we're just multiplying by 1).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em>Space.World</em>
+<ul>
+<li>This allows our player object to move relative to the <strong>game world's global axes.</strong></li>
+<li>This means that, regardless of where I am or what direction I'm facing or what orientation the camera's in, when I press W, I will always move in the positive z-axis.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br/>
+<h4 id="now-lets-go-back-to-the-unity-editor"><a class="header" href="#now-lets-go-back-to-the-unity-editor">Now, let's go back to the Unity Editor.</a></h4>
+<br/>
+<ol start="15">
+<li>Now, when you press the play button up top, you should be able to move around (make sure your speed value is not 0)</li>
+</ol>
+<h4 id="fatal-error-this-is-me-from-a-couple-minutes-in-the-future-i-just-realized-that-i-placed-down-the-assets-in-the-wrong-way-if-youve-been-following-this-tutorial-when-you-ran-the-game-your-player-is-likely-moving-in-the-complete-opposite-directions"><a class="header" href="#fatal-error-this-is-me-from-a-couple-minutes-in-the-future-i-just-realized-that-i-placed-down-the-assets-in-the-wrong-way-if-youve-been-following-this-tutorial-when-you-ran-the-game-your-player-is-likely-moving-in-the-complete-opposite-directions">Fatal error (this is me from a couple minutes in the future). I just realized that I placed down the assets in the wrong way. If you've been following this tutorial, when you ran the game, your player is likely moving in the complete opposite directions.</a></h4>
+<h4 id="fix-swap-your-jerry-can-and-jearl_backwards-assets-positions-and-also-turn-the-camera-so-it-is-properly-oriented-and-centered-on-our-player-and-it-should-work"><a class="header" href="#fix-swap-your-jerry-can-and-jearl_backwards-assets-positions-and-also-turn-the-camera-so-it-is-properly-oriented-and-centered-on-our-player-and-it-should-work">Fix: Swap your jerry can and jearl_backwards assets' positions and also turn the camera so it is properly oriented and centered on our player. And it should work.</a></h4>
+<br/>
+<h4 id="youll-notice-that-the-player-is-stiff-hes-always-looking-in-the-same-direction-lets-change-that-so-that-the-player-looks-in-the-direction-that-were-moving-in"><a class="header" href="#youll-notice-that-the-player-is-stiff-hes-always-looking-in-the-same-direction-lets-change-that-so-that-the-player-looks-in-the-direction-that-were-moving-in">You'll notice that the player is "stiff". He's always looking in the same direction. Let's change that so that the player looks in the direction that we're moving in!</a></h4>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_23.png" alt="Unity Editor Home Page">
+<ol start="16">
+<li>Back in our script, add the following line:
+<ul>
+<li><em>transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.1f);</em></li>
+<li>What does this mean?:
+<ul>
+<li><em>transform.rotation</em>
+<ul>
+<li>Now, we're accessing this game object's rotation characteristic (before, it was translation)</li>
+</ul>
+</li>
+<li><em>Quaternion.Slerp(...)</em>
+<ul>
+<li>In mathematics, <strong>Quaternions</strong> are objects that are used to represent rotations in a 3D space</li>
+<li>The function <em>.Slerp()</em> takes two such quaternions and interpolates (or transitions) between them with a given strength (indicated by a floating-point number).</li>
+</ul>
+</li>
+<li><em>(transform.rotation, Quaternion.LookRotation(movement), 0.15f)</em>
+<ul>
+<li>Here, our two quaternions are:
+<ul>
+<li><em>transform.rotation</em>
+<ul>
+<li>This object's current rotation</li>
+</ul>
+</li>
+<li><em>Quaternion.LookRotation(movement)</em>
+<ul>
+<li>The rotation required to face in the direction of the given 3D vector (we used the Quaternion class's built-in function, LookRotation, to achieve this)</li>
+</ul>
+</li>
+<li><em>0.1f</em>
+<ul>
+<li>We transition between these two rotations with a strength of 0.1 (which is slow enough to see the transition)
+<ul>
+<li>Our game object will smoothly transition between rotations (instead of snapping) when we press WASD.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="now-when-you-go-back-to-the-editor-let-the-new-script-update-and-hit-play-you-should-see-movement-and-the-player-object-rotate-ie-look-in-the-direction-of-movement-isnt-that-cool"><a class="header" href="#now-when-you-go-back-to-the-editor-let-the-new-script-update-and-hit-play-you-should-see-movement-and-the-player-object-rotate-ie-look-in-the-direction-of-movement-isnt-that-cool">Now, when you go back to the Editor, let the new script update, and hit Play, you should see movement and the player object rotate (i.e. look) in the direction of movement. Isn't that cool?</a></h4>
 <div style="break-before: page; page-break-before: always;"></div><h3 id="lets-get-visual-studio-code-set-up"><a class="header" href="#lets-get-visual-studio-code-set-up">Let's get Visual Studio Code set up!</a></h3>
 <ol>
 <li>

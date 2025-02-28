@@ -164,6 +164,115 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 
 
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_20.png" alt="Unity Editor Home Page">
+
+13. Add the following function after *Update()*:
+
+    - public void OnMove(InputAction.CallbackContext context) {
+        move = context.ReadValue< Vector 2 >();
+    }
+    <br/>
+    - Imagine your player asset is a toy remote car:
+        - Your keyboard/controller is the remote
+        - Unity's Input System is the "messenger"
+        - The function *OnMove* is the car receiving the message
+        - The *CallbackContext* is the message itself (the message that you send to the function upon a button press)
+            - The message says what you (the person controlling the car) want the car to do.
+                - Move? Move where? How fast? Is this gonna happen once or continuously?
+        - In this case, the message is a 2D Vector indicating which direction you're moving in.
+        <br/>
+
+        - Consider the following example:
+            - In a 2D space like the one below:
+            <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_21.png" alt="Unity Editor Home Page">
+            - (0,1) would mean "move in the +y axis" (i.e. upward)
+            - But now, when we translate this 2 dimensional movement into a 3 dimensional world, we have to be careful.
+                - The y-axis is now upwards (directly upwards). The newly added z-axis is the new "forward" axis. And x is still for left/right movement.
+            - So, when we map (0,1) from 2D to 3D, we would have to assign it in some way like this (assume our 2D vector is called "move", like above, and our 3D vector is still "movement"):
+                - movement = new Vector3(move.x, 0f, move.y);
+            - Why?
+                - Like I said earlier, we don't move upwards with WASD. We only move along the x and z axes.
+                - Since our 2D vector is (0,1), our 3D translation of this 2D vector **(0, 0f, 1)**. Which means that we are now moving (in the 3D space) **1 unit in the positive z-axis (AKA forward)**
+                - Now, since this action is repeated every frame, in 60 fps gameplay, our character will have smooth forward movement.
+
+#### This is the perfect segue to our next addition to this script!
+
+<br/>
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_22.png" alt="Unity Editor Home Page">
+
+14. We now add a new function which we place inside of *Update()* (so that it is called every frame). Inside of that function:
+    - We placed the *movement = new Vector3(move.x, 0f, move.y)* line
+    - We also placed a new line:
+        *tranform.Translate(movement * speed * Time.deltaTime, Space.World);
+    - What does this mean?
+        - *transform* 
+            - Refers to this game object (the one that this script is attached to)
+        - *.Translate* 
+            - Allows us to move the object from its current position.
+        - *movement * speed * time.DeltaTime*
+            - We multiply our speed value by our movement vector (so that we're not at a speed of 1 unit per frame)
+            - *time.deltaTime* 
+                - What is that?
+                - This allows our player movement to be **frame-independent**
+                    - Imagine that your computer runs the game at 60 fps (frames per second)
+                    - We can calculate the total # of units moved by the player by doing:
+                        - 60 * 5 (our speed, let's say) * movement ([0, 0, 1], let's say)
+                        - Thus, we moved **300 units** in total
+                    - Let's assume your buddy's PC runs at 120 fps
+                        - Then, by the same calculation (with the same movement), I moved **600 units** in total when I run the game on his PC.
+                            - That's not good! This means that the higher the FPS is, the faster we move.
+                    - This is why we multiply this expression by **time.deltaTime** (whose value is roughly equal to 1/your fps amount). 
+                        - 60 * 1/60 = 1 & 120 * 1/120 = 1. Therefore, our overall movement stays **consistent** across different machines (since we're just multiplying by 1). 
+        - *Space.World*
+            - This allows our player object to move relative to the **game world's global axes.**
+            - This means that, regardless of where I am or what direction I'm facing or what orientation the camera's in, when I press W, I will always move in the positive z-axis.
+            
+
+<br/>
+
+
+#### Now, let's go back to the Unity Editor.
+
+<br/>
+
+15. Now, when you press the play button up top, you should be able to move around (make sure your speed value is not 0)
+
+#### Fatal error (this is me from a couple minutes in the future). I just realized that I placed down the assets in the wrong way. If you've been following this tutorial, when you ran the game, your player is likely moving in the complete opposite directions.
+
+#### Fix: Swap your jerry can and jearl_backwards assets' positions and also turn the camera so it is properly oriented and centered on our player. And it should work. 
+
+<br/>
+
+#### You'll notice that the player is "stiff". He's always looking in the same direction. Let's change that so that the player looks in the direction that we're moving in!
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_23.png" alt="Unity Editor Home Page">
+
+16. Back in our script, add the following line: 
+    - *transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.1f);*
+    - What does this mean?:
+        - *transform.rotation*
+            - Now, we're accessing this game object's rotation characteristic (before, it was translation)
+        - *Quaternion.Slerp(...)*
+            - In mathematics, **Quaternions** are objects that are used to represent rotations in a 3D space
+            - The function *.Slerp()* takes two such quaternions and interpolates (or transitions) between them with a given strength (indicated by a floating-point number).
+        - *(transform.rotation, Quaternion.LookRotation(movement), 0.15f)*
+            - Here, our two quaternions are:
+                - *transform.rotation*
+                    - This object's current rotation
+                - *Quaternion.LookRotation(movement)*
+                    - The rotation required to face in the direction of the given 3D vector (we used the Quaternion class's built-in function, LookRotation, to achieve this)
+                - *0.1f*
+                    - We transition between these two rotations with a strength of 0.1 (which is slow enough to see the transition)
+                        - Our game object will smoothly transition between rotations (instead of snapping) when we press WASD.
+
+
+#### Now, when you go back to the Editor, let the new script update, and hit Play, you should see movement and the player object rotate (i.e. look) in the direction of movement. Isn't that cool?
+                
+    
+
+
+
 
 
 

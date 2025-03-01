@@ -540,6 +540,158 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </li>
 </ol>
 <h4 id="now-when-you-go-back-to-the-editor-let-the-new-script-update-and-hit-play-you-should-see-movement-and-the-player-object-rotate-ie-look-in-the-direction-of-movement-isnt-that-cool"><a class="header" href="#now-when-you-go-back-to-the-editor-let-the-new-script-update-and-hit-play-you-should-see-movement-and-the-player-object-rotate-ie-look-in-the-direction-of-movement-isnt-that-cool">Now, when you go back to the Editor, let the new script update, and hit Play, you should see movement and the player object rotate (i.e. look) in the direction of movement. Isn't that cool?</a></h4>
+<h4 id="now-lets-add-some-jumping-functionality"><a class="header" href="#now-lets-add-some-jumping-functionality">Now, let's add some jumping functionality</a></h4>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_24.png" alt="Unity Editor Home Page">
+<ol start="17">
+<li>Back in our action map, right click on the "Player" action map and hit <em>Add Action</em>.
+<br/></li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_25.png" alt="Unity Editor Home Page">
+18. Click once on the newly created action, press `Enter`, and rename it to Jump
+    - Also, on the right-hand panel, ensure that the *Action Type* attribute for this action is **button** (we will press the jump button once to jump and that's it)
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_26.png" alt="Unity Editor Home Page">
+<ol start="19">
+<li>Open the dropdown menu of "Jump" to access the new empty binding
+<ul>
+<li>Over to the right, open the <em>Path</em> dropdown and either search for the Spacebar or use the <em>Listen</em> feature (like earlier)</li>
+<li>Select Spacebar from the search results to assign it to the empty key binding
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_27.png" alt="Unity Editor Home Page">
+<ol start="20">
+<li>Back in our Scene View, click on <strong>jearl_backwards</strong> to access its components
+<ul>
+<li>Click on <em>Add Component</em> and, in the search bar, start typing <strong>Rigidbody</strong>. You should see it in the search results.</li>
+<li>Click on <strong>Rigidbody</strong> to add it to our player object</li>
+<li>What's the point?
+<ul>
+<li>This component enables our player object to now be affected by physics (i.e. gravity)</li>
+<li>Without this, our jump functionality would not work and be very wonky
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_28.png" alt="Unity Editor Home Page">
+<ol start="21">
+<li>Inside of the Rigidbody component, under the <em>Constraints</em> dropdown, check the boxes for the X and Z axes for <em>Freeze Rotation</em>
+<ul>
+<li>Why?
+<ul>
+<li>This will prevent unwanted rotations or leaning when our player interacts with or collides with any uneven surfaces</li>
+<li>Locking these two axes ensures that our jump force is only applied to the y-axis (directly up) and nowhere else
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="lets-make-a-few-changes-to-our-script"><a class="header" href="#lets-make-a-few-changes-to-our-script">Let's make a few changes to our script</a></h4>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_29.png" alt="Unity Editor Home Page">
+<ol start="22">
+<li>Add the following three variables up top:
+<ul>
+<li><em>Rigidbody rb;</em></li>
+<li><em>public bool isGrounded;</em></li>
+<li><em>public float jumpStrength = 7f;</em>
+<br/></li>
+<li>Let's take a look at these:
+<ul>
+<li><em>Rigidbody rb</em>
+<ul>
+<li>This will hold the Rigidbody component of this object (the object that this script is attached to). Which will allow us to add forces to it later</li>
+</ul>
+</li>
+<li><em>public bool isGrounded;</em>
+<ul>
+<li>This ensures that we can only jump again once we have landed (and not at any other time)</li>
+<li>Simply relying on collisions can cause some errors.</li>
+<li>Without this check, we could either fall through the ground or keep jumping up forever and never land.</li>
+</ul>
+</li>
+<li><em>public float jumpStrength = 7f;</em>
+<ul>
+<li>Self-explanatory. Allows us to tweak the strength of our jump (we can also give custom values in the editor itself)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_30.png" alt="Unity Editor Home Page">
+<ol start="23">
+<li>Underneath our <em>OnMove</em> function, add this function.
+<ul>
+<li>The syntax is mostly the same except for one key difference...
+<ul>
+<li><strong>context.performed</strong>
+<ul>
+<li>Remember, we are not pressing and holding the jump button. This is a one-and-done type of action</li>
+<li>Therefore, we do not need to constantly read a value from the action map (like <em>OnMove</em>)
+<ul>
+<li>We just need to check, once, whether or not we received a context (message) from our key binding (the jump button)
+<ul>
+<li>If we did, we print a message to the console
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_31.png" alt="Unity Editor Home Page">
+<ol start="24">
+<li>What does this even mean?:
+<ul>
+<li>
+<p>We <strong>nested</strong> this addition inside of our <em>context.performed</em> if statement</p>
+<ul>
+<li>This ensures that if we press the jump button while the player object is airborne, we won't add more force to the player (i.e. double jump)
+<ul>
+<li>Not necessarily a bad thing. Feel free to implement this later if you want to.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><em>if (isGrounded) {...}</em></p>
+<ul>
+<li>If isGrounded is true (i.e. we are on the ground)</li>
+</ul>
+</li>
+<li>
+<p><em>rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse)</em></p>
+<ul>
+<li>We will add an impulse force (instantaneous force) to our Rigidbody component, which will, in turn, affect the player object.</li>
+<li>This force will be equal to the 3D up vector (whose value is (0, 1, 0)) and multiply it by our jump strength</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_32.png" alt="Unity Editor Home Page">
+<ol start="25">
+<li>In our <em>Start</em> function, add the above line
+<ul>
+<li>This allows us to actually access and store this object's Rigidbody component inside of our variable to use in our script.</li>
+<li>We placed this inside <em>Start()</em> so that this action is only performed once. We access the Rigidbody component once, store it, and that's it.</li>
+</ul>
+</li>
+</ol>
+<br/>
 
                     </main>
 

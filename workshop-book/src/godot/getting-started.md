@@ -10,7 +10,7 @@
 - Now that the window program is open, hit the `Create` button, give your project a name, location, and set the renderer to `Forward+`, then hit `Create & Edit`
 
 ### Learning the Layout
-<img style="display: block; margin-left: auto; margin-right: auto;" src="image1.png" alt="Godot UI">
+<img style="display: block; margin-left: auto; margin-right: auto;" src="2-1.png" alt="Godot UI">
 
 There are a few major parts of the UI here, let's go through them one by one:
 
@@ -18,5 +18,11 @@ There are a few major parts of the UI here, let's go through them one by one:
 - Filesystem - This is the botton left window, it contains all the files in your project
 - Properties editor - This is the window on the right, if you have a node selected in the scene tree, it will show all the properties of that node for you to edit
 - Scene viewer - This is the large pane in the middle, it has four modes, `2D`, `3D`, `Script`, and `AssetLib`. `2D` Allows you to view and edit the 2D component of the scene (this can be a menu, a 2D game, or a GUI on top of the 3D game). `3D` allows you to view and edit the 3D component of the scene. `Script` opens the script editor and allows you to write code in GDScript (you will need an external program if you choose to use a different language). And `AssetLib` allows you to download community assets and plugins to give you access to more features.
+
+### Snapping
+
+- Throughout this guide, you will be moving, rotating, and resizing objects in the editor. Godot has a "snap" mode that will snap these actions to certain intervals, depending on what you are doing, you may want this on or off.
+<img style="display: block; margin-left: auto; margin-right: auto;" src="2-2.png" alt="Snap and Snap Settings">
+- The magnet with the three dots toggles snap, and the `Configure Snap...` allows you to modify how rough or granular the snap is.
 
 [Let's start making a game!](./making-a-game.md)

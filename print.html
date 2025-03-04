@@ -795,6 +795,8 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_31.png" alt="Unity Editor Home Page">
 <ol start="24">
+<li>Add the inner <em>if</em> statement that you see up above.
+<ul>
 <li>What does this even mean?:
 <ul>
 <li>
@@ -817,7 +819,9 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <p><em>rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse)</em></p>
 <ul>
 <li>We will add an impulse force (instantaneous force) to our Rigidbody component, which will, in turn, affect the player object.</li>
-<li>This force will be equal to the 3D up vector (whose value is (0, 1, 0)) and multiply it by our jump strength</li>
+<li>This force will be equal to the 3D up vector (whose value is (0, 1, 0)) multiplied by our jump strength</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -830,10 +834,140 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <ul>
 <li>This allows us to actually access and store this object's Rigidbody component inside of our variable to use in our script.</li>
 <li>We placed this inside <em>Start()</em> so that this action is only performed once. We access the Rigidbody component once, store it, and that's it.</li>
+<li>EDIT (This is me from the future) --&gt; Change this line from <strong>.GetComponent...</strong> to <strong>= GetComponent...</strong></li>
 </ul>
 </li>
 </ol>
 <br/>
+<h4 id="but-how-can-we-actually-if-the-object-has-even-landed-to-then-enable-it-to-jump-again"><a class="header" href="#but-how-can-we-actually-if-the-object-has-even-landed-to-then-enable-it-to-jump-again">But, how can we actually if the object has even landed to then enable it to jump again?</a></h4>
+<h4 id="the-answer-with-collisions"><a class="header" href="#the-answer-with-collisions">The answer? With <em>collisions</em></a></h4>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_33.png" alt="Unity Editor Home Page">
+<ol start="26">
+<li>
+<p>Add the following function below our <em>OnJump</em> function.</p>
+<ul>
+<li>Do note that this is a built-in function that we are simply overwriting.</li>
+<li>Intellisense and autocomplete should kick in as soon as you start typing the function name</li>
+<li>Upon any collision, Unity, by default, calls this method. The physics engine is fast enough to even call this multiple times per frame.</li>
+</ul>
+</li>
+</ol>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_34.png" alt="Unity Editor Home Page">
+<ol start="27">
+<li>Add the following line to the function body
+<ul>
+<li>What does this mean?
+<ul>
+<li><em>Debug.Log(...)</em>
+<ul>
+<li>This is here to ensure that a). a collision occurred and b). it occurred with the correct object</li>
+</ul>
+</li>
+<li><em>if (collision.gameObject.CompareTag("Ground")) {</em>
+<ul>
+<li>When a collision occurs, the collision variable in our method signature will be given information about the collision.
+<ul>
+<li>The <em>collision.</em> refers to the collision that just occurred</li>
+<li>The <em>.gameObject</em> refers to the other object that this object collided with</li>
+<li>The <em>.CompareTag</em> checks if that other object held a tag of "Ground" (we'll go over this in just a little bit)</li>
+</ul>
+</li>
+<li>So, if the other object in the collision that just happened with our object is tagged with the tag "Ground", then...
+<ul>
+<li>We set <em>isGrounded</em> to true (i.e. we have landed).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_36.png" alt="Unity Editor Home Page">
+<ol start="28">
+<li>Once you click <em>Add Tag...</em>, hit the plus to create a new tag
+<ul>
+<li>In the pop-up box, name it "Ground" (be sure to name it <strong>EXACTLY</strong> what the name was in our if statement in the script)</li>
+<li>Click <em>Save</em></li>
+<li>Navigate back to the <em>Ground</em> object's component view and, in the <em>Tags</em> dropdown, click on the newly created <em>Ground</em> tag to assign it to this object
+<ul>
+<li>Unity does NOT do this automatically (😔). So, don't forget to do it.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br/>
+<h4 id="so-now-assuming-everything-was-set-up-correctly-upon-running-our-game-you-should-be-able-to-move-and-jump"><a class="header" href="#so-now-assuming-everything-was-set-up-correctly-upon-running-our-game-you-should-be-able-to-move-and-jump">So now, assuming everything was set up correctly, upon running our game, you should be able to move AND jump!</a></h4>
+<h4 id="now-for-a-final-touch-before-moving-on-to-animations-lets-fix-the-position-of-our-camera"><a class="header" href="#now-for-a-final-touch-before-moving-on-to-animations-lets-fix-the-position-of-our-camera">Now, for a final touch (before moving on to animations), let's fix the position of our camera</a></h4>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_37.png" alt="Unity Editor Home Page">
+<ol start="28">
+<li>Let's make a new script for our <em>Main Camera</em> object
+<ul>
+<li>Click on it to open its Component view on the side.</li>
+<li>At the bottom, click <em>Add Component</em> and type in the box <em>New Script</em></li>
+<li>Let's name the script <em>Player_Follow</em></li>
+<li>Once created, double-click to open it.</li>
+</ul>
+</li>
+</ol>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_38.png" alt="Unity Editor Home Page">
+<ol start="28">
+<li>Let's add the following variables first:
+<ul>
+<li>What do they mean?:
+<ul>
+<li><em>public Transform player;</em>
+<ul>
+<li>We will need this later to hold information about our player object (we'll just click and drag our player object into this variable in our Editor later)</li>
+</ul>
+</li>
+<li><em>public Vector3 offset = new Vector3(...)</em>
+<ul>
+<li>This is the three dimensional position that the camera will be locked at.</li>
+<li>Note: These are coordinates that I decided to use after a bit of trial and error (I just like how the camera sits at this position)
+<ul>
+<li>You can experiment yourself to find the location that you find better.</li>
+<li>Move the camera to that position. Then, just copy its <em>Position</em> values into this Vector3 variable</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_39.png" alt="Unity Editor Home Page">
+<ol start="28">
+<li>Now, we'll add the lines up above into the <em>Update()</em> method
+<ul>
+<li>What does this mean?
+<ul>
+<li><em>transform.position = player.position + offset;</em>
+<ul>
+<li>We're gonna take the position of this game object (the object that this script is attached to) and add to its position (which is in threee dimensions) the offset that we set up above.</li>
+</ul>
+</li>
+<li><em>transform.LookAt(player);</em>
+<ul>
+<li>This line will apply a rotation to this game object (the camera) that will ensure that its forward vector (the z-axis vector) is pointing directly at the specified game object (which we set to the <em>player</em> variable which, if you remember, we'll set in the Unity Editor)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br/>
+<h4 id="now-when-you-return-to-the-unity-editor-and-look-at-the-main-cameras-components-make-sure-to-drag-jearl_backwards-into-the-empty-slot-next-to-the-player-variable-run-the-game-and-see-if-the-camera-is-attached-to-the-player-object"><a class="header" href="#now-when-you-return-to-the-unity-editor-and-look-at-the-main-cameras-components-make-sure-to-drag-jearl_backwards-into-the-empty-slot-next-to-the-player-variable-run-the-game-and-see-if-the-camera-is-attached-to-the-player-object">Now, when you return to the Unity Editor and look at the Main Camera's components, make sure to drag <em>jearl_backwards</em> into the empty slot next to the player variable. Run the game and see if the camera is attached to the player object,</a></h4>
+<h2 id="we-are-now-finished-with-the-input-configuration-next-we-will-add-animations-to-the-player-object"><a class="header" href="#we-are-now-finished-with-the-input-configuration-next-we-will-add-animations-to-the-player-object">We are now finished with the input configuration. Next, we will add animations to the player object</a></h2>
 <div style="break-before: page; page-break-before: always;"></div><h3 id="lets-get-visual-studio-code-set-up"><a class="header" href="#lets-get-visual-studio-code-set-up">Let's get Visual Studio Code set up!</a></h3>
 <ol>
 <li>

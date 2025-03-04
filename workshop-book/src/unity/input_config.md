@@ -351,16 +351,17 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_31.png" alt="Unity Editor Home Page">
 
-24. What does this even mean?:
-    - We **nested** this addition inside of our *context.performed* if statement
-        - This ensures that if we press the jump button while the player object is airborne, we won't add more force to the player (i.e. double jump)
-            - Not necessarily a bad thing. Feel free to implement this later if you want to.
-        
-    - *if (isGrounded) {...}*
-        - If isGrounded is true (i.e. we are on the ground)
-    - *rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse)*
-        - We will add an impulse force (instantaneous force) to our Rigidbody component, which will, in turn, affect the player object.
-        - This force will be equal to the 3D up vector (whose value is (0, 1, 0)) and multiply it by our jump strength
+24. Add the inner *if* statement that you see up above.
+    - What does this even mean?:
+        - We **nested** this addition inside of our *context.performed* if statement
+            - This ensures that if we press the jump button while the player object is airborne, we won't add more force to the player (i.e. double jump)
+                - Not necessarily a bad thing. Feel free to implement this later if you want to.
+            
+        - *if (isGrounded) {...}*
+            - If isGrounded is true (i.e. we are on the ground)
+        - *rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse)*
+            - We will add an impulse force (instantaneous force) to our Rigidbody component, which will, in turn, affect the player object.
+            - This force will be equal to the 3D up vector (whose value is (0, 1, 0)) multiplied by our jump strength
 
 <br/>
 
@@ -370,14 +371,105 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 25. In our *Start* function, add the above line
     - This allows us to actually access and store this object's Rigidbody component inside of our variable to use in our script.
     - We placed this inside *Start()* so that this action is only performed once. We access the Rigidbody component once, store it, and that's it.
+    - EDIT (This is me from the future) --> Change this line from **.GetComponent...** to **= GetComponent...**
 
 <br/>
 
 
+#### But, how can we actually if the object has even landed to then enable it to jump again?
+#### The answer? With *collisions*
 
 
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_33.png" alt="Unity Editor Home Page">
+
+26. Add the following function below our *OnJump* function.
+
+    - Do note that this is a built-in function that we are simply overwriting. 
+    - Intellisense and autocomplete should kick in as soon as you start typing the function name
+    - Upon any collision, Unity, by default, calls this method. The physics engine is fast enough to even call this multiple times per frame.
+
+<br/>
 
 
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_34.png" alt="Unity Editor Home Page">
+
+27. Add the following line to the function body
+    - What does this mean?
+        - *Debug.Log(...)*
+            - This is here to ensure that a). a collision occurred and b). it occurred with the correct object
+        - *if (collision.gameObject.CompareTag("Ground")) {*
+            - When a collision occurs, the collision variable in our method signature will be given information about the collision.
+                - The *collision.* refers to the collision that just occurred
+                - The *.gameObject* refers to the other object that this object collided with
+                - The *.CompareTag* checks if that other object held a tag of "Ground" (we'll go over this in just a little bit)
+            - So, if the other object in the collision that just happened with our object is tagged with the tag "Ground", then...
+                - We set *isGrounded* to true (i.e. we have landed). 
+
+<br/>
+
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_36.png" alt="Unity Editor Home Page">
+
+28. Once you click *Add Tag...*, hit the plus to create a new tag
+    - In the pop-up box, name it "Ground" (be sure to name it **EXACTLY** what the name was in our if statement in the script)
+    - Click *Save*
+    - Navigate back to the *Ground* object's component view and, in the *Tags* dropdown, click on the newly created *Ground* tag to assign it to this object 
+        - Unity does NOT do this automatically (😔). So, don't forget to do it.
+
+<br/>
+
+
+#### So now, assuming everything was set up correctly, upon running our game, you should be able to move AND jump!
+
+
+#### Now, for a final touch (before moving on to animations), let's fix the position of our camera
+
+
+<br/>
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_37.png" alt="Unity Editor Home Page">
+
+28. Let's make a new script for our *Main Camera* object
+    - Click on it to open its Component view on the side.
+    - At the bottom, click *Add Component* and type in the box *New Script*
+    - Let's name the script *Player_Follow*
+    - Once created, double-click to open it.
+
+<br/>
+
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_38.png" alt="Unity Editor Home Page">
+
+28. Let's add the following variables first:
+    - What do they mean?:
+        - *public Transform player;*
+            - We will need this later to hold information about our player object (we'll just click and drag our player object into this variable in our Editor later)
+        - *public Vector3 offset = new Vector3(...)*
+            - This is the three dimensional position that the camera will be locked at.
+            - Note: These are coordinates that I decided to use after a bit of trial and error (I just like how the camera sits at this position)
+                - You can experiment yourself to find the location that you find better.
+                - Move the camera to that position. Then, just copy its *Position* values into this Vector3 variable
+    
+
+<br/>
+
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_39.png" alt="Unity Editor Home Page">
+
+28. Now, we'll add the lines up above into the *Update()* method
+    - What does this mean?
+        - *transform.position = player.position + offset;*
+            - We're gonna take the position of this game object (the object that this script is attached to) and add to its position (which is in threee dimensions) the offset that we set up above.
+        - *transform.LookAt(player);*
+            - This line will apply a rotation to this game object (the camera) that will ensure that its forward vector (the z-axis vector) is pointing directly at the specified game object (which we set to the *player* variable which, if you remember, we'll set in the Unity Editor)
+
+<br/>
+
+
+#### Now, when you return to the Unity Editor and look at the Main Camera's components, make sure to drag *jearl_backwards* into the empty slot next to the player variable. Run the game and see if the camera is attached to the player object,
+
+
+## We are now finished with the input configuration. Next, we will add animations to the player object
 
 
 

@@ -1066,7 +1066,40 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </ul>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="godot/3-2.png" alt="Reimporting the textures">
 <p>Now that our assets are ready, let's <a href="godot/setting-the-scene.html">set the scene.</a></p>
-<div style="break-before: page; page-break-before: always;"></div>
+<div style="break-before: page; page-break-before: always;"></div><h3 id="creating-a-3d-scene"><a class="header" href="#creating-a-3d-scene">Creating a 3D Scene</a></h3>
+<ul>
+<li>
+<p>In the scene tree, click <code>3D Scene</code> to create a 3D scene.
+<img style="display: block; margin-left: auto; margin-right: auto;" src="godot/4-1.png" alt="Selecting 3D Scene"></p>
+</li>
+<li>
+<p>Now you should have a single node in your scene called <code>Node3D</code>. This is your root node, it defines that your scene exists in 3D space and everything in it will be a child of this node.</p>
+</li>
+<li>
+<p>Double click this node to rename it, and call it <code>LevelOne</code></p>
+</li>
+<li>
+<p>Hit "Ctrl+S" to save the scene, and hit enter when the popup appears</p>
+</li>
+</ul>
+<h3 id="making-the-map"><a class="header" href="#making-the-map">Making the Map</a></h3>
+<ul>
+<li>Right click the <code>LevelOne</code> node, and hit <code>Add Child Node</code></li>
+</ul>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="godot/4-2.png" alt="Making a Child Node">
+<ul>
+<li>That will create a popup window where you can choose what type of node to create, use the search bar and select another <code>Node3D</code></li>
+</ul>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="godot/4-3.png" alt="Selecting the Child Node">
+<ul>
+<li>
+<p>Rename this new node to <code>Map</code>. Nodes can also be used like folders in a filesystem for organizational purposes. It doesn't change anything functionally about the scene, but it allows us to organize the different parts of the scene. In this case, this node will contain all the terrain.</p>
+</li>
+<li>
+<p>Under the <code>Map</code> node, add a <code>CSGBox3D</code>. This is a node type that acts as both a rendered mesh, and a collidable box, and a static physics object, whereas normally you would need seperate nodes for these things. The benifit of CSG objects is they allow you to rapidly prototype levels, but they have poor performance when you use enough for a full scale game. Nonetheless, they're perfect for a game jam.</p>
+</li>
+</ul>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">

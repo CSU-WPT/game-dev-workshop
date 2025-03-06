@@ -137,7 +137,24 @@
 <br/>
 
 
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_55.png" alt="Unity Editor Home Page">
 
+14. Back in our editor, drag and drop the Animator Controller object we created into the blank spit in the Animator component of *jearl_backwards*
+<br/>
+
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_55.png" alt="Unity Editor Home Page">
+
+14. Back in our editor, drag and drop the Animator Controller object we created into the blank spit in the Animator component of *jearl_backwards*
+    - Also, do the same thing for the empty spot for the *Animator* variable in our *Player Script* variable but, this time, drag and drop **jearl_backwards**
+<br/>
+
+#### One last note --> add a ChangeAnimation() call for the "jumping" animation inside of our isGrounded (if (isGrounded) {...}) check in "OnJump"
+
+<br/>
+
+
+#### Now, with the changes made, upon running our game, you should see animations for movement, idling, jumping and falling
 
 
 

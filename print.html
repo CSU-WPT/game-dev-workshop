@@ -321,15 +321,11 @@
 <ol start="3">
 <li>On the right, click <em>Assign as the Project-wide Input Actions</em>. This ensures that our inputs stay consistent and that we don't run into any unexpected errors.</li>
 </ol>
-<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_7.png" alt="Unity Editor Home Page">
-<ol start="4">
-<li>On the right, click <em>Assign as the Project-wide Input Actions</em>. This ensures that our inputs stay consistent and that we don't run into any unexpected errors.</li>
-</ol>
 <br/>
 <p>Now, double-click to open it in a separate window and dock it next to the <em>Scene</em> and <em>Game</em> view.</p>
 <br/>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_8.png" alt="Unity Editor Home Page">
-<ol start="5">
+<ol start="4">
 <li>
 <p>On the left, create a new action map called <em>Player</em> by clicking the plus icon</p>
 <ul>
@@ -339,7 +335,7 @@
 </li>
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_10.png" alt="Unity Editor Home Page">
-<ol start="6">
+<ol start="5">
 <li>On the right panel, change the action type to <strong>Value</strong>.
 <ul>
 <li>The reason is because, conventionally, movement in games is always done by pressing and holding a button (i.e. it generates a <em>continuous</em> value like "WWWWWWWWW..." for forward movement) unlike jumping, for example, where we press once and don't hold.</li>
@@ -353,7 +349,7 @@
 </li>
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_11.png" alt="Unity Editor Home Page">
-<ol start="7">
+<ol start="6">
 <li>
 <p>In the additional dropdown menu that is spawned underneath <em>Action Type</em>, change <em>Control Type</em> to <strong>Vector 2</strong>.</p>
 <ul>
@@ -367,7 +363,7 @@
 </li>
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_12.png" alt="Unity Editor Home Page">
-<ol start="8">
+<ol start="7">
 <li>Find the plus icon next to <em>Movement</em> (in the center panel). Click it and then, in the dropdown menu, click <em>Add Up/Down/Left/Right Composite</em>
 <ul>
 <li>This will automatically create placeholders for 4 movement bindings (WASD) and bind/aggregate them into a single Vector 2 vector.
@@ -381,7 +377,7 @@
 </li>
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_13.png" alt="Unity Editor Home Page">
-<ol start="9">
+<ol start="8">
 <li>Expand the newly created <em>2D Vector</em> dropdown to show the 4 empty bindings.
 <ul>
 <li>Now, for each binding:
@@ -398,7 +394,7 @@
 </li>
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_14.png" alt="Unity Editor Home Page">
-<ol start="10">
+<ol start="9">
 <li>Up top, in the right corner, click <em>Save Asset</em> to save changes.
 <br/></li>
 </ol>
@@ -463,7 +459,7 @@
 </li>
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_19.png" alt="Unity Editor Home Page">
-<ol start="12">
+<ol start="14">
 <li>Add three variables before Start() but inside our main method:
 <ul>
 <li><em>public float speed</em>
@@ -491,7 +487,7 @@
 </ol>
 <br/>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_20.png" alt="Unity Editor Home Page">
-<ol start="13">
+<ol start="15">
 <li>
 <p>Add the following function after <em>Update()</em>:</p>
 <ul>
@@ -557,7 +553,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <h4 id="this-is-the-perfect-segue-to-our-next-addition-to-this-script"><a class="header" href="#this-is-the-perfect-segue-to-our-next-addition-to-this-script">This is the perfect segue to our next addition to this script!</a></h4>
 <br/>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_22.png" alt="Unity Editor Home Page">
-<ol start="14">
+<ol start="16">
 <li>We now add a new function which we place inside of <em>Update()</em> (so that it is called every frame). Inside of that function:
 <ul>
 <li>We placed the <em>movement = new Vector3(move.x, 0f, move.y)</em> line</li>
@@ -624,7 +620,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <br/>
 <h4 id="now-lets-go-back-to-the-unity-editor"><a class="header" href="#now-lets-go-back-to-the-unity-editor">Now, let's go back to the Unity Editor.</a></h4>
 <br/>
-<ol start="15">
+<ol start="17">
 <li>Now, when you press the play button up top, you should be able to move around (make sure your speed value is not 0)</li>
 </ol>
 <h4 id="fatal-error-this-is-me-from-a-couple-minutes-in-the-future-i-just-realized-that-i-placed-down-the-assets-in-the-wrong-way-if-youve-been-following-this-tutorial-when-you-ran-the-game-your-player-is-likely-moving-in-the-complete-opposite-directions"><a class="header" href="#fatal-error-this-is-me-from-a-couple-minutes-in-the-future-i-just-realized-that-i-placed-down-the-assets-in-the-wrong-way-if-youve-been-following-this-tutorial-when-you-ran-the-game-your-player-is-likely-moving-in-the-complete-opposite-directions">Fatal error (this is me from a couple minutes in the future). I just realized that I placed down the assets in the wrong way. If you've been following this tutorial, when you ran the game, your player is likely moving in the complete opposite directions.</a></h4>
@@ -632,7 +628,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <br/>
 <h4 id="youll-notice-that-the-player-is-stiff-hes-always-looking-in-the-same-direction-lets-change-that-so-that-the-player-looks-in-the-direction-that-were-moving-in"><a class="header" href="#youll-notice-that-the-player-is-stiff-hes-always-looking-in-the-same-direction-lets-change-that-so-that-the-player-looks-in-the-direction-that-were-moving-in">You'll notice that the player is "stiff". He's always looking in the same direction. Let's change that so that the player looks in the direction that we're moving in!</a></h4>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_23.png" alt="Unity Editor Home Page">
-<ol start="16">
+<ol start="18">
 <li>Back in our script, add the following line:
 <ul>
 <li><em>transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.1f);</em></li>
@@ -684,7 +680,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <h4 id="now-when-you-go-back-to-the-editor-let-the-new-script-update-and-hit-play-you-should-see-movement-and-the-player-object-rotate-ie-look-in-the-direction-of-movement-isnt-that-cool"><a class="header" href="#now-when-you-go-back-to-the-editor-let-the-new-script-update-and-hit-play-you-should-see-movement-and-the-player-object-rotate-ie-look-in-the-direction-of-movement-isnt-that-cool">Now, when you go back to the Editor, let the new script update, and hit Play, you should see movement and the player object rotate (i.e. look) in the direction of movement. Isn't that cool?</a></h4>
 <h4 id="now-lets-add-some-jumping-functionality"><a class="header" href="#now-lets-add-some-jumping-functionality">Now, let's add some jumping functionality</a></h4>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_24.png" alt="Unity Editor Home Page">
-<ol start="17">
+<ol start="19">
 <li>Back in our action map, right click on the "Player" action map and hit <em>Add Action</em>.
 <br/></li>
 </ol>
@@ -693,7 +689,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
     - Also, on the right-hand panel, ensure that the *Action Type* attribute for this action is **button** (we will press the jump button once to jump and that's it)
 <br/>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_26.png" alt="Unity Editor Home Page">
-<ol start="19">
+<ol start="20">
 <li>Open the dropdown menu of "Jump" to access the new empty binding
 <ul>
 <li>Over to the right, open the <em>Path</em> dropdown and either search for the Spacebar or use the <em>Listen</em> feature (like earlier)</li>
@@ -703,7 +699,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </li>
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_27.png" alt="Unity Editor Home Page">
-<ol start="20">
+<ol start="21">
 <li>Back in our Scene View, click on <strong>jearl_backwards</strong> to access its components
 <ul>
 <li>Click on <em>Add Component</em> and, in the search bar, start typing <strong>Rigidbody</strong>. You should see it in the search results.</li>
@@ -719,7 +715,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </li>
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_28.png" alt="Unity Editor Home Page">
-<ol start="21">
+<ol start="22">
 <li>Inside of the Rigidbody component, under the <em>Constraints</em> dropdown, check the boxes for the X and Z axes for <em>Freeze Rotation</em>
 <ul>
 <li>Why?
@@ -735,7 +731,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <h4 id="lets-make-a-few-changes-to-our-script"><a class="header" href="#lets-make-a-few-changes-to-our-script">Let's make a few changes to our script</a></h4>
 <br/>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_29.png" alt="Unity Editor Home Page">
-<ol start="22">
+<ol start="23">
 <li>Add the following three variables up top:
 <ul>
 <li><em>Rigidbody rb;</em></li>
@@ -768,7 +764,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </ol>
 <br/>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_30.png" alt="Unity Editor Home Page">
-<ol start="23">
+<ol start="24">
 <li>Underneath our <em>OnMove</em> function, add this function.
 <ul>
 <li>The syntax is mostly the same except for one key difference...
@@ -794,7 +790,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </li>
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_31.png" alt="Unity Editor Home Page">
-<ol start="24">
+<ol start="25">
 <li>Add the inner <em>if</em> statement that you see up above.
 <ul>
 <li>What does this even mean?:
@@ -829,7 +825,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </ol>
 <br/>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_32.png" alt="Unity Editor Home Page">
-<ol start="25">
+<ol start="26">
 <li>In our <em>Start</em> function, add the above line
 <ul>
 <li>This allows us to actually access and store this object's Rigidbody component inside of our variable to use in our script.</li>
@@ -842,7 +838,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <h4 id="but-how-can-we-actually-if-the-object-has-even-landed-to-then-enable-it-to-jump-again"><a class="header" href="#but-how-can-we-actually-if-the-object-has-even-landed-to-then-enable-it-to-jump-again">But, how can we actually if the object has even landed to then enable it to jump again?</a></h4>
 <h4 id="the-answer-with-collisions"><a class="header" href="#the-answer-with-collisions">The answer? With <em>collisions</em></a></h4>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_33.png" alt="Unity Editor Home Page">
-<ol start="26">
+<ol start="27">
 <li>
 <p>Add the following function below our <em>OnJump</em> function.</p>
 <ul>
@@ -854,7 +850,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </ol>
 <br/>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_34.png" alt="Unity Editor Home Page">
-<ol start="27">
+<ol start="28">
 <li>Add the following line to the function body
 <ul>
 <li>What does this mean?
@@ -887,7 +883,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </ol>
 <br/>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_36.png" alt="Unity Editor Home Page">
-<ol start="28">
+<ol start="29">
 <li>Once you click <em>Add Tag...</em>, hit the plus to create a new tag
 <ul>
 <li>In the pop-up box, name it "Ground" (be sure to name it <strong>EXACTLY</strong> what the name was in our if statement in the script)</li>
@@ -905,7 +901,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <h4 id="now-for-a-final-touch-before-moving-on-to-animations-lets-fix-the-position-of-our-camera"><a class="header" href="#now-for-a-final-touch-before-moving-on-to-animations-lets-fix-the-position-of-our-camera">Now, for a final touch (before moving on to animations), let's fix the position of our camera</a></h4>
 <br/>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_37.png" alt="Unity Editor Home Page">
-<ol start="28">
+<ol start="30">
 <li>Let's make a new script for our <em>Main Camera</em> object
 <ul>
 <li>Click on it to open its Component view on the side.</li>
@@ -917,7 +913,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </ol>
 <br/>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_38.png" alt="Unity Editor Home Page">
-<ol start="28">
+<ol start="31">
 <li>Let's add the following variables first:
 <ul>
 <li>What do they mean?:
@@ -945,7 +941,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </ol>
 <br/>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_39.png" alt="Unity Editor Home Page">
-<ol start="28">
+<ol start="32">
 <li>Now, we'll add the lines up above into the <em>Update()</em> method
 <ul>
 <li>What does this mean?

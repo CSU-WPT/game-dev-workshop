@@ -1037,7 +1037,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <img style="display: block; margin-left: auto; margin-right: auto;" src="godot/2-1.png" alt="Godot UI">
 <p>There are a few major parts of the UI here, let's go through them one by one:</p>
 <ul>
-<li>Scene tree - This is the top left window, it contains a heirarchical representation of every node in the scene (we'll go over what nodes are later)</li>
+<li>Scene tree - This is the top left window, it contains a hierarchical representation of every node in the scene (we'll go over what nodes are later)</li>
 <li>Filesystem - This is the botton left window, it contains all the files in your project</li>
 <li>Properties editor - This is the window on the right, if you have a node selected in the scene tree, it will show all the properties of that node for you to edit</li>
 <li>Scene viewer - This is the large pane in the middle, it has four modes, <code>2D</code>, <code>3D</code>, <code>Script</code>, and <code>AssetLib</code>. <code>2D</code> Allows you to view and edit the 2D component of the scene (this can be a menu, a 2D game, or a GUI on top of the 3D game). <code>3D</code> allows you to view and edit the 3D component of the scene. <code>Script</code> opens the script editor and allows you to write code in GDScript (you will need an external program if you choose to use a different language). And <code>AssetLib</code> allows you to download community assets and plugins to give you access to more features.</li>
@@ -1058,7 +1058,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <img style="display: block; margin-left: auto; margin-right: auto;" src="godot/3-1.png" alt="Assets in Godot">
 <ul>
 <li>Notice how the gltf files (which contain models) were split into png images, since Godot converts models to scenes which reference the textures externally.</li>
-<li>There is a problem though, Godot automatically compresses imported textures to save space. This is fine most of the time, since most textures are large and single pixels won't make a difference, but these assets use pixel art, which involves small textures where each pixel matters. This causes the model to look wrong. To fix this we can change the import settings of the textures.</li>
+<li>There is a problem though, Godot automatically compresses imported textures to save space. This is fine most of the time, since most textures are large and single pixels won't make a difference, but these assets use pixel art, which involves small textures where each pixel matters. This causes the model to look wrong. To fix this you can change the import settings of the textures.</li>
 </ul>
 <h3 id="fixing-the-assets"><a class="header" href="#fixing-the-assets">Fixing the Assets</a></h3>
 <ul>
@@ -1066,7 +1066,8 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </ul>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="godot/3-2.png" alt="Reimporting the textures">
 <p>Now that our assets are ready, let's <a href="godot/setting-the-scene.html">set the scene.</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h3 id="creating-a-3d-scene"><a class="header" href="#creating-a-3d-scene">Creating a 3D Scene</a></h3>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="setting-the-scene"><a class="header" href="#setting-the-scene">Setting the Scene</a></h1>
+<h3 id="creating-a-3d-scene"><a class="header" href="#creating-a-3d-scene">Creating a 3D Scene</a></h3>
 <ul>
 <li>
 <p>In the scene tree, click <code>3D Scene</code> to create a 3D scene.
@@ -1098,7 +1099,201 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <li>
 <p>Under the <code>Map</code> node, add a <code>CSGBox3D</code>. This is a node type that acts as both a rendered mesh, and a collidable box, and a static physics object, whereas normally you would need seperate nodes for these things. The benifit of CSG objects is they allow you to rapidly prototype levels, but they have poor performance when you use enough for a full scale game. Nonetheless, they're perfect for a game jam.</p>
 </li>
+<li>
+<p>Now that it's in the scene, click on it, and use the orange handles to resize it. Snapping helps make sure the size is uniform and holding "Alt" while resizing will change both sides at the same time.</p>
+</li>
 </ul>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="godot/4-4.png" alt="Resizing the Box">
+<h3 id="texturing-the-box"><a class="header" href="#texturing-the-box">Texturing the Box</a></h3>
+<ul>
+<li>
+<p>You may also notice there is now a bunch of stuff in the properties editor. Find where it says <code>Material &lt;empty&gt;</code> and drag the <code>tile.png</code> from the filesystem in the bottom left onto the <code>&lt;empty&gt;</code> text. The box should now have a material assigned to it, and the tile texture should be blurry and streched out across the faces of the box. Let's fix that.</p>
+</li>
+<li>
+<p>Click on the new material (it will show up as a sphere in the properties editor), you should see a bunch of subcategories appear. Find <code>UV1</code> and enable <code>Triplanar</code>. Then find <code>Sampling</code> and set <code>Filter</code> to <code>Nearest</code>.</p>
+</li>
+</ul>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="godot/4-5.png" alt="Setting the material settings">
+<ul>
+<li>Also, outside of the material, you'll need to enable collision.</li>
+</ul>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="godot/4-6.png" alt="Enabling collision">
+<h3 id="adding-a-camera-and-sky"><a class="header" href="#adding-a-camera-and-sky">Adding A Camera and Sky</a></h3>
+<ul>
+<li>Add a new node, this time it will be a <code>Camera3D</code>. This is how the player will see the game world. Once it's in the scene, manually raise it up a bit so it can see the platform. Your hierarchy should look like this now.</li>
+</ul>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="godot/4-7.png" alt="Adding a Camera">
+<ul>
+<li>At this point, you can hit the play button in the top right corner and run the game. You'll quickly notice it looks horrendously ugly. That's because there's no sky box or light source. Fortunately, Godot has a builtin menu to add good defaults to our scene. Hit the three dots near the top of the window, and under the submenu, select <code>Add Sun to Scene</code> and <code>Add Enviornment to Scene</code>. This will add two new nodes to the top of the hierarchy, and if you run the game again, it will look much better.</li>
+</ul>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="godot/4-8.png" alt="Adding a Sky">
+<h3 id="creating-the-input-map"><a class="header" href="#creating-the-input-map">Creating the Input Map</a></h3>
+<ul>
+<li>
+<p>One last thing you need to do before proceeding is to create an Input Map. The Input Map is a piece of data for the project that links certain actions to scriptable inputs. Access this by hitting <code>Project</code> in the top left of the window, then choosing <code>Project Settings</code>.</p>
+</li>
+<li>
+<p>In the <code>Add New Action</code> textbox, you type the name of the custom action, then hit <code>+ Add</code> to the right. Now the action is in the Input Map. Hit the <code>+</code> to the right of it to add a input binding. Typically you can choose what you want just by creating the action (for example hitting a key), but if you can't do that, you can also search up the action name. The sequence for creating one action and binding looks like this:</p>
+</li>
+</ul>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="godot/4-9.png" alt="Adding an Input">
+<ul>
+<li>These are all the actions and bindings you'll need for this project:</li>
+</ul>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="godot/4-10.png" alt="Adding all the inputs">
+<p>Now that you have a basic scene, let's <a href="godot/making-a-player.html">make a player!</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="making-a-player"><a class="header" href="#making-a-player">Making a Player</a></h1>
+<h3 id="making-the-nodes"><a class="header" href="#making-the-nodes">Making the Nodes</a></h3>
+<ul>
+<li>Make a handful of new nodes to represent the player. The main one will be a <code>CharacterBody3D</code>. Then drag the <code>jearl.gltf</code> file to add a model to it. After that, create a <code>CollisionShape3D</code> under it, then a <code>SpringArm3D</code>, and move the existing <code>Camera3D</code> under that. After all of that, the player and its child nodes should look like this.</li>
+</ul>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="godot/5-1.png" alt="Creating the Player Nodes">
+<ul>
+<li>Let's rename a few of these nodes, you can do that by double clicking, hitting "F2", or right clicking and selecting "Rename". See the image below:</li>
+</ul>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="godot/5-2.png" alt="Renaming the Player Nodes">
+<ul>
+<li>Notice there's a caution sign next to the collision shape, that's because you don't have any collision data assigned to it yet. Click on the node, and in the properties editor, click on the <code>&lt;empty&gt;</code> in <code>Shape &lt;empty&gt;</code>, then select <code>New BoxShape3D</code>.</li>
+</ul>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="godot/5-3.png" alt="Adding collision to the player">
+<ul>
+<li>
+<p>You should see a transparent blue box appear in the scene, this represents the shape of the collider. Use the orange handles and arrows to properly fit it around the model (you may want to turn off snapping for this).</p>
+</li>
+<li>
+<p>Now you have some properties to set on the camera arm. Set the <code>Shape</code> to <code>New SeparationRayShape3D</code> and the <code>Spring Length</code> to <code>3.0</code>.</p>
+</li>
+</ul>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="godot/5-4.png" alt="Setting the Camera Arm">
+<h3 id="scripting-the-camera-arm"><a class="header" href="#scripting-the-camera-arm">Scripting the Camera Arm</a></h3>
+<ul>
+<li>In the scene tree, right click the camera arm and select <code>Attach Script...</code></li>
+</ul>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="godot/5-5.png" alt="Making a script">
+<ul>
+<li>
+<p>The default settings are fine, just hit <code>Create</code></p>
+</li>
+<li>
+<p>This is the script you're going to use for the camera arm:</p>
+</li>
+</ul>
+<pre><code class="language-gdscript">extends SpringArm3D
+
+const MOUSE_SENSITIVITY = 0.5
+const ZOOM_SPEED = 0.25
+
+const ZOOM_MAX = 5
+const ZOOM_MIN = 2
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -&gt; void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _input(event: InputEvent) -&gt; void:
+	if event is InputEventMouseMotion:
+		rotation.y -= (deg_to_rad(event.relative.x) * MOUSE_SENSITIVITY)
+		rotation.y = wrapf(rotation.y, 0, TAU)
+		rotation.x -= (deg_to_rad(event.relative.y) * MOUSE_SENSITIVITY)
+		rotation.x = clamp(rotation.x, -PI/2, PI/20)
+	if event.is_action("zoom_in"):
+		spring_length -= ZOOM_SPEED
+	if event.is_action("zoom_out"):
+		spring_length += ZOOM_SPEED
+	spring_length = clamp(spring_length, ZOOM_MIN, ZOOM_MAX)
+
+</code></pre>
+<h3 id="breaking-down-the-camera-script"><a class="header" href="#breaking-down-the-camera-script">Breaking Down the Camera Script</a></h3>
+<ul>
+<li>The very first line says that this script is made for <code>SpringArm3D</code> nodes, think of this like inheritance from Java, it allows you to access all the properties and functions of that class.</li>
+<li>The next few lines declare constants that will be used later.</li>
+<li>The <code>_ready</code> function is a special type of function called a "callback". That means Godot will call this function on its own schedule, and you get to create custom behavior for when that happens. This specific function will get called once when the node loads in, which makes it useful for setup and initialization. In this case, it's changing the mouse mode so the cursor dissapears and movement is locked to the window. This is suitable for first person and third person games.</li>
+<li>The <code>_input</code> function is another callback that is called whenever the engine sees a player input. It also gives information about the input with the <code>event</code> argument. If the event is a mouse motion, then apply that motion to the spring arm's rotation. If it matches one of the zooming events then increase or decrease the spring length. Notice the use of the <code>clamp</code> functions, which prevent looking to high or low, and zooming too far in or out.</li>
+</ul>
+<h3 id="testing-the-camera"><a class="header" href="#testing-the-camera">Testing the Camera</a></h3>
+<ul>
+<li>Now if you run the game, you can pivot the camera by moving your mouse, and you can zoom in and out. Also when you go low enough, the camera slides across the floor instead of clipping through it. That's the benifit of the <code>SpringArm3D</code>. This stops working at very sharp angles, which is why the <code>clamp</code> function is in the script.</li>
+</ul>
+<h3 id="player-movement"><a class="header" href="#player-movement">Player Movement</a></h3>
+<ul>
+<li>Next, add a script to the player node, it will look like this:</li>
+</ul>
+<pre><code class="language-gdscript">extends CharacterBody3D
+
+enum PlayerState {
+	IDLE,
+	RUNNING,
+	JUMPING,
+	FALLING
+}
+
+const SPEED = 5.0
+const JUMP_VELOCITY = 4.5
+const JUMP_BOOST_VELOCITY = 1.5
+const ANGULAR_VELOCITY = 5.0
+
+var did_jump_anim = false
+var did_fall_anim = true
+var current_state = PlayerState.IDLE
+var direction = Vector3.ZERO
+var gravity = 5
+@onready var camera = $"Camera Arm/Camera3D"
+@onready var model = $Jearl
+@onready var animations = $Jearl/AnimationPlayer
+
+func _process(delta: float) -&gt; void:
+	var input_dir = Input.get_vector("walk_left", "walk_right", "walk_forward", "walk_backward")
+	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	direction = direction.rotated(Vector3.UP, camera.global_rotation.y)
+
+	if input_dir:
+		model.rotation.y = lerp_angle(model.rotation.y, atan2(-direction.x, -direction.z), ANGULAR_VELOCITY * delta)
+	
+	if not direction and is_on_floor():
+		current_state = PlayerState.IDLE
+	elif direction and is_on_floor():
+		current_state = PlayerState.RUNNING
+	else:
+		if velocity.y &gt; 0:
+			current_state = PlayerState.JUMPING
+		else:
+			current_state = PlayerState.FALLING
+	update_animation()
+
+func _physics_process(delta: float) -&gt; void:
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+	
+	if Input.is_action_just_released("jump") and velocity.y &gt; 0:
+		velocity.y *= 0.25
+	
+	if direction:
+		velocity.x = direction.x * SPEED
+		velocity.z = direction.z * SPEED
+
+	else:
+		velocity.x = 0
+		velocity.z = 0
+	move_and_slide()
+
+func update_animation() -&gt; void:
+	if is_on_floor():
+		did_jump_anim = false
+		did_fall_anim = false
+	if current_state == PlayerState.RUNNING:
+		animations.play("walk")
+	if current_state == PlayerState.IDLE:
+		animations.play("idle")
+	if current_state == PlayerState.JUMPING and not did_jump_anim:
+		animations.play("jumping")
+		did_jump_anim = true
+	if current_state == PlayerState.FALLING and not did_fall_anim:
+		animations.play("falling")
+		did_fall_anim = true
+</code></pre>
 
                     </main>
 

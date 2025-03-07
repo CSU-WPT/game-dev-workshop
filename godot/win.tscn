@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dghgcvd4pmmgc"]
 
-[ext_resource type="Script" path="res://win.gd" id="1_1x4w7"]
+[ext_resource type="Script" uid="uid://kl5torftx0gm" path="res://win.gd" id="1_1x4w7"]
 [ext_resource type="PackedScene" uid="uid://h4pdc61ms3dq" path="res://test.tscn" id="2_tniwk"]
-[ext_resource type="PackedScene" uid="uid://cei2twd4w1rjt" path="res://motor_oil.gltf" id="3_f6n1v"]
+[ext_resource type="PackedScene" uid="uid://ll6jjc0tlk8m" path="res://motor_oil.gltf" id="3_f6n1v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_twaij"]
 

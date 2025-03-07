@@ -1,10 +1,10 @@
 [gd_scene load_steps=15 format=3 uid="uid://doth4owerie10"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_mtw3a"]
+[ext_resource type="Script" uid="uid://dqew3tg4rj45n" path="res://player.gd" id="1_mtw3a"]
 [ext_resource type="PackedScene" uid="uid://damyfgqm5cvrj" path="res://jearl.gltf" id="2_6b38n"]
-[ext_resource type="Script" path="res://camera_arm.gd" id="3_qo2ag"]
+[ext_resource type="Script" uid="uid://whr2dlfs71n0" path="res://camera_arm.gd" id="3_qo2ag"]
 [ext_resource type="Texture2D" uid="uid://bk4qntc1ygiqq" path="res://tile.png" id="4_prupw"]
-[ext_resource type="Script" path="res://spike.gd" id="5_he83c"]
+[ext_resource type="Script" uid="uid://c3l28ag8bhnn7" path="res://spike.gd" id="5_he83c"]
 [ext_resource type="PackedScene" uid="uid://dkfoo07yukp6f" path="res://spike.gltf" id="6_78ttx"]
 [ext_resource type="PackedScene" uid="uid://dghgcvd4pmmgc" path="res://win.tscn" id="7_r7jgc"]
 

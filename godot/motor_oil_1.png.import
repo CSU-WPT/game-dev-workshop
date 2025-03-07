@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dxnbnjv2b2wfj"
-path.s3tc="res://.godot/imported/motor_oil_1.png-83de0de15be4cc3413b02dbb4d71a13e.s3tc.ctex"
+path="res://.godot/imported/motor_oil_1.png-83de0de15be4cc3413b02dbb4d71a13e.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://motor_oil_1.png"
-dest_files=["res://.godot/imported/motor_oil_1.png-83de0de15be4cc3413b02dbb4d71a13e.s3tc.ctex"]
+dest_files=["res://.godot/imported/motor_oil_1.png-83de0de15be4cc3413b02dbb4d71a13e.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

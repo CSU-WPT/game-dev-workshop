@@ -190,3 +190,98 @@
         - This will take some trial-and-error and not everyone will have the same amount of work to do.
 <br/>
 
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_76.png" alt="Unity Editor Home Page">
+
+20. Now, we need to copy and paste the rows on down (from back to front) to fill the "pit" with spikes.
+    - Again, this is a step that not everyone will a similar experience performing.
+    - Do size and resize the rows themselves using the **Scale Tool**
+        - If you look closely, my rows are not perfect either. Some are slightly larger than the others.
+    - Eventually, your pit should look something like the image above and you should see a bunch of copies of the spike rows on left in your **File System**
+<br/>
+
+
+#### Next, rename the rows so that you have an easier time keeping track of which is which (I like to name the row furthest from the player "Row 5" and work my way down to "Row 1")
+<br/>
+
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_77.png" alt="Unity Editor Home Page">
+
+21. Back in our Player_Movement script, add the following library: **UnityEngine.SceneManagement**
+    - This will allow us to switch scenes when we detect a collision (which we'll change further down in this script);
+<br/>
+
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_78.png" alt="Unity Editor Home Page">
+
+22. Inside the **OnCollisionEnter** function, add the else statement in the image above following the first if statement (which checks for a collision with *Ground*)
+    - Here, we're doing the same thing. We're checking if the player object has collided with any object tagged "Obstacle" (we'll tag the spikes later)
+        - If it has, we load the scene **Level 1**
+            - This is the same scene that we're on currently. So, esentially, we'll just reload the game (since we died after coming into contact with the spikes)
+<br/>
+
+#### Let's go back to the Scene View!
+<br/>
+
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_79.png" alt="Unity Editor Home Page">
+
+23. We will now make some stairs (you can probably tell where I'm going with this)
+    - In the ProBuilder menu (up top, under *Tools*), hover your cursor over *Editors*
+    - Then, hover over *Create Shape*
+    - Now, in the next menu, click on **Stairs**
+<br/>
+
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_80.png" alt="Unity Editor Home Page">
+
+24. The creation for the stairs is the same as the *Cube* from earlier.
+    - Create the base and then drag the cursor up to create the height of the shape
+<br/>
+
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_81.png" alt="Unity Editor Home Page">
+
+25. Try to get the height of the stairs almost level with the height of our cube (don't worry if it isn't since we'll be able to fine-tune this later)
+    - Use the **Rotate Tool** (which is the 4th one from the top in the bar to the left in the image above) to turn the stairs around
+        - Use `Ctrl` or `Cmd` to rotate in increments (instead of freeform rotation without increments)
+<br/>
+
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_82.png" alt="Unity Editor Home Page">
+
+26. After sizing the stairs (using ProBuilder's *Shape Settings* menu, **NOT** the settings in the component view), we can then adjust the number of steps in the stairs
+    - We want our player to move smoothly up the stairs without the need to jump constantly
+    - Somewhere around **60** steps should be good enough
+<br/>
+
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_83.png" alt="Unity Editor Home Page">
+
+27. Now, for each spike in every row, we need to add two things:
+    - A collider and a tag (**Obstacle**)
+        - Let's add the collider first
+            - Select any one of the spikes in your row and add a **Box Collider** component 
+                - This will keep things simple and not have to much of a burden on performance
+<br/>
+
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_84.png" alt="Unity Editor Home Page">
+
+28. Now, let's create a tag called "Obstacle"
+    - Click on the *Tags* dropdown for the selected row and click *Add Tag..."
+    - In the next menu, click the **Plus** icon to create a new tag and name it **Obstacle** (it should be exactly the same as how you spelled it in the code)
+        - Double check to ensure correct spelling
+    - Navigate back into the *Component View* of the spike itself and add the tag to it
+        - You should see in the *Tags* dropdown menu
+<br/>
+
+
+#### Now, repeat the previous step for the every spike in every row (miuus the creation of the tag). The tag is already made. You just need to assign it.
+<br/>
+
+
+#### Now, run your game, walk up the stairs, and fall and the scene should reload upon contact with the spikes.
+
+
+

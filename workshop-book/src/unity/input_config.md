@@ -25,11 +25,6 @@
 
 3. On the right, click *Assign as the Project-wide Input Actions*. This ensures that our inputs stay consistent and that we don't run into any unexpected errors.
 
-
-<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_7.png" alt="Unity Editor Home Page">
-
-4. On the right, click *Assign as the Project-wide Input Actions*. This ensures that our inputs stay consistent and that we don't run into any unexpected errors.
-
 <br/>
 
 Now, double-click to open it in a separate window and dock it next to the *Scene* and *Game* view.
@@ -39,7 +34,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_8.png" alt="Unity Editor Home Page">
 
-5. On the left, create a new action map called *Player* by clicking the plus icon
+4. On the left, create a new action map called *Player* by clicking the plus icon
 
     - An action map is essentially a container that holds bindings (either for a keyboard or for a controller). Once established, this action map (and its associated bindings) can be assigned to whatever asset we want (like **jearl_backwards**).
 <br/>
@@ -47,7 +42,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_10.png" alt="Unity Editor Home Page">
 
-6. On the right panel, change the action type to **Value**. 
+5. On the right panel, change the action type to **Value**. 
     - The reason is because, conventionally, movement in games is always done by pressing and holding a button (i.e. it generates a *continuous* value like "WWWWWWWWW..." for forward movement) unlike jumping, for example, where we press once and don't hold.
     - The game engine (and our script) will read that continuous string of W's, interpret it to mean forward movement and, consequently, move our player forward so long as it keeps getting those continuous W's.
         - It's not exactly like this but hopefully you get the idea 😁
@@ -56,7 +51,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_11.png" alt="Unity Editor Home Page">
 
-7. In the additional dropdown menu that is spawned underneath *Action Type*, change *Control Type* to **Vector 2**.
+6. In the additional dropdown menu that is spawned underneath *Action Type*, change *Control Type* to **Vector 2**.
 
     - This is because our movement is only in 2 directions (the x-axis and the z-axis). This is unlike Creative Mode in Minecraft, for example, where we can freely move in any direction.
         - We will move in the y-axis (via jumping) but **not** with continuous movement.
@@ -65,7 +60,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_12.png" alt="Unity Editor Home Page">
 
-8. Find the plus icon next to *Movement* (in the center panel). Click it and then, in the dropdown menu, click *Add Up/Down/Left/Right Composite*
+7. Find the plus icon next to *Movement* (in the center panel). Click it and then, in the dropdown menu, click *Add Up/Down/Left/Right Composite*
     - This will automatically create placeholders for 4 movement bindings (WASD) and bind/aggregate them into a single Vector 2 vector. 
         - I haven't tried it but you could try manually creating each key binding (without the composite). However, you will have to aggregate them yourself in your script. 
         - Using the composite, therefore, will result in less headaches and a cleaner setup.
@@ -74,7 +69,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_13.png" alt="Unity Editor Home Page">
 
-9. Expand the newly created *2D Vector* dropdown to show the 4 empty bindings. 
+8. Expand the newly created *2D Vector* dropdown to show the 4 empty bindings. 
     - Now, for each binding: 
         - Click on it in the center panel
         - On the right, open the *Path* dropdown.
@@ -86,7 +81,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_14.png" alt="Unity Editor Home Page">
 
-10. Up top, in the right corner, click *Save Asset* to save changes.
+9. Up top, in the right corner, click *Save Asset* to save changes.
 <br/>
 
 
@@ -150,7 +145,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_19.png" alt="Unity Editor Home Page">
 
-12. Add three variables before Start() but inside our main method:
+14. Add three variables before Start() but inside our main method:
     - *public float speed*
         - This will dictate, well, the speed of our movement (we will be able to set the value of this variable inside our editor before hitting the play button as it is **public**)
     - *public Vector2 move*
@@ -166,7 +161,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_20.png" alt="Unity Editor Home Page">
 
-13. Add the following function after *Update()*:
+15. Add the following function after *Update()*:
 
     - public void OnMove(InputAction.CallbackContext context) {
         move = context.ReadValue< Vector 2 >();
@@ -201,7 +196,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_22.png" alt="Unity Editor Home Page">
 
-14. We now add a new function which we place inside of *Update()* (so that it is called every frame). Inside of that function:
+16. We now add a new function which we place inside of *Update()* (so that it is called every frame). Inside of that function:
     - We placed the *movement = new Vector3(move.x, 0f, move.y)* line
     - We also placed a new line:
         *tranform.Translate(movement * speed * Time.deltaTime, Space.World);
@@ -236,7 +231,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <br/>
 
-15. Now, when you press the play button up top, you should be able to move around (make sure your speed value is not 0)
+17. Now, when you press the play button up top, you should be able to move around (make sure your speed value is not 0)
 
 #### Fatal error (this is me from a couple minutes in the future). I just realized that I placed down the assets in the wrong way. If you've been following this tutorial, when you ran the game, your player is likely moving in the complete opposite directions.
 
@@ -248,7 +243,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_23.png" alt="Unity Editor Home Page">
 
-16. Back in our script, add the following line: 
+18. Back in our script, add the following line: 
     - *transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.1f);*
     - What does this mean?:
         - *transform.rotation*
@@ -275,7 +270,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_24.png" alt="Unity Editor Home Page">
 
-17. Back in our action map, right click on the "Player" action map and hit *Add Action*.
+19. Back in our action map, right click on the "Player" action map and hit *Add Action*.
 <br/>
 
 
@@ -287,7 +282,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_26.png" alt="Unity Editor Home Page">
 
-19. Open the dropdown menu of "Jump" to access the new empty binding
+20. Open the dropdown menu of "Jump" to access the new empty binding
     - Over to the right, open the *Path* dropdown and either search for the Spacebar or use the *Listen* feature (like earlier)
     - Select Spacebar from the search results to assign it to the empty key binding
 <br/>
@@ -295,7 +290,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_27.png" alt="Unity Editor Home Page">
 
-20. Back in our Scene View, click on **jearl_backwards** to access its components
+21. Back in our Scene View, click on **jearl_backwards** to access its components
     - Click on *Add Component* and, in the search bar, start typing **Rigidbody**. You should see it in the search results. 
     - Click on **Rigidbody** to add it to our player object
     - What's the point?
@@ -306,7 +301,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_28.png" alt="Unity Editor Home Page">
 
-21. Inside of the Rigidbody component, under the *Constraints* dropdown, check the boxes for the X and Z axes for *Freeze Rotation*
+22. Inside of the Rigidbody component, under the *Constraints* dropdown, check the boxes for the X and Z axes for *Freeze Rotation*
     - Why?
         - This will prevent unwanted rotations or leaning when our player interacts with or collides with any uneven surfaces
         - Locking these two axes ensures that our jump force is only applied to the y-axis (directly up) and nowhere else
@@ -319,7 +314,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_29.png" alt="Unity Editor Home Page">
 
-22. Add the following three variables up top:
+23. Add the following three variables up top:
     - *Rigidbody rb;*
     - *public bool isGrounded;*
     - *public float jumpStrength = 7f;*
@@ -339,7 +334,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_30.png" alt="Unity Editor Home Page">
 
-23. Underneath our *OnMove* function, add this function.
+24. Underneath our *OnMove* function, add this function.
     - The syntax is mostly the same except for one key difference...
         - **context.performed**
             - Remember, we are not pressing and holding the jump button. This is a one-and-done type of action
@@ -351,7 +346,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_31.png" alt="Unity Editor Home Page">
 
-24. Add the inner *if* statement that you see up above.
+25. Add the inner *if* statement that you see up above.
     - What does this even mean?:
         - We **nested** this addition inside of our *context.performed* if statement
             - This ensures that if we press the jump button while the player object is airborne, we won't add more force to the player (i.e. double jump)
@@ -368,7 +363,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_32.png" alt="Unity Editor Home Page">
 
-25. In our *Start* function, add the above line
+26. In our *Start* function, add the above line
     - This allows us to actually access and store this object's Rigidbody component inside of our variable to use in our script.
     - We placed this inside *Start()* so that this action is only performed once. We access the Rigidbody component once, store it, and that's it.
     - EDIT (This is me from the future) --> Change this line from **.GetComponent...** to **= GetComponent...**
@@ -382,7 +377,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_33.png" alt="Unity Editor Home Page">
 
-26. Add the following function below our *OnJump* function.
+27. Add the following function below our *OnJump* function.
 
     - Do note that this is a built-in function that we are simply overwriting. 
     - Intellisense and autocomplete should kick in as soon as you start typing the function name
@@ -393,7 +388,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_34.png" alt="Unity Editor Home Page">
 
-27. Add the following line to the function body
+28. Add the following line to the function body
     - What does this mean?
         - *Debug.Log(...)*
             - This is here to ensure that a). a collision occurred and b). it occurred with the correct object
@@ -410,7 +405,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_36.png" alt="Unity Editor Home Page">
 
-28. Once you click *Add Tag...*, hit the plus to create a new tag
+29. Once you click *Add Tag...*, hit the plus to create a new tag
     - In the pop-up box, name it "Ground" (be sure to name it **EXACTLY** what the name was in our if statement in the script)
     - Click *Save*
     - Navigate back to the *Ground* object's component view and, in the *Tags* dropdown, click on the newly created *Ground* tag to assign it to this object 
@@ -429,7 +424,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_37.png" alt="Unity Editor Home Page">
 
-28. Let's make a new script for our *Main Camera* object
+30. Let's make a new script for our *Main Camera* object
     - Click on it to open its Component view on the side.
     - At the bottom, click *Add Component* and type in the box *New Script*
     - Let's name the script *Player_Follow*
@@ -440,7 +435,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_38.png" alt="Unity Editor Home Page">
 
-28. Let's add the following variables first:
+31. Let's add the following variables first:
     - What do they mean?:
         - *public Transform player;*
             - We will need this later to hold information about our player object (we'll just click and drag our player object into this variable in our Editor later)
@@ -456,7 +451,7 @@ Now, double-click to open it in a separate window and dock it next to the *Scene
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_39.png" alt="Unity Editor Home Page">
 
-28. Now, we'll add the lines up above into the *Update()* method
+32. Now, we'll add the lines up above into the *Update()* method
     - What does this mean?
         - *transform.position = player.position + offset;*
             - We're gonna take the position of this game object (the object that this script is attached to) and add to its position (which is in threee dimensions) the offset that we set up above.

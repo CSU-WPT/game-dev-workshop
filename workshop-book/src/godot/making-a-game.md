@@ -8,7 +8,7 @@
 
 
 - Notice how the gltf files (which contain models) were split into png images, since Godot converts models to scenes which reference the textures externally.
-- There is a problem though, Godot automatically compresses imported textures to save space. This is fine most of the time, since most textures are large and single pixels won't make a difference, but these assets use pixel art, which involves small textures where each pixel matters. This causes the model to look wrong. To fix this we can change the import settings of the textures.
+- There is a problem though, Godot automatically compresses imported textures to save space. This is fine most of the time, since most textures are large and single pixels won't make a difference, but these assets use pixel art, which involves small textures where each pixel matters. This causes the model to look wrong. To fix this you can change the import settings of the textures.
 
 ### Fixing the Assets
 

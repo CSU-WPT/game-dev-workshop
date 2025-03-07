@@ -1,0 +1,453 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Adding Animations - The CPT&#x27;s Game Development Workshop</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The CPT&#x27;s Game Development Workshop</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h4 id="lets-set-up-some-animations"><a class="header" href="#lets-set-up-some-animations">Let's set up some animations</a></h4>
+<h4 id="to-start-lets-set-up-an-animator-for-our-object"><a class="header" href="#to-start-lets-set-up-an-animator-for-our-object">To start, let's set up an <strong>animator</strong> for our object</a></h4>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_40.png" alt="Unity Editor Home Page">
+<ol>
+<li>In our <em>Assets</em> view, right-click then hover over <em>Create</em>. In the next menu, hover over the <em>Animation</em> menu. Then, in the next menu, click on <strong>Animator Controller</strong>
+<ul>
+<li>Be sure to name it something like "Player_Animate"</li>
+<li>What is this and why do we need it?
+<ul>
+<li>The <strong>Animator Controller</strong> is an asset in Unity that handles the logic of which animations will play for a particular object, what the transitions are, when the transitions occur, and so on.</li>
+<li>However, for this tutorial, we will NOT be using it.
+<ul>
+<li>Instead, we will transition between the animations using <strong>code</strong>
+<ul>
+<li>In my recent experience in learning Unity, this was much easier to understand (for me, at least)</li>
+<li>In addition, the Animator Controller gets significantly more complicated as more animations are added and configured
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_41.png" alt="Unity Editor Home Page">
+<ol start="2">
+<li>Double click on the newly created Animator Controller below in your <em>Assets</em>. You will see the above window open up.
+<ul>
+<li>When gameplay is initiated, the first node (which is an animation) that we place here will connect to the <em>Start</em> node.
+<ul>
+<li>This animation will play first upon gameplay initiation</li>
+</ul>
+</li>
+<li>From here on out, even though we won't make explicit node connections here, we will still place all of our animations here (starting with <em>Idle</em> first)
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_42.png" alt="Unity Editor Home Page">
+<ol start="3">
+<li>To access our animations, double-click on the <em>updated_assets</em> folder.
+<br/></li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_45.png" alt="Unity Editor Home Page">
+<ol start="4">
+<li>Find the <em>jearl_backwards</em> asset and click the <strong>triangle</strong> icon to expand the "innards" of the asset
+&lt;br/?&gt;</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_46.png" alt="Unity Editor Home Page">
+<ol start="5">
+<li>This is what you should see when you expand the asset. Here, our animations are items that are marked with a <strong>teal triangle with lines on the left</strong>. These are our animations
+<ul>
+<li>Be sure to thank <strong>David Awkar</strong> for creating and providing these assets.
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_47.png" alt="Unity Editor Home Page">
+<ol start="6">
+<li>Drag and drop the <em>idle</em> animation into the <em>Animator Board</em>.
+<ul>
+<li>This is our first animation that will play
+<ul>
+<li>By convention, in any game, the idle animation is always placed first
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_48.png" alt="Unity Editor Home Page">
+<ol start="7">
+<li>From here on out, place all the animations onto the board.
+<ul>
+<li>For our case, the order doesn't matter (except for the <em>idle</em> animation going first)</li>
+<li>This is because we'll be using code to switch in between the animations. Therefore, placement order doesn't matter.
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_49.png" alt="Unity Editor Home Page">
+<ol start="8">
+<li>Back in the Scene view, click on <em>jearl_backwards</em> and, in the Animator component, drag and drop our Animator Controller object into the <em>Controller</em> box
+<ul>
+<li>Typically, Unity will have auto-created an Animator Controller when you imported the <em>jearl_backwards</em> asset.
+<br/></li>
+</ul>
+</li>
+</ol>
+<h4 id="now-lets-add-the-code-to-switch-between-animations"><a class="header" href="#now-lets-add-the-code-to-switch-between-animations">Now, let's add the code to switch between animations!</a></h4>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_50.png" alt="Unity Editor Home Page">
+<ol start="9">
+<li>In our <em>Player_Movement</em> script, let's add the following variables:
+<ul>
+<li><em>public Animator animator;</em>
+<ul>
+<li>This is what will hold our Animator Controller that we made earlier. Any changes we make to our animations will be made to this variable</li>
+</ul>
+</li>
+<li><em>public String currentAnimation = "";</em>
+<ul>
+<li>When transitioning between our animations, we will simply use the <strong>name</strong> of the animation (as it is inside our Animator Controller).</li>
+<li>This variable will simply hold that name as a String.
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_51.png" alt="Unity Editor Home Page">
+<ol start="10">
+<li>Now, let's add the following function to our script, right below <em>OnCollisionEnter</em>
+<ul>
+<li>What is this? What does it do?
+<ul>
+<li>This function is what will actually initiate the transition between our animations</li>
+<li>It takes in two parameters:
+<ul>
+<li>animation
+<ul>
+<li>This is the <strong>name</strong> of the animation to transition to</li>
+</ul>
+</li>
+<li>crossfade
+<ul>
+<li>This is the length (in seconds) over which we will transition between two animations</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Let's go over each line:
+<ul>
+<li><em>if (currentAnimation != animation) {</em>
+<ul>
+<li>If the current animation is <strong>NOT</strong> the new animation which we wish to transition to</li>
+<li>This if statement ensures that we skip the body of the function if <em>animation</em> ever equals <em>currentAnimation</em></li>
+</ul>
+</li>
+<li><em>currentAnimation = animation</em>
+<ul>
+<li>If the transition is a valid transition, then we take the name of the current animation and set it to the name of the new animation
+<ul>
+<li>Essentially, that String variable keeps track of the animation that is currently playing.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em>animator.CrossFade(animation, crossfade)</em>
+<ul>
+<li>This is the line performing the transitions.</li>
+<li>Since our <em>animator</em> variable is of type <em>Animator</em>, we can call the built-in function <strong>CrossFade</strong> on that variable (which, remember, is going to hold our Animator Controller) to switch from one animation to another
+<ul>
+<li>The first parameter is the <strong>name</strong> of the animation to transition to</li>
+<li>The second parameter is the fade length in seconds.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>We will now call this function in a variety of situations.
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_52.png" alt="Unity Editor Home Page">
+<ol start="11">
+<li>Next, below our <em>ChangeAnimation</em> function, let's add this function
+<ul>
+<li>What does it do?
+<ul>
+<li>This function will run every frame (alongside <em>movePlayer</em>) to constantly change the player object's animation during gameplay</li>
+</ul>
+</li>
+<li>Let's go through each line:
+<ul>
+<li><em>if (currentAnimation == "jumping") { return; }</em>
+<ul>
+<li>If our current animation is the jumping animation, <strong>DON'T DO ANYTHING</strong></li>
+<li>We don't want to make animation transitions while airborne. Hence, we use this line to ensure that that doesn't happen.</li>
+</ul>
+</li>
+<li><em>if (movement.x != 0 || movement.z != 0) { ChangeAnimation("walk_cycle"); }</em>
+<ul>
+<li>If we're moving, at all, in any direction, then change the animation to <em>walk_cycle</em></li>
+<li>Recall that our <em>movement</em> variable is a 3D vector whose <strong>only</strong> changing values are for the x-axis and z-axis (we don't move upwards, along the y-axis, with WASD).
+<ul>
+<li>So, check these two. See if one is non-zero, the other is non-zero, or both are non-zero. If any one of these conditions is true, change our animation to the walking animation.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em>else { ChangeAnimation("idle"); }</em>
+<ul>
+<li>If we aren't moving, change the animation to <em>idle</em>. Pretty-self explanatory.
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_53.png" alt="Unity Editor Home Page">
+<ol start="12">
+<li>Copy the if-else statement from our <em>CheckAnimation</em> function (which checks for movement) and paste it in <em>OnCollisionEnter</em> function, inside the if statement that checks for a collision with <em>ground</em>
+<ul>
+<li>Why do we need this here?
+<ul>
+<li>Without this check here, after jumping (and initiating the jump animation), we will be permanently stuck in the jump animation.
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_54.png" alt="Unity Editor Home Page">
+<ol start="13">
+<li>Lastly, add a function for the <em>CheckAnimation()</em> function in the <em>Update()</em> function
+<ul>
+<li>We need this function to run every frame so that our animation changes dynamically and <strong>constantly</strong>.
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_55.png" alt="Unity Editor Home Page">
+<ol start="14">
+<li>Back in our editor, drag and drop the Animator Controller object we created into the blank spit in the Animator component of <em>jearl_backwards</em>
+<br/></li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_55.png" alt="Unity Editor Home Page">
+<ol start="14">
+<li>Back in our editor, drag and drop the Animator Controller object we created into the blank spit in the Animator component of <em>jearl_backwards</em>
+<ul>
+<li>Also, do the same thing for the empty spot for the <em>Animator</em> variable in our <em>Player Script</em> variable but, this time, drag and drop <strong>jearl_backwards</strong>
+<br/></li>
+</ul>
+</li>
+</ol>
+<h4 id="one-last-note----add-a-changeanimation-call-for-the-jumping-animation-inside-of-our-isgrounded-if-isgrounded--check-in-onjump"><a class="header" href="#one-last-note----add-a-changeanimation-call-for-the-jumping-animation-inside-of-our-isgrounded-if-isgrounded--check-in-onjump">One last note --&gt; add a ChangeAnimation() call for the "jumping" animation inside of our isGrounded (if (isGrounded) {...}) check in "OnJump"</a></h4>
+<br/>
+<h4 id="now-with-the-changes-made-upon-running-our-game-you-should-see-animations-for-movement-idling-jumping-and-falling"><a class="header" href="#now-with-the-changes-made-upon-running-our-game-you-should-see-animations-for-movement-idling-jumping-and-falling">Now, with the changes made, upon running our game, you should see animations for movement, idling, jumping and falling</a></h4>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../unity/IDE_setup/Visual_Studio.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../unity/probuilder.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../unity/IDE_setup/Visual_Studio.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../unity/probuilder.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

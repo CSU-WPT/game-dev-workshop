@@ -1,0 +1,611 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Using ProBuilder - The CPT&#x27;s Game Development Workshop</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The CPT&#x27;s Game Development Workshop</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h3 id="now-well-discuss-a-particular-tool-that-we-downloaded-a-while-back"><a class="header" href="#now-well-discuss-a-particular-tool-that-we-downloaded-a-while-back">Now, we'll discuss a particular tool that we downloaded a while back:</a></h3>
+<h1 id="probuilder"><a class="header" href="#probuilder">Probuilder</a></h1>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_56.png" alt="Unity Editor Home Page">
+<ol>
+<li>For the Mac folks, hover over <em>Tools</em> up top, then hover over <em>ProBuilder</em> to open/view the menu
+<ul>
+<li>If you recall, earlier in the tutorial, we downloaded two packages: Unity glTFast and <strong>Probuilder</strong>.</li>
+<li><strong>ProBuilder</strong> allows us to create shapes of different sizes and patterns.
+<ul>
+<li>You might say, "Ok. So what?"</li>
+<li>Well, these shapes, no matter what size you make them in, will have their own colliders and renderers (there is a slight caveat here that we'll discuss later)
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_57.png" alt="Unity Editor Home Page">
+<ol start="2">
+<li>Let's create a spike pit!
+<ul>
+<li>To start, let's create a <em>Cube</em>
+<ul>
+<li>In the <em>ProBuilder</em> menu, hover over <em>Editors</em> and find the <em>Create Shape</em> menu</li>
+<li>Within that menu, click on <em>Cube</em> to enter build mode</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_59.png" alt="Unity Editor Home Page">
+<ol start="3">
+<li>Click and drag, in build mode, to see a grid pop up.
+<ul>
+<li>This grid represents the base of our shape (a cube, in this case). As you hold down the left-click, you can drag that shape to whatever dimensions you want to size our base
+<ul>
+<li>For this tutorial, ensure that your base is somewhat of an <strong>rectangle</strong> which is longer on the <strong>z-axis</strong> than the <strong>y-axis</strong>
+<ul>
+<li>Think of a football field</li>
+<li>If its not perfect, don't worry! We can resize its transformation values with numbers later
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_60.png" alt="Unity Editor Home Page">
+<ol start="4">
+<li>Once you've decided on the proportions of your base, let go of <em>left-click</em>
+<ul>
+<li>Now, move your cursor up and you should see the shape "rise up".
+<ul>
+<li>What you're seeing is a <em>preview</em> of what the final shape will look like</li>
+<li>Once you've chosen your desired height, press <em>left-click</em> once to finalize the shape
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_61.png" alt="Unity Editor Home Page">
+<ol start="5">
+<li>Now, if we want to edit the shape (if we didn't size it the correct way, let's say), we can do that by:
+<ul>
+<li>Opening the <em>ProBuilder</em> menu from the <em>Tools</em> menu up above.</li>
+<li>Inside the <em>ProBuilder</em> menu, this time, hover your cursor over <strong>Edit</strong></li>
+<li>In the menu that follows, click <strong>Edit Shape</strong>
+<ul>
+<li>You will enter back into <em>build mode</em> (the same mode you were in when you were first creating the shape)</li>
+<li>One thing to remember: to change the <em>scale</em> parameters (i.e., size), you <strong>MUST</strong> do it from the <strong>Shape Settings</strong> menu and not the <em>Component View</em> on the right.</li>
+</ul>
+</li>
+<li>Now, in the <strong>Shape Settings</strong> menu, change the <em>Size</em> parameters to the following values:
+<ul>
+<li>X --&gt; 14</li>
+<li>Leave Y as is</li>
+<li>Z --&gt; 22
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_62.png" alt="Unity Editor Home Page">
+<ol start="6">
+<li>Now, we need to change this rectangle into a pit (i.e. a concave rectangle with thick walls)
+<ul>
+<li>We'll do this by <strong>Extrusion</strong> and <strong>Edge Loops</strong></li>
+<li>To begin, find the above icon in the vertical bar on the left of the <em>Scene View</em>
+<ul>
+<li>This icon will only be visible if you have selected a shape created using ProBuilder</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_63.png" alt="Unity Editor Home Page">
+<ol start="7">
+<li>Along the top row of icons, you'll find these 3 icons as well (with the same color)
+<ul>
+<li>From left to right:
+<ul>
+<li><strong>Vertex Selection</strong> = Allows you to select individual vertices and use them to change your shape however you want</li>
+<li><strong>Edge Selection</strong> = Allows you to select edges and use them to change your shape</li>
+<li><strong>Face Selection</strong> = Allows you to select faces to change
+your shape
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_64.png" alt="Unity Editor Home Page">
+<ol start="8">
+<li>Click on the <em>Edge Selection</em> icon to get started
+<ul>
+<li>You should all the edges turn dark black and when you hover, they should change colors.
+<ul>
+<li>Pick an edge (I'll start with the one that's selected in the image)</li>
+<li>Right-click with the edge selected to open a menu</li>
+<li>In that menu, find <strong>Insert Edge Loop</strong>
+<ul>
+<li>Here, you'll also see a shortcut to invoke this option. I suggest you use this shortcut because we'll be making a couple of these
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_65.png" alt="Unity Editor Home Page">
+<ol start="9">
+<li>Once you click <strong>Insert Edge Loop</strong>...
+<ul>
+<li>ProBuilder will introduce a new edge <strong>perpendicular</strong> to the one you selected.
+<ul>
+<li>I double-click on the <em>Scene</em> to make the scene full-screen.
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_65.png" alt="Unity Editor Home Page">
+<ol start="10">
+<li>Once you click <strong>Insert Edge Loop</strong>...
+<ul>
+<li>ProBuilder will introduce a new edge <strong>perpendicular</strong> to the one you selected.
+<ul>
+<li>I double-click on the <em>Scene</em> to make the scene full-screen.
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_66.png" alt="Unity Editor Home Page">
+<ol start="11">
+<li>Drag the edge over to the right
+<ul>
+<li>You want to space it a given distance from the rightmost edge (the original rightmost edge) and keep that distance consistent for the edge on the opposite side (when we place it)
+<ul>
+<li>This ensures that our walls have an even thickness
+<ul>
+<li>No need to make it perfect. Eyeballing will work just fine. Just keep them relatively consistent without any large differences.
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_67.png" alt="Unity Editor Home Page">
+<ol start="12">
+<li>Now, let's select one of the longer edges (like the one shown in the image)
+<ul>
+<li>Right-click to open the menu and click <strong>Insert Edge Loop</strong></li>
+<li>With the newly created edge, drag it down towards the <em>original</em> bottom edge
+<ul>
+<li>Orient the camera however you need to place this edge just right (whatever that is for you)
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="now-repeat-the-previous-two-steps-to-place-the-remaining-two-edges-the-final-product-should-look-something-like-this"><a class="header" href="#now-repeat-the-previous-two-steps-to-place-the-remaining-two-edges-the-final-product-should-look-something-like-this">Now, repeat the previous two steps to place the remaining two edges. The final product should look something like this</a></h4>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_68.png" alt="Unity Editor Home Page">
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_69.png" alt="Unity Editor Home Page">
+<ol start="13">
+<li>Now, select the middle face (the biggest face) by switching to the <strong>Face Selection</strong> tool. We will now <strong>extrude</strong></li>
+</ol>
+<ul>
+<li>Why did we do this?
+<ul>
+<li>Placing these additional edges allowed us to create additional faces on top of an existing face.</li>
+<li>We can then select any one face (or multiple faces) and <strong>extrude</strong> (i.e. cave inwards or pull outwards), whichever we need to do.
+<br/></li>
+</ul>
+</li>
+</ul>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_70.png" alt="Unity Editor Home Page">
+<ol start="14">
+<li>With the face selected, <em>right-click</em> to open the menu again and find <strong>Extrude Faces</strong>
+<br/></li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_71.png" alt="Unity Editor Home Page">
+<ol start="15">
+<li>Now, <strong>drag</strong> the face down to extrude it (in this case, cave inwards)
+<ul>
+<li>Once done, press <code>Esc</code> to exit ProBuilder
+<br/></li>
+</ul>
+</li>
+</ol>
+<h4 id="now-we-have-our-pit-ready-next-we-need-to-fill-it-with-spikes"><a class="header" href="#now-we-have-our-pit-ready-next-we-need-to-fill-it-with-spikes">Now, we have our pit ready. Next, we need to fill it with spikes</a></h4>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_72.png" alt="Unity Editor Home Page">
+<ol start="16">
+<li>Drag and drop the <strong>spike</strong> asset into the scene from the <em>updated_assets</em> folder.
+<br/></li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_73.png" alt="Unity Editor Home Page">
+<ol start="17">
+<li>Make a row of spikes
+<ul>
+<li>We can do this by selecting a spike and pressing <code>Ctrl</code> + <code>C</code> then <code>Ctrl</code> + <code>V</code></li>
+<li>Doing so makes a copy of the selected asset
+<ul>
+<li>Note: the copy will be placed in <strong>EXACTLY</strong> the same position as the original. So, you need to drag it out to separate it from the original</li>
+</ul>
+</li>
+<li>Create 4 more copies so that we have a row of 5 spikes (like the one in the image)
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_75.png" alt="Unity Editor Home Page">
+<ol start="18">
+<li>Next, we need to group our spikes together so that we can edit the entire row as a whole
+<ul>
+<li>To do so, <em>Right-click</em> in the <em>File System</em> (where we can see all of our assets) and find the <strong>Create Empty</strong> option
+<ul>
+<li>Name the empty asset <em>spike_row_1</em></li>
+<li>This will create a blank folder (that acts as an asset)</li>
+</ul>
+</li>
+<li>Into this folder, drag all of the spike assets.
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_74.png" alt="Unity Editor Home Page">
+<ol start="19">
+<li>Here's where it gets a bit complicated:
+<ul>
+<li>You now need to use the <strong>Scale Tool</strong> (which is the 5th one from the top in the menu to the left in the image above)</li>
+<li>Using this tool, scale the size of the row such that it fits inside of the walls of the pit without clipping through the walls or the ground
+<ul>
+<li>This will take some trial-and-error and not everyone will have the same amount of work to do.
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_76.png" alt="Unity Editor Home Page">
+<ol start="20">
+<li>Now, we need to copy and paste the rows on down (from back to front) to fill the "pit" with spikes.
+<ul>
+<li>Again, this is a step that not everyone will a similar experience performing.</li>
+<li>Do size and resize the rows themselves using the <strong>Scale Tool</strong>
+<ul>
+<li>If you look closely, my rows are not perfect either. Some are slightly larger than the others.</li>
+</ul>
+</li>
+<li>Eventually, your pit should look something like the image above and you should see a bunch of copies of the spike rows on left in your <strong>File System</strong>
+<br/></li>
+</ul>
+</li>
+</ol>
+<h4 id="next-rename-the-rows-so-that-you-have-an-easier-time-keeping-track-of-which-is-which-i-like-to-name-the-row-furthest-from-the-player-row-5-and-work-my-way-down-to-row-1"><a class="header" href="#next-rename-the-rows-so-that-you-have-an-easier-time-keeping-track-of-which-is-which-i-like-to-name-the-row-furthest-from-the-player-row-5-and-work-my-way-down-to-row-1">Next, rename the rows so that you have an easier time keeping track of which is which (I like to name the row furthest from the player "Row 5" and work my way down to "Row 1")</a></h4>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_77.png" alt="Unity Editor Home Page">
+<ol start="21">
+<li>Back in our Player_Movement script, add the following library: <strong>UnityEngine.SceneManagement</strong>
+<ul>
+<li>This will allow us to switch scenes when we detect a collision (which we'll change further down in this script);
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_78.png" alt="Unity Editor Home Page">
+<ol start="22">
+<li>Inside the <strong>OnCollisionEnter</strong> function, add the else statement in the image above following the first if statement (which checks for a collision with <em>Ground</em>)
+<ul>
+<li>Here, we're doing the same thing. We're checking if the player object has collided with any object tagged "Obstacle" (we'll tag the spikes later)
+<ul>
+<li>If it has, we load the scene <strong>Level 1</strong>
+<ul>
+<li>This is the same scene that we're on currently. So, esentially, we'll just reload the game (since we died after coming into contact with the spikes)
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="lets-go-back-to-the-scene-view"><a class="header" href="#lets-go-back-to-the-scene-view">Let's go back to the Scene View!</a></h4>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_79.png" alt="Unity Editor Home Page">
+<ol start="23">
+<li>We will now make some stairs (you can probably tell where I'm going with this)
+<ul>
+<li>In the ProBuilder menu (up top, under <em>Tools</em>), hover your cursor over <em>Editors</em></li>
+<li>Then, hover over <em>Create Shape</em></li>
+<li>Now, in the next menu, click on <strong>Stairs</strong>
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_80.png" alt="Unity Editor Home Page">
+<ol start="24">
+<li>The creation for the stairs is the same as the <em>Cube</em> from earlier.
+<ul>
+<li>Create the base and then drag the cursor up to create the height of the shape
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_81.png" alt="Unity Editor Home Page">
+<ol start="25">
+<li>Try to get the height of the stairs almost level with the height of our cube (don't worry if it isn't since we'll be able to fine-tune this later)
+<ul>
+<li>Use the <strong>Rotate Tool</strong> (which is the 4th one from the top in the bar to the left in the image above) to turn the stairs around
+<ul>
+<li>Use <code>Ctrl</code> or <code>Cmd</code> to rotate in increments (instead of freeform rotation without increments)
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_82.png" alt="Unity Editor Home Page">
+<ol start="26">
+<li>After sizing the stairs (using ProBuilder's <em>Shape Settings</em> menu, <strong>NOT</strong> the settings in the component view), we can then adjust the number of steps in the stairs
+<ul>
+<li>We want our player to move smoothly up the stairs without the need to jump constantly</li>
+<li>Somewhere around <strong>60</strong> steps should be good enough
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_83.png" alt="Unity Editor Home Page">
+<ol start="27">
+<li>Now, for each spike in every row, we need to add two things:
+<ul>
+<li>A collider and a tag (<strong>Obstacle</strong>)
+<ul>
+<li>Let's add the collider first
+<ul>
+<li>Select any one of the spikes in your row and add a <strong>Box Collider</strong> component
+<ul>
+<li>This will keep things simple and not have to much of a burden on performance
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_84.png" alt="Unity Editor Home Page">
+<ol start="28">
+<li>Now, let's create a tag called "Obstacle"
+<ul>
+<li>Click on the <em>Tags</em> dropdown for the selected row and click *Add Tag..."</li>
+<li>In the next menu, click the <strong>Plus</strong> icon to create a new tag and name it <strong>Obstacle</strong> (it should be exactly the same as how you spelled it in the code)
+<ul>
+<li>Double check to ensure correct spelling</li>
+</ul>
+</li>
+<li>Navigate back into the <em>Component View</em> of the spike itself and add the tag to it
+<ul>
+<li>You should see in the <em>Tags</em> dropdown menu
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="now-repeat-the-previous-step-for-the-every-spike-in-every-row-miuus-the-creation-of-the-tag-the-tag-is-already-made-you-just-need-to-assign-it"><a class="header" href="#now-repeat-the-previous-step-for-the-every-spike-in-every-row-miuus-the-creation-of-the-tag-the-tag-is-already-made-you-just-need-to-assign-it">Now, repeat the previous step for the every spike in every row (miuus the creation of the tag). The tag is already made. You just need to assign it.</a></h4>
+<br/>
+<h4 id="now-run-your-game-walk-up-the-stairs-and-fall-and-the-scene-should-reload-upon-contact-with-the-spikes"><a class="header" href="#now-run-your-game-walk-up-the-stairs-and-fall-and-the-scene-should-reload-upon-contact-with-the-spikes">Now, run your game, walk up the stairs, and fall and the scene should reload upon contact with the spikes.</a></h4>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../unity/animation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../godot/what-is-godot.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../unity/animation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../godot/what-is-godot.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

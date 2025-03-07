@@ -1017,6 +1017,658 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="visual-studio-setup"><a class="header" href="#visual-studio-setup">Visual Studio Setup</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h4 id="lets-set-up-some-animations"><a class="header" href="#lets-set-up-some-animations">Let's set up some animations</a></h4>
+<h4 id="to-start-lets-set-up-an-animator-for-our-object"><a class="header" href="#to-start-lets-set-up-an-animator-for-our-object">To start, let's set up an <strong>animator</strong> for our object</a></h4>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_40.png" alt="Unity Editor Home Page">
+<ol>
+<li>In our <em>Assets</em> view, right-click then hover over <em>Create</em>. In the next menu, hover over the <em>Animation</em> menu. Then, in the next menu, click on <strong>Animator Controller</strong>
+<ul>
+<li>Be sure to name it something like "Player_Animate"</li>
+<li>What is this and why do we need it?
+<ul>
+<li>The <strong>Animator Controller</strong> is an asset in Unity that handles the logic of which animations will play for a particular object, what the transitions are, when the transitions occur, and so on.</li>
+<li>However, for this tutorial, we will NOT be using it.
+<ul>
+<li>Instead, we will transition between the animations using <strong>code</strong>
+<ul>
+<li>In my recent experience in learning Unity, this was much easier to understand (for me, at least)</li>
+<li>In addition, the Animator Controller gets significantly more complicated as more animations are added and configured
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_41.png" alt="Unity Editor Home Page">
+<ol start="2">
+<li>Double click on the newly created Animator Controller below in your <em>Assets</em>. You will see the above window open up.
+<ul>
+<li>When gameplay is initiated, the first node (which is an animation) that we place here will connect to the <em>Start</em> node.
+<ul>
+<li>This animation will play first upon gameplay initiation</li>
+</ul>
+</li>
+<li>From here on out, even though we won't make explicit node connections here, we will still place all of our animations here (starting with <em>Idle</em> first)
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_42.png" alt="Unity Editor Home Page">
+<ol start="3">
+<li>To access our animations, double-click on the <em>updated_assets</em> folder.
+<br/></li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_45.png" alt="Unity Editor Home Page">
+<ol start="4">
+<li>Find the <em>jearl_backwards</em> asset and click the <strong>triangle</strong> icon to expand the "innards" of the asset
+&lt;br/?&gt;</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_46.png" alt="Unity Editor Home Page">
+<ol start="5">
+<li>This is what you should see when you expand the asset. Here, our animations are items that are marked with a <strong>teal triangle with lines on the left</strong>. These are our animations
+<ul>
+<li>Be sure to thank <strong>David Awkar</strong> for creating and providing these assets.
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_47.png" alt="Unity Editor Home Page">
+<ol start="6">
+<li>Drag and drop the <em>idle</em> animation into the <em>Animator Board</em>.
+<ul>
+<li>This is our first animation that will play
+<ul>
+<li>By convention, in any game, the idle animation is always placed first
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_48.png" alt="Unity Editor Home Page">
+<ol start="7">
+<li>From here on out, place all the animations onto the board.
+<ul>
+<li>For our case, the order doesn't matter (except for the <em>idle</em> animation going first)</li>
+<li>This is because we'll be using code to switch in between the animations. Therefore, placement order doesn't matter.
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_49.png" alt="Unity Editor Home Page">
+<ol start="8">
+<li>Back in the Scene view, click on <em>jearl_backwards</em> and, in the Animator component, drag and drop our Animator Controller object into the <em>Controller</em> box
+<ul>
+<li>Typically, Unity will have auto-created an Animator Controller when you imported the <em>jearl_backwards</em> asset.
+<br/></li>
+</ul>
+</li>
+</ol>
+<h4 id="now-lets-add-the-code-to-switch-between-animations"><a class="header" href="#now-lets-add-the-code-to-switch-between-animations">Now, let's add the code to switch between animations!</a></h4>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_50.png" alt="Unity Editor Home Page">
+<ol start="9">
+<li>In our <em>Player_Movement</em> script, let's add the following variables:
+<ul>
+<li><em>public Animator animator;</em>
+<ul>
+<li>This is what will hold our Animator Controller that we made earlier. Any changes we make to our animations will be made to this variable</li>
+</ul>
+</li>
+<li><em>public String currentAnimation = "";</em>
+<ul>
+<li>When transitioning between our animations, we will simply use the <strong>name</strong> of the animation (as it is inside our Animator Controller).</li>
+<li>This variable will simply hold that name as a String.
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_51.png" alt="Unity Editor Home Page">
+<ol start="10">
+<li>Now, let's add the following function to our script, right below <em>OnCollisionEnter</em>
+<ul>
+<li>What is this? What does it do?
+<ul>
+<li>This function is what will actually initiate the transition between our animations</li>
+<li>It takes in two parameters:
+<ul>
+<li>animation
+<ul>
+<li>This is the <strong>name</strong> of the animation to transition to</li>
+</ul>
+</li>
+<li>crossfade
+<ul>
+<li>This is the length (in seconds) over which we will transition between two animations</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Let's go over each line:
+<ul>
+<li><em>if (currentAnimation != animation) {</em>
+<ul>
+<li>If the current animation is <strong>NOT</strong> the new animation which we wish to transition to</li>
+<li>This if statement ensures that we skip the body of the function if <em>animation</em> ever equals <em>currentAnimation</em></li>
+</ul>
+</li>
+<li><em>currentAnimation = animation</em>
+<ul>
+<li>If the transition is a valid transition, then we take the name of the current animation and set it to the name of the new animation
+<ul>
+<li>Essentially, that String variable keeps track of the animation that is currently playing.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em>animator.CrossFade(animation, crossfade)</em>
+<ul>
+<li>This is the line performing the transitions.</li>
+<li>Since our <em>animator</em> variable is of type <em>Animator</em>, we can call the built-in function <strong>CrossFade</strong> on that variable (which, remember, is going to hold our Animator Controller) to switch from one animation to another
+<ul>
+<li>The first parameter is the <strong>name</strong> of the animation to transition to</li>
+<li>The second parameter is the fade length in seconds.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>We will now call this function in a variety of situations.
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_52.png" alt="Unity Editor Home Page">
+<ol start="11">
+<li>Next, below our <em>ChangeAnimation</em> function, let's add this function
+<ul>
+<li>What does it do?
+<ul>
+<li>This function will run every frame (alongside <em>movePlayer</em>) to constantly change the player object's animation during gameplay</li>
+</ul>
+</li>
+<li>Let's go through each line:
+<ul>
+<li><em>if (currentAnimation == "jumping") { return; }</em>
+<ul>
+<li>If our current animation is the jumping animation, <strong>DON'T DO ANYTHING</strong></li>
+<li>We don't want to make animation transitions while airborne. Hence, we use this line to ensure that that doesn't happen.</li>
+</ul>
+</li>
+<li><em>if (movement.x != 0 || movement.z != 0) { ChangeAnimation("walk_cycle"); }</em>
+<ul>
+<li>If we're moving, at all, in any direction, then change the animation to <em>walk_cycle</em></li>
+<li>Recall that our <em>movement</em> variable is a 3D vector whose <strong>only</strong> changing values are for the x-axis and z-axis (we don't move upwards, along the y-axis, with WASD).
+<ul>
+<li>So, check these two. See if one is non-zero, the other is non-zero, or both are non-zero. If any one of these conditions is true, change our animation to the walking animation.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em>else { ChangeAnimation("idle"); }</em>
+<ul>
+<li>If we aren't moving, change the animation to <em>idle</em>. Pretty-self explanatory.
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_53.png" alt="Unity Editor Home Page">
+<ol start="12">
+<li>Copy the if-else statement from our <em>CheckAnimation</em> function (which checks for movement) and paste it in <em>OnCollisionEnter</em> function, inside the if statement that checks for a collision with <em>ground</em>
+<ul>
+<li>Why do we need this here?
+<ul>
+<li>Without this check here, after jumping (and initiating the jump animation), we will be permanently stuck in the jump animation.
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_54.png" alt="Unity Editor Home Page">
+<ol start="13">
+<li>Lastly, add a function for the <em>CheckAnimation()</em> function in the <em>Update()</em> function
+<ul>
+<li>We need this function to run every frame so that our animation changes dynamically and <strong>constantly</strong>.
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_55.png" alt="Unity Editor Home Page">
+<ol start="14">
+<li>Back in our editor, drag and drop the Animator Controller object we created into the blank spit in the Animator component of <em>jearl_backwards</em>
+<br/></li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_55.png" alt="Unity Editor Home Page">
+<ol start="14">
+<li>Back in our editor, drag and drop the Animator Controller object we created into the blank spit in the Animator component of <em>jearl_backwards</em>
+<ul>
+<li>Also, do the same thing for the empty spot for the <em>Animator</em> variable in our <em>Player Script</em> variable but, this time, drag and drop <strong>jearl_backwards</strong>
+<br/></li>
+</ul>
+</li>
+</ol>
+<h4 id="one-last-note----add-a-changeanimation-call-for-the-jumping-animation-inside-of-our-isgrounded-if-isgrounded--check-in-onjump"><a class="header" href="#one-last-note----add-a-changeanimation-call-for-the-jumping-animation-inside-of-our-isgrounded-if-isgrounded--check-in-onjump">One last note --&gt; add a ChangeAnimation() call for the "jumping" animation inside of our isGrounded (if (isGrounded) {...}) check in "OnJump"</a></h4>
+<br/>
+<h4 id="now-with-the-changes-made-upon-running-our-game-you-should-see-animations-for-movement-idling-jumping-and-falling"><a class="header" href="#now-with-the-changes-made-upon-running-our-game-you-should-see-animations-for-movement-idling-jumping-and-falling">Now, with the changes made, upon running our game, you should see animations for movement, idling, jumping and falling</a></h4>
+<div style="break-before: page; page-break-before: always;"></div><h3 id="now-well-discuss-a-particular-tool-that-we-downloaded-a-while-back"><a class="header" href="#now-well-discuss-a-particular-tool-that-we-downloaded-a-while-back">Now, we'll discuss a particular tool that we downloaded a while back:</a></h3>
+<h1 id="probuilder"><a class="header" href="#probuilder">Probuilder</a></h1>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_56.png" alt="Unity Editor Home Page">
+<ol>
+<li>For the Mac folks, hover over <em>Tools</em> up top, then hover over <em>ProBuilder</em> to open/view the menu
+<ul>
+<li>If you recall, earlier in the tutorial, we downloaded two packages: Unity glTFast and <strong>Probuilder</strong>.</li>
+<li><strong>ProBuilder</strong> allows us to create shapes of different sizes and patterns.
+<ul>
+<li>You might say, "Ok. So what?"</li>
+<li>Well, these shapes, no matter what size you make them in, will have their own colliders and renderers (there is a slight caveat here that we'll discuss later)
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_57.png" alt="Unity Editor Home Page">
+<ol start="2">
+<li>Let's create a spike pit!
+<ul>
+<li>To start, let's create a <em>Cube</em>
+<ul>
+<li>In the <em>ProBuilder</em> menu, hover over <em>Editors</em> and find the <em>Create Shape</em> menu</li>
+<li>Within that menu, click on <em>Cube</em> to enter build mode</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_59.png" alt="Unity Editor Home Page">
+<ol start="3">
+<li>Click and drag, in build mode, to see a grid pop up.
+<ul>
+<li>This grid represents the base of our shape (a cube, in this case). As you hold down the left-click, you can drag that shape to whatever dimensions you want to size our base
+<ul>
+<li>For this tutorial, ensure that your base is somewhat of an <strong>rectangle</strong> which is longer on the <strong>z-axis</strong> than the <strong>y-axis</strong>
+<ul>
+<li>Think of a football field</li>
+<li>If its not perfect, don't worry! We can resize its transformation values with numbers later
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_60.png" alt="Unity Editor Home Page">
+<ol start="4">
+<li>Once you've decided on the proportions of your base, let go of <em>left-click</em>
+<ul>
+<li>Now, move your cursor up and you should see the shape "rise up".
+<ul>
+<li>What you're seeing is a <em>preview</em> of what the final shape will look like</li>
+<li>Once you've chosen your desired height, press <em>left-click</em> once to finalize the shape
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_61.png" alt="Unity Editor Home Page">
+<ol start="5">
+<li>Now, if we want to edit the shape (if we didn't size it the correct way, let's say), we can do that by:
+<ul>
+<li>Opening the <em>ProBuilder</em> menu from the <em>Tools</em> menu up above.</li>
+<li>Inside the <em>ProBuilder</em> menu, this time, hover your cursor over <strong>Edit</strong></li>
+<li>In the menu that follows, click <strong>Edit Shape</strong>
+<ul>
+<li>You will enter back into <em>build mode</em> (the same mode you were in when you were first creating the shape)</li>
+<li>One thing to remember: to change the <em>scale</em> parameters (i.e., size), you <strong>MUST</strong> do it from the <strong>Shape Settings</strong> menu and not the <em>Component View</em> on the right.</li>
+</ul>
+</li>
+<li>Now, in the <strong>Shape Settings</strong> menu, change the <em>Size</em> parameters to the following values:
+<ul>
+<li>X --&gt; 14</li>
+<li>Leave Y as is</li>
+<li>Z --&gt; 22
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_62.png" alt="Unity Editor Home Page">
+<ol start="6">
+<li>Now, we need to change this rectangle into a pit (i.e. a concave rectangle with thick walls)
+<ul>
+<li>We'll do this by <strong>Extrusion</strong> and <strong>Edge Loops</strong></li>
+<li>To begin, find the above icon in the vertical bar on the left of the <em>Scene View</em>
+<ul>
+<li>This icon will only be visible if you have selected a shape created using ProBuilder</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_63.png" alt="Unity Editor Home Page">
+<ol start="7">
+<li>Along the top row of icons, you'll find these 3 icons as well (with the same color)
+<ul>
+<li>From left to right:
+<ul>
+<li><strong>Vertex Selection</strong> = Allows you to select individual vertices and use them to change your shape however you want</li>
+<li><strong>Edge Selection</strong> = Allows you to select edges and use them to change your shape</li>
+<li><strong>Face Selection</strong> = Allows you to select faces to change
+your shape
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_64.png" alt="Unity Editor Home Page">
+<ol start="8">
+<li>Click on the <em>Edge Selection</em> icon to get started
+<ul>
+<li>You should all the edges turn dark black and when you hover, they should change colors.
+<ul>
+<li>Pick an edge (I'll start with the one that's selected in the image)</li>
+<li>Right-click with the edge selected to open a menu</li>
+<li>In that menu, find <strong>Insert Edge Loop</strong>
+<ul>
+<li>Here, you'll also see a shortcut to invoke this option. I suggest you use this shortcut because we'll be making a couple of these
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_65.png" alt="Unity Editor Home Page">
+<ol start="9">
+<li>Once you click <strong>Insert Edge Loop</strong>...
+<ul>
+<li>ProBuilder will introduce a new edge <strong>perpendicular</strong> to the one you selected.
+<ul>
+<li>I double-click on the <em>Scene</em> to make the scene full-screen.
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_65.png" alt="Unity Editor Home Page">
+<ol start="10">
+<li>Once you click <strong>Insert Edge Loop</strong>...
+<ul>
+<li>ProBuilder will introduce a new edge <strong>perpendicular</strong> to the one you selected.
+<ul>
+<li>I double-click on the <em>Scene</em> to make the scene full-screen.
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_66.png" alt="Unity Editor Home Page">
+<ol start="11">
+<li>Drag the edge over to the right
+<ul>
+<li>You want to space it a given distance from the rightmost edge (the original rightmost edge) and keep that distance consistent for the edge on the opposite side (when we place it)
+<ul>
+<li>This ensures that our walls have an even thickness
+<ul>
+<li>No need to make it perfect. Eyeballing will work just fine. Just keep them relatively consistent without any large differences.
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_67.png" alt="Unity Editor Home Page">
+<ol start="12">
+<li>Now, let's select one of the longer edges (like the one shown in the image)
+<ul>
+<li>Right-click to open the menu and click <strong>Insert Edge Loop</strong></li>
+<li>With the newly created edge, drag it down towards the <em>original</em> bottom edge
+<ul>
+<li>Orient the camera however you need to place this edge just right (whatever that is for you)
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="now-repeat-the-previous-two-steps-to-place-the-remaining-two-edges-the-final-product-should-look-something-like-this"><a class="header" href="#now-repeat-the-previous-two-steps-to-place-the-remaining-two-edges-the-final-product-should-look-something-like-this">Now, repeat the previous two steps to place the remaining two edges. The final product should look something like this</a></h4>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_68.png" alt="Unity Editor Home Page">
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_69.png" alt="Unity Editor Home Page">
+<ol start="13">
+<li>Now, select the middle face (the biggest face) by switching to the <strong>Face Selection</strong> tool. We will now <strong>extrude</strong></li>
+</ol>
+<ul>
+<li>Why did we do this?
+<ul>
+<li>Placing these additional edges allowed us to create additional faces on top of an existing face.</li>
+<li>We can then select any one face (or multiple faces) and <strong>extrude</strong> (i.e. cave inwards or pull outwards), whichever we need to do.
+<br/></li>
+</ul>
+</li>
+</ul>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_70.png" alt="Unity Editor Home Page">
+<ol start="14">
+<li>With the face selected, <em>right-click</em> to open the menu again and find <strong>Extrude Faces</strong>
+<br/></li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_71.png" alt="Unity Editor Home Page">
+<ol start="15">
+<li>Now, <strong>drag</strong> the face down to extrude it (in this case, cave inwards)
+<ul>
+<li>Once done, press <code>Esc</code> to exit ProBuilder
+<br/></li>
+</ul>
+</li>
+</ol>
+<h4 id="now-we-have-our-pit-ready-next-we-need-to-fill-it-with-spikes"><a class="header" href="#now-we-have-our-pit-ready-next-we-need-to-fill-it-with-spikes">Now, we have our pit ready. Next, we need to fill it with spikes</a></h4>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_72.png" alt="Unity Editor Home Page">
+<ol start="16">
+<li>Drag and drop the <strong>spike</strong> asset into the scene from the <em>updated_assets</em> folder.
+<br/></li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_73.png" alt="Unity Editor Home Page">
+<ol start="17">
+<li>Make a row of spikes
+<ul>
+<li>We can do this by selecting a spike and pressing <code>Ctrl</code> + <code>C</code> then <code>Ctrl</code> + <code>V</code></li>
+<li>Doing so makes a copy of the selected asset
+<ul>
+<li>Note: the copy will be placed in <strong>EXACTLY</strong> the same position as the original. So, you need to drag it out to separate it from the original</li>
+</ul>
+</li>
+<li>Create 4 more copies so that we have a row of 5 spikes (like the one in the image)
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_75.png" alt="Unity Editor Home Page">
+<ol start="18">
+<li>Next, we need to group our spikes together so that we can edit the entire row as a whole
+<ul>
+<li>To do so, <em>Right-click</em> in the <em>File System</em> (where we can see all of our assets) and find the <strong>Create Empty</strong> option
+<ul>
+<li>Name the empty asset <em>spike_row_1</em></li>
+<li>This will create a blank folder (that acts as an asset)</li>
+</ul>
+</li>
+<li>Into this folder, drag all of the spike assets.
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_74.png" alt="Unity Editor Home Page">
+<ol start="19">
+<li>Here's where it gets a bit complicated:
+<ul>
+<li>You now need to use the <strong>Scale Tool</strong> (which is the 5th one from the top in the menu to the left in the image above)</li>
+<li>Using this tool, scale the size of the row such that it fits inside of the walls of the pit without clipping through the walls or the ground
+<ul>
+<li>This will take some trial-and-error and not everyone will have the same amount of work to do.
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_76.png" alt="Unity Editor Home Page">
+<ol start="20">
+<li>Now, we need to copy and paste the rows on down (from back to front) to fill the "pit" with spikes.
+<ul>
+<li>Again, this is a step that not everyone will a similar experience performing.</li>
+<li>Do size and resize the rows themselves using the <strong>Scale Tool</strong>
+<ul>
+<li>If you look closely, my rows are not perfect either. Some are slightly larger than the others.</li>
+</ul>
+</li>
+<li>Eventually, your pit should look something like the image above and you should see a bunch of copies of the spike rows on left in your <strong>File System</strong>
+<br/></li>
+</ul>
+</li>
+</ol>
+<h4 id="next-rename-the-rows-so-that-you-have-an-easier-time-keeping-track-of-which-is-which-i-like-to-name-the-row-furthest-from-the-player-row-5-and-work-my-way-down-to-row-1"><a class="header" href="#next-rename-the-rows-so-that-you-have-an-easier-time-keeping-track-of-which-is-which-i-like-to-name-the-row-furthest-from-the-player-row-5-and-work-my-way-down-to-row-1">Next, rename the rows so that you have an easier time keeping track of which is which (I like to name the row furthest from the player "Row 5" and work my way down to "Row 1")</a></h4>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_77.png" alt="Unity Editor Home Page">
+<ol start="21">
+<li>Back in our Player_Movement script, add the following library: <strong>UnityEngine.SceneManagement</strong>
+<ul>
+<li>This will allow us to switch scenes when we detect a collision (which we'll change further down in this script);
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_78.png" alt="Unity Editor Home Page">
+<ol start="22">
+<li>Inside the <strong>OnCollisionEnter</strong> function, add the else statement in the image above following the first if statement (which checks for a collision with <em>Ground</em>)
+<ul>
+<li>Here, we're doing the same thing. We're checking if the player object has collided with any object tagged "Obstacle" (we'll tag the spikes later)
+<ul>
+<li>If it has, we load the scene <strong>Level 1</strong>
+<ul>
+<li>This is the same scene that we're on currently. So, esentially, we'll just reload the game (since we died after coming into contact with the spikes)
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="lets-go-back-to-the-scene-view"><a class="header" href="#lets-go-back-to-the-scene-view">Let's go back to the Scene View!</a></h4>
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_79.png" alt="Unity Editor Home Page">
+<ol start="23">
+<li>We will now make some stairs (you can probably tell where I'm going with this)
+<ul>
+<li>In the ProBuilder menu (up top, under <em>Tools</em>), hover your cursor over <em>Editors</em></li>
+<li>Then, hover over <em>Create Shape</em></li>
+<li>Now, in the next menu, click on <strong>Stairs</strong>
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_80.png" alt="Unity Editor Home Page">
+<ol start="24">
+<li>The creation for the stairs is the same as the <em>Cube</em> from earlier.
+<ul>
+<li>Create the base and then drag the cursor up to create the height of the shape
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_81.png" alt="Unity Editor Home Page">
+<ol start="25">
+<li>Try to get the height of the stairs almost level with the height of our cube (don't worry if it isn't since we'll be able to fine-tune this later)
+<ul>
+<li>Use the <strong>Rotate Tool</strong> (which is the 4th one from the top in the bar to the left in the image above) to turn the stairs around
+<ul>
+<li>Use <code>Ctrl</code> or <code>Cmd</code> to rotate in increments (instead of freeform rotation without increments)
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_82.png" alt="Unity Editor Home Page">
+<ol start="26">
+<li>After sizing the stairs (using ProBuilder's <em>Shape Settings</em> menu, <strong>NOT</strong> the settings in the component view), we can then adjust the number of steps in the stairs
+<ul>
+<li>We want our player to move smoothly up the stairs without the need to jump constantly</li>
+<li>Somewhere around <strong>60</strong> steps should be good enough
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_83.png" alt="Unity Editor Home Page">
+<ol start="27">
+<li>Now, for each spike in every row, we need to add two things:
+<ul>
+<li>A collider and a tag (<strong>Obstacle</strong>)
+<ul>
+<li>Let's add the collider first
+<ul>
+<li>Select any one of the spikes in your row and add a <strong>Box Collider</strong> component
+<ul>
+<li>This will keep things simple and not have to much of a burden on performance
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_84.png" alt="Unity Editor Home Page">
+<ol start="28">
+<li>Now, let's create a tag called "Obstacle"
+<ul>
+<li>Click on the <em>Tags</em> dropdown for the selected row and click *Add Tag..."</li>
+<li>In the next menu, click the <strong>Plus</strong> icon to create a new tag and name it <strong>Obstacle</strong> (it should be exactly the same as how you spelled it in the code)
+<ul>
+<li>Double check to ensure correct spelling</li>
+</ul>
+</li>
+<li>Navigate back into the <em>Component View</em> of the spike itself and add the tag to it
+<ul>
+<li>You should see in the <em>Tags</em> dropdown menu
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="now-repeat-the-previous-step-for-the-every-spike-in-every-row-miuus-the-creation-of-the-tag-the-tag-is-already-made-you-just-need-to-assign-it"><a class="header" href="#now-repeat-the-previous-step-for-the-every-spike-in-every-row-miuus-the-creation-of-the-tag-the-tag-is-already-made-you-just-need-to-assign-it">Now, repeat the previous step for the every spike in every row (miuus the creation of the tag). The tag is already made. You just need to assign it.</a></h4>
+<br/>
+<h4 id="now-run-your-game-walk-up-the-stairs-and-fall-and-the-scene-should-reload-upon-contact-with-the-spikes"><a class="header" href="#now-run-your-game-walk-up-the-stairs-and-fall-and-the-scene-should-reload-upon-contact-with-the-spikes">Now, run your game, walk up the stairs, and fall and the scene should reload upon contact with the spikes.</a></h4>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="what-is-godot"><a class="header" href="#what-is-godot">What is Godot?</a></h1>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="godot/1-1.png" alt="Godot Screenshot">
 <p>Godot is a powerful, lightweight, and beginner friendly game engine that allows people to rapidly create games in GDScript, C#, C++, and many other programming languages. It features a flexible node based scene system, a robust animation system, and a built in physics engine, while offering transparancy and licensing freedom as open source software.</p>

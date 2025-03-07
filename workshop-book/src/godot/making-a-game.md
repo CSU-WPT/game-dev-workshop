@@ -1,7 +1,7 @@
 # Making a Game
 
 ### Getting the Assets
-1. Download the premade assets [here](https://github.com/CSU-WPT/game-dev-workshop/releases/download/godot/assets.zip).
+1. Download the premade assets [here](https://github.com/CSU-WPT/game-dev-workshop/releases/), get the `assets.zip` file.
 2. Extract the zip file and drag the files into Godot's filesystem, it should now look like this:
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="3-1.png" alt="Assets in Godot">

@@ -11,6 +11,8 @@
 - [Setting up Input](./unity/input_config.md)
     - [Visual Studio Code Setup](./unity/IDE_setup/VSCode_setup.md)
     - [Visual Studio Setup](./unity/IDE_setup/Visual_Studio.md)
+- [Adding Animations](./unity/animation.md)
+- [Using ProBuilder](./unity/probuilder.md)
 
 # The Godot Game Engine
 

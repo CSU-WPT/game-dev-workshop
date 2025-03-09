@@ -24,9 +24,9 @@
         <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
@@ -164,7 +164,7 @@
 </ul>
 </li>
 <li>
-<p><strong>File System</strong></p>
+<p><strong>File View</strong></p>
 <ul>
 <li>This is where you can see all the files currently within your project. For our purposes, we only need to focus on the <em>Assets</em> folder and its sub-folders. In addition, you can also create your own folders to keep your project organized and functional.</li>
 </ul>
@@ -186,12 +186,81 @@
 <h3 id="file-setup"><a class="header" href="#file-setup">File Setup</a></h3>
 <p>Before we proceed, we need to make some additional changes:</p>
 <ul>
-<li>Download this tutorial's <a href="https://drive.google.com/uc?export=download&amp;id=1ucsgriZxbajK0LKflfUpLJHT86DQlHgI">assets.</a></li>
-<li>Download the following Unity Packages
+<li>Download this tutorial's <a href="https://drive.google.com/uc?export=download&amp;id=1ucsgriZxbajK0LKflfUpLJHT86DQlHgI">assets.</a>
+<ul>
+<li>
+<p>Once downloaded, place this zip file somewhere on your computer where you can access it easily.</p>
+</li>
+<li>
+<p>Then, go to the Unity Hub. If its open, the icon for it below in the <strong>taskbar</strong> (for Windows) or <strong>Dock</strong> (for Mac) should looks something like this:
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_87.png" alt="Unity Editor Home Page">
+<br/></p>
+</li>
+<li>
+<p>Click it to open the Hub.</p>
+</li>
+<li>
+<p>On the left, in the list of menus, click <strong>Projects</strong>.</p>
+</li>
+<li>
+<p>Find your project (the one you just made) in the project list.</p>
+</li>
+<li>
+<p>On the right, click the 3 little dots.</p>
+</li>
+<li>
+<p>Click on the first option you see.</p>
+<ul>
+<li>For Mac, this will be <strong>Reveal in Finder</strong>. For Windows, this will be <strong>Show in Explorer</strong>.</li>
+</ul>
+</li>
+<li>
+<p>This will open your project directory on your computer (wherever it was created).</p>
+</li>
+<li>
+<p>Double-click the project folder.</p>
+</li>
+<li>
+<p>Double-click the <strong>Assets</strong> folder.</p>
+<ul>
+<li>This is where we'll place the unzipped <em>updated_assets</em>.
+<br/></li>
+</ul>
+</li>
+<li>
+<p>Now, find your zip file (wherever you stored it) and unzip it.</p>
+<ul>
+<li>Upon unzipping, you'll see two folders:
+<ul>
+<li><strong>updated_assets</strong> and <strong>_MACOSX</strong>.
+<ul>
+<li>Ignore the <strong>_MACOSX</strong> folder.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Once unzipped, move (<strong>inside your file explorer or Finder)</strong> the unzipped updated_assets folder into the <strong>Assets</strong> folder in your project directory folder.
+<ul>
+<li>For this part, I would suggest having two separate windows open for File Explorer or Finder.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Then, navigate to your Unity Editor and, assuming you followed these steps correctly and the download link was working, you should see a folder below, in the File View, called <strong>updated_assets</strong>.</p>
+<ul>
+<li>Double-click it to open it and you should see the game assets inside.
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Download the following packages:
 <ul>
 <li><strong>ProBuilder</strong>
 <ul>
-<li>Up top, find the <em>Window</em> tab.</li>
+<li>Up top, in the Unity Editor, find the <em>Window</em> tab.</li>
 <li>Click to expand it.</li>
 <li>Look for <strong>Package Manager.</strong></li>
 <li>Click on it and it will open a separate window for it.
@@ -199,15 +268,22 @@
 <li>Optional: You can drag the window and dock it next to the <em>Scene</em> and <em>Game</em> tabs in your Scene View.</li>
 </ul>
 </li>
-<li>In the window, on the left, click on <em>Unity Registry</em>.</li>
-<li>In the search bar, start typing ProBuilder and you should see it in the search results below.</li>
+<li>In the window, on the left, click on <em>Unity Registry</em>.
+<ul>
+<li>You may need to expand the tabs on the left to find it:
+<br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_88.png" alt="Unity Editor Home Page">
+<br/></li>
+</ul>
+</li>
+<li>In the search bar, start typing <strong>ProBuilder</strong> and you should see it in the search results below.</li>
 <li>On the right, in the package description, find the <em>Install</em> button and click it to install ProBuilder.</li>
 </ul>
 </li>
 <li><strong>Unity glTFast</strong>
 <ul>
 <li>Follow the same steps as above to navigate to the Package Manager.</li>
-<li>Now, in the corner on the left, look for a plus icon with a dropdown menu triangle next to it
+<li>But, this time, in the top-left corner of the Package Manager window, look for a plus icon with a dropdown menu triangle next to it
 <ul>
 <li>Should look something like this:
 <img style="display: block; margin-left: auto; margin-right: auto;" src="project_manager_dropdown.png" alt="project manager dropdown button"></li>

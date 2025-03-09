@@ -24,9 +24,9 @@
         <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
@@ -152,22 +152,22 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h4 id="lets-set-up-some-animations"><a class="header" href="#lets-set-up-some-animations">Let's set up some animations</a></h4>
-<h4 id="to-start-lets-set-up-an-animator-for-our-object"><a class="header" href="#to-start-lets-set-up-an-animator-for-our-object">To start, let's set up an <strong>animator</strong> for our object</a></h4>
+                        <h4 id="lets-set-up-some-animations"><a class="header" href="#lets-set-up-some-animations">Let's set up some animations!</a></h4>
+<h4 id="to-start-lets-set-up-an-animator-for-our-object"><a class="header" href="#to-start-lets-set-up-an-animator-for-our-object">To start, let's set up an <strong>animator</strong> for our object!</a></h4>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_40.png" alt="Unity Editor Home Page">
 <ol>
-<li>In our <em>Assets</em> view, right-click then hover over <em>Create</em>. In the next menu, hover over the <em>Animation</em> menu. Then, in the next menu, click on <strong>Animator Controller</strong>
+<li>In our <em>Assets</em> view, right-click then hover over <em>Create</em>. In the next menu, hover over the <em>Animation</em> menu. Then, in the next menu, click on <strong>Animator Controller</strong>.
 <ul>
 <li>Be sure to name it something like "Player_Animate"</li>
 <li>What is this and why do we need it?
 <ul>
 <li>The <strong>Animator Controller</strong> is an asset in Unity that handles the logic of which animations will play for a particular object, what the transitions are, when the transitions occur, and so on.</li>
-<li>However, for this tutorial, we will NOT be using it.
+<li>However, for this tutorial, we will NOT be using it in the traditional sense.
 <ul>
-<li>Instead, we will transition between the animations using <strong>code</strong>
+<li>Instead, we will transition between the animations using <strong>code</strong>.
 <ul>
-<li>In my recent experience in learning Unity, this was much easier to understand (for me, at least)</li>
-<li>In addition, the Animator Controller gets significantly more complicated as more animations are added and configured
+<li>In my recent experience in learning Unity, this was much easier to understand (for me, at least).</li>
+<li>In addition, the Animator Controller gets significantly more complicated as more animations are added and configured.
 <br/></li>
 </ul>
 </li>
@@ -180,14 +180,14 @@
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_41.png" alt="Unity Editor Home Page">
 <ol start="2">
-<li>Double click on the newly created Animator Controller below in your <em>Assets</em>. You will see the above window open up.
+<li>Double click on the newly created Animator Controller below in your <em>Assets</em>. You will see the window (in the image above) open up.
 <ul>
-<li>When gameplay is initiated, the first node (which is an animation) that we place here will connect to the <em>Start</em> node.
+<li>When gameplay is initiated, the first node, the first animation that we place (which will act as a <strong>node</strong> on a <strong>graph</strong>) will connect to the <em>Start</em> node.
 <ul>
-<li>This animation will play first upon gameplay initiation</li>
+<li>This animation will play <strong>first</strong> upon initiating gameplay.</li>
 </ul>
 </li>
-<li>From here on out, even though we won't make explicit node connections here, we will still place all of our animations here (starting with <em>Idle</em> first)
+<li>From here on out, even though we won't make explicit node connections, we will still place all of our animations here (starting with <strong>idle</strong> animation first).
 <br/></li>
 </ul>
 </li>
@@ -200,13 +200,13 @@
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_45.png" alt="Unity Editor Home Page">
 <ol start="4">
 <li>Find the <em>jearl_backwards</em> asset and click the <strong>triangle</strong> icon to expand the "innards" of the asset
-&lt;br/?&gt;</li>
+<br/></li>
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_46.png" alt="Unity Editor Home Page">
 <ol start="5">
-<li>This is what you should see when you expand the asset. Here, our animations are items that are marked with a <strong>teal triangle with lines on the left</strong>. These are our animations
+<li>This is what you should see when you expand the asset. Here, our animations are items that are marked with a <strong>teal triangle with lines on the left</strong>. These are our animations.
 <ul>
-<li>Be sure to thank <strong>David Awkar</strong> for creating and providing these assets.
+<li>Be sure to thank <strong>David Awkar</strong> for creating and providing the assets and the animations (🎉).
 <br/></li>
 </ul>
 </li>
@@ -215,9 +215,9 @@
 <ol start="6">
 <li>Drag and drop the <em>idle</em> animation into the <em>Animator Board</em>.
 <ul>
-<li>This is our first animation that will play
+<li>This is our first animation that will play.
 <ul>
-<li>By convention, in any game, the idle animation is always placed first
+<li>By convention, in any game, the idle animation is always placed first.
 <br/></li>
 </ul>
 </li>
@@ -226,7 +226,7 @@
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_48.png" alt="Unity Editor Home Page">
 <ol start="7">
-<li>From here on out, place all the animations onto the board.
+<li>From here on out, place all the rest of the animations onto the board.
 <ul>
 <li>For our case, the order doesn't matter (except for the <em>idle</em> animation going first)</li>
 <li>This is because we'll be using code to switch in between the animations. Therefore, placement order doesn't matter.
@@ -238,7 +238,7 @@
 <ol start="8">
 <li>Back in the Scene view, click on <em>jearl_backwards</em> and, in the Animator component, drag and drop our Animator Controller object into the <em>Controller</em> box
 <ul>
-<li>Typically, Unity will have auto-created an Animator Controller when you imported the <em>jearl_backwards</em> asset.
+<li>Unity will have auto-created an Animator Controller when you placed the <em>jearl_backwards</em> asset into the Scene.
 <br/></li>
 </ul>
 </li>
@@ -251,7 +251,7 @@
 <ul>
 <li><em>public Animator animator;</em>
 <ul>
-<li>This is what will hold our Animator Controller that we made earlier. Any changes we make to our animations will be made to this variable</li>
+<li>This is what will hold our Animator Controller that we made earlier. Any changes we make to our animations will be made to this variable.</li>
 </ul>
 </li>
 <li><em>public String currentAnimation = "";</em>
@@ -270,17 +270,17 @@
 <ul>
 <li>What is this? What does it do?
 <ul>
-<li>This function is what will actually initiate the transition between our animations</li>
+<li>This function is what will actually initiate the transition between our animations.</li>
 <li>It takes in two parameters:
 <ul>
 <li>animation
 <ul>
-<li>This is the <strong>name</strong> of the animation to transition to</li>
+<li>This is the <strong>name</strong> of the animation to transition to.</li>
 </ul>
 </li>
 <li>crossfade
 <ul>
-<li>This is the length (in seconds) over which we will transition between two animations</li>
+<li>This is the length (in seconds) over which we will transition between two animations.</li>
 </ul>
 </li>
 </ul>
@@ -289,13 +289,13 @@
 <ul>
 <li><em>if (currentAnimation != animation) {</em>
 <ul>
-<li>If the current animation is <strong>NOT</strong> the new animation which we wish to transition to</li>
-<li>This if statement ensures that we skip the body of the function if <em>animation</em> ever equals <em>currentAnimation</em></li>
+<li>If the current animation is <strong>NOT</strong> the new animation which we wish to transition to.</li>
+<li>This if statement ensures that we skip the body of the function <em>if</em> <em>animation</em> ever equals <em>currentAnimation</em>.</li>
 </ul>
 </li>
 <li><em>currentAnimation = animation</em>
 <ul>
-<li>If the transition is a valid transition, then we take the name of the current animation and set it to the name of the new animation
+<li>If the transition is a valid transition, then we take the name of the current animation and set it to the name of the new animation.
 <ul>
 <li>Essentially, that String variable keeps track of the animation that is currently playing.</li>
 </ul>
@@ -305,9 +305,9 @@
 <li><em>animator.CrossFade(animation, crossfade)</em>
 <ul>
 <li>This is the line performing the transitions.</li>
-<li>Since our <em>animator</em> variable is of type <em>Animator</em>, we can call the built-in function <strong>CrossFade</strong> on that variable (which, remember, is going to hold our Animator Controller) to switch from one animation to another
+<li>Since our <em>animator</em> variable is of type <em>Animator</em>, we can call the built-in function <strong>CrossFade</strong> on that variable (which, remember, is going to hold our Animator Controller) to switch from one animation to another.
 <ul>
-<li>The first parameter is the <strong>name</strong> of the animation to transition to</li>
+<li>The first parameter is the <strong>name</strong> of the animation to transition to.</li>
 <li>The second parameter is the fade length in seconds.</li>
 </ul>
 </li>
@@ -324,34 +324,34 @@
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_52.png" alt="Unity Editor Home Page">
 <ol start="11">
-<li>Next, below our <em>ChangeAnimation</em> function, let's add this function
+<li>Next, below our <em>ChangeAnimation</em> function, let's add this function.
 <ul>
 <li>What does it do?
 <ul>
-<li>This function will run every frame (alongside <em>movePlayer</em>) to constantly change the player object's animation during gameplay</li>
+<li>This function will run every frame (alongside <em>movePlayer</em>) to constantly change the player object's animation during gameplay.</li>
 </ul>
 </li>
 <li>Let's go through each line:
 <ul>
 <li><em>if (currentAnimation == "jumping") { return; }</em>
 <ul>
-<li>If our current animation is the jumping animation, <strong>DON'T DO ANYTHING</strong></li>
-<li>We don't want to make animation transitions while airborne. Hence, we use this line to ensure that that doesn't happen.</li>
+<li>If our current animation is the jumping animation, <strong>DON'T DO ANYTHING</strong>.</li>
+<li>We don't want to make animation transitions while we're airborne. Hence, we use this line to ensure that that doesn't happen.</li>
 </ul>
 </li>
 <li><em>if (movement.x != 0 || movement.z != 0) { ChangeAnimation("walk_cycle"); }</em>
 <ul>
-<li>If we're moving, at all, in any direction, then change the animation to <em>walk_cycle</em></li>
+<li>If we're moving, at all, in any direction, then change the animation to <em>walk_cycle</em>.</li>
 <li>Recall that our <em>movement</em> variable is a 3D vector whose <strong>only</strong> changing values are for the x-axis and z-axis (we don't move upwards, along the y-axis, with WASD).
 <ul>
-<li>So, check these two. See if one is non-zero, the other is non-zero, or both are non-zero. If any one of these conditions is true, change our animation to the walking animation.</li>
+<li>So, we check these two. See if one is non-zero, the other is non-zero, or both are non-zero. If any one of these conditions is true, we change the animation to the walking animation.</li>
 </ul>
 </li>
 </ul>
 </li>
 <li><em>else { ChangeAnimation("idle"); }</em>
 <ul>
-<li>If we aren't moving, change the animation to <em>idle</em>. Pretty-self explanatory.
+<li>If we aren't moving at all, change the animation to <em>idle</em>. Pretty-self explanatory.
 <br/></li>
 </ul>
 </li>
@@ -362,7 +362,7 @@
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_53.png" alt="Unity Editor Home Page">
 <ol start="12">
-<li>Copy the if-else statement from our <em>CheckAnimation</em> function (which checks for movement) and paste it in <em>OnCollisionEnter</em> function, inside the if statement that checks for a collision with <em>ground</em>
+<li>Copy the if-else statement from our <em>CheckAnimation</em> function (which checks for movement) and paste it in the <em>OnCollisionEnter</em> function, inside the if statement that checks for a collision with <em>ground</em>
 <ul>
 <li>Why do we need this here?
 <ul>
@@ -375,7 +375,7 @@
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_54.png" alt="Unity Editor Home Page">
 <ol start="13">
-<li>Lastly, add a function for the <em>CheckAnimation()</em> function in the <em>Update()</em> function
+<li>Lastly, add a function call for the <em>CheckAnimation()</em> function in the <em>Update()</em> function.
 <ul>
 <li>We need this function to run every frame so that our animation changes dynamically and <strong>constantly</strong>.
 <br/></li>
@@ -384,17 +384,8 @@
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_55.png" alt="Unity Editor Home Page">
 <ol start="14">
-<li>Back in our editor, drag and drop the Animator Controller object we created into the blank spit in the Animator component of <em>jearl_backwards</em>
+<li>Back in our editor, drag and drop the Animator Controller object we created into the blank space in the Animator component of <em>jearl_backwards</em> in our <strong>Script</strong> component.
 <br/></li>
-</ol>
-<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_55.png" alt="Unity Editor Home Page">
-<ol start="14">
-<li>Back in our editor, drag and drop the Animator Controller object we created into the blank spit in the Animator component of <em>jearl_backwards</em>
-<ul>
-<li>Also, do the same thing for the empty spot for the <em>Animator</em> variable in our <em>Player Script</em> variable but, this time, drag and drop <strong>jearl_backwards</strong>
-<br/></li>
-</ul>
-</li>
 </ol>
 <h4 id="one-last-note----add-a-changeanimation-call-for-the-jumping-animation-inside-of-our-isgrounded-if-isgrounded--check-in-onjump"><a class="header" href="#one-last-note----add-a-changeanimation-call-for-the-jumping-animation-inside-of-our-isgrounded-if-isgrounded--check-in-onjump">One last note --&gt; add a ChangeAnimation() call for the "jumping" animation inside of our isGrounded (if (isGrounded) {...}) check in "OnJump"</a></h4>
 <br/>

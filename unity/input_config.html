@@ -24,9 +24,9 @@
         <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
@@ -164,37 +164,42 @@
 <h5 id="lets-get-started"><a class="header" href="#lets-get-started">Let's get started!</a></h5>
 <br/>
 <ol>
-<li>Navigate out of the assets folder (if you're following along from the previous page).
+<li>Navigate out of the <strong>updated_assets</strong> folder (if you're following along from the previous page) into the <strong>Assets</strong> folder.
 <br/></li>
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_6.png" alt="Unity Editor Home Page">
 <ol start="2">
-<li>Right-click, hover over <em>Create</em> and scroll down until you see <em>Input Actions</em>. Click it to create a new Input Actions Asset.
+<li>In the Assets folder in the File View below, right-click, hover over <em>Create</em> and find the <strong>Input Actions</strong> option. Click it to create a new Input Actions Asset.
 <ul>
-<li>I named mine "Player_Control" but you can name it whatever you want.</li>
+<li>Unity will prompt you to enter a new name for it.</li>
+<li>I named mine "Player_Control" but you can name it whatever you want. Henceforth, I will refer to it using this name</li>
 </ul>
 </li>
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_7.png" alt="Unity Editor Home Page">
 <ol start="3">
-<li>On the right, click <em>Assign as the Project-wide Input Actions</em>. This ensures that our inputs stay consistent and that we don't run into any unexpected errors.</li>
+<li>On the right, in the Component Panel, click <strong>Assign as the Project-wide Input Actions</strong>. This ensures that our inputs stay consistent and that we don't run into any unexpected errors.</li>
 </ol>
 <br/>
-<p>Now, double-click to open it in a separate window and dock it next to the <em>Scene</em> and <em>Game</em> view.</p>
+<p>Now, double-click <strong>Player_Control</strong> to open it in a separate window and dock it next to the <em>Scene</em> and <em>Game</em> view.</p>
 <br/>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_8.png" alt="Unity Editor Home Page">
 <ol start="4">
-<li>
-<p>On the left, create a new action map called <em>Player</em> by clicking the plus icon</p>
+<li>On the left, in the <strong>Action Maps</strong> panel, create a new action map called <strong>Player</strong> by clicking the plus icon in the top right corner of the panel.
 <ul>
-<li>An action map is essentially a container that holds bindings (either for a keyboard or for a controller). Once established, this action map (and its associated bindings) can be assigned to whatever asset we want (like <strong>jearl_backwards</strong>).
-<br/></li>
+<li>
+<p>Name it <strong>Player</strong></p>
+</li>
+<li>
+<p>An action map is essentially a container that holds bindings (either for a keyboard or for a controller). Once established, this action map (and its associated bindings) can be assigned to whatever asset we want (like <strong>jearl_backwards</strong>).
+<br/></p>
+</li>
 </ul>
 </li>
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_10.png" alt="Unity Editor Home Page">
 <ol start="5">
-<li>On the right panel, change the action type to <strong>Value</strong>.
+<li>On the rightmost panel (called <strong>Action Properties</strong>), change the action type to <strong>Value</strong>.
 <ul>
 <li>The reason is because, conventionally, movement in games is always done by pressing and holding a button (i.e. it generates a <em>continuous</em> value like "WWWWWWWWW..." for forward movement) unlike jumping, for example, where we press once and don't hold.</li>
 <li>The game engine (and our script) will read that continuous string of W's, interpret it to mean forward movement and, consequently, move our player forward so long as it keeps getting those continuous W's.
@@ -209,9 +214,9 @@
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_11.png" alt="Unity Editor Home Page">
 <ol start="6">
 <li>
-<p>In the additional dropdown menu that is spawned underneath <em>Action Type</em>, change <em>Control Type</em> to <strong>Vector 2</strong>.</p>
+<p>In the additional dropdown menu that is spawned underneath <em>Action Type</em> (called <strong>Control Type</strong>), change its value to <strong>Vector 2</strong>.</p>
 <ul>
-<li>This is because our movement is only in 2 directions (the x-axis and the z-axis). This is unlike Creative Mode in Minecraft, for example, where we can freely move in any direction.
+<li>This is because our <strong>movement</strong> is only in 2 directions (the x-axis and the z-axis). This is unlike Creative Mode in Minecraft, for example, where we can freely move in any direction.
 <ul>
 <li>We will move in the y-axis (via jumping) but <strong>not</strong> with continuous movement.
 <br/></li>
@@ -222,11 +227,17 @@
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_12.png" alt="Unity Editor Home Page">
 <ol start="7">
-<li>Find the plus icon next to <em>Movement</em> (in the center panel). Click it and then, in the dropdown menu, click <em>Add Up/Down/Left/Right Composite</em>
+<li>In the center panel (called <strong>Actions</strong>), where it says <em>New Action</em>, rename it to <strong>Movement</strong>.
 <ul>
-<li>This will automatically create placeholders for 4 movement bindings (WASD) and bind/aggregate them into a single Vector 2 vector.
+<li>Then, click the small <strong>plus</strong> icon next to Movement (all the way on the right)</li>
+<li>In the menu that pops up, click <strong>Add Up\Down\Left\Right Composite</strong>.
 <ul>
-<li>I haven't tried it but you could try manually creating each key binding (without the composite). However, you will have to aggregate them yourself in your script.</li>
+<li>If an additional item called <strong>No Binding</strong> is created, delete it.</li>
+</ul>
+</li>
+<li>This will automatically create placeholders for 4 movement bindings (for, say, W-A-S-D) and bind/aggregate them into a single 2D vector.
+<ul>
+<li>I haven't tried this yet but you could try manually creating each key binding (without creating the composite). However, you will have to aggregate them yourself in a C# script.</li>
 <li>Using the composite, therefore, will result in less headaches and a cleaner setup.
 <br/></li>
 </ul>
@@ -236,13 +247,13 @@
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_13.png" alt="Unity Editor Home Page">
 <ol start="8">
-<li>Expand the newly created <em>2D Vector</em> dropdown to show the 4 empty bindings.
+<li>Expand the dropdown menu of the newly created <em>2D Vector</em> to show the 4 empty bindings.
 <ul>
 <li>Now, for each binding:
 <ul>
 <li>Click on it in the center panel</li>
 <li>On the right, open the <em>Path</em> dropdown.</li>
-<li>Here, either search for the key to bind or click the <em>Listen</em> button and press the key you'd wish to bind and it will pop up in the dropdown below.</li>
+<li>Here, either search for the key to attach to this binding <strong>or</strong> click the <em>Listen</em> button and press the key you'd wish to attach and it will pop up in the dropdown below.</li>
 <li>Click your desired key to attach it to the <em>Up</em> binding.</li>
 <li>Repeat for all 4 bindings.
 <br/></li>
@@ -259,19 +270,20 @@
 <br/>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_15.png" alt="Unity Editor Home Page">
 <ol start="10">
-<li>Let's navigate back to the Scene View.
+<li>Click on the <strong>Scene</strong> tab to navigate back to the Scene View.
 <ul>
-<li>Click on <strong>jearl_backwards</strong> in the scene view itself (or in the scene panel on the right)</li>
-<li>In the component panel on the right, we will add a <strong>Player Input</strong> component to attach our newly made action map and key bindings to our player asset
+<li>Click on <strong>jearl_backwards</strong> in the Scene View itself (or in the Scene Pane on the left)</li>
+<li>In its component panel (on the right), we will add a <strong>Player Input</strong> component to attach our newly made action map and key bindings to our player asset.
 <ul>
+<li>In the component panel, clikc <strong>Add Component</strong> (usually at the bottom)</li>
 <li>In the search bar, start typing <strong>Player Input</strong> and you'll see it below.</li>
 <li>Click it to add it to the <strong>jearl_backwards</strong> asset.</li>
 </ul>
 </li>
-<li>Notice that Unity will automatically assign our custom-made Input Actions asset here.
+<li>Notice that Unity will automatically assign our custom-made Input Actions asset here to the <strong>Actions</strong> attribute.
 <ul>
-<li>The <em>Actions</em> attribute will be the <em>Player_Control</em> Input Actions asset (which, you can see, is visible below in our assets folder)</li>
-<li>The <em>Default Map</em> attribute will be the <em>Player</em> binding map (which we just made).
+<li>If it didn't, drag and drop the newly created Action Map into the <strong>Actions</strong> attribute.</li>
+<li>In the <strong>Player Input</strong> component, The <em>Default Map</em> attribute (below the <em>Actions</em> attribute) will be <em>Player</em> *(referring to the binding map we made earlier).
 <br/></li>
 </ul>
 </li>
@@ -282,8 +294,8 @@
 <br/>
 <h4 id="but-now-we-need-to-set-up-our-code-editors"><a class="header" href="#but-now-we-need-to-set-up-our-code-editors">But, now we need to set up our code editors.</a></h4>
 <ul>
-<li>For my Mac folks, we are gonna have to use <a href="./IDE_setup/VSCode.html"><strong>Visual Studio Code</strong></a>.</li>
-<li>For my Windows folks, you guys are free to choose between VS Code and <a href="./IDE_setup/Visual_Studio.html"><strong>Visual Studio</strong></a> (the purple one).</li>
+<li>For Mac, we are gonna have to use <a href="./IDE_setup/VSCode_setup.html"><strong>Visual Studio Code</strong></a>.</li>
+<li>For Windows, you guys are free to choose between VS Code and <a href="./IDE_setup/Visual_Studio.html"><strong>Visual Studio</strong></a> (the purple one).</li>
 </ul>
 <h4 id="for-this-tutorial-as-a-mac-user-i-will-use-vs-code-but-you-guys-are-free-to-use-whatever-is-most-convenient-for-you"><a class="header" href="#for-this-tutorial-as-a-mac-user-i-will-use-vs-code-but-you-guys-are-free-to-use-whatever-is-most-convenient-for-you">For this tutorial, as a Mac user, I will use VS Code. But, you guys are free to use whatever is most convenient for you.</a></h4>
 <br/>
@@ -306,7 +318,7 @@
 <li>Name the script something like <em>Player_Movement</em>. Then, click Create and Add. This will create the script and add it as a component to this object (jearl_backwards)</li>
 </ol>
 <br/>
-<h4 id="now-when-you-double-click-the-script-inside-the-script-component-assuming-you-set-up-your-respective-ide-correctly-it-should-automatically-open-the-script-in-said-ide-for-me-in-vscode-it-looks-something-like-this"><a class="header" href="#now-when-you-double-click-the-script-inside-the-script-component-assuming-you-set-up-your-respective-ide-correctly-it-should-automatically-open-the-script-in-said-ide-for-me-in-vscode-it-looks-something-like-this">Now, when you double-click the script (inside the script component), assuming you set up your respective IDE correctly, it should automatically open the script in said IDE. For me, in VSCode, it looks something like this:</a></h4>
+<h4 id="now-when-you-double-click-the-script-inside-the-script-component-or-in-the-assets-folder-assuming-you-set-up-your-respective-ide-correctly-it-should-automatically-open-the-script-in-said-ide-for-me-in-vscode-it-looks-something-like-this"><a class="header" href="#now-when-you-double-click-the-script-inside-the-script-component-or-in-the-assets-folder-assuming-you-set-up-your-respective-ide-correctly-it-should-automatically-open-the-script-in-said-ide-for-me-in-vscode-it-looks-something-like-this">Now, when you double-click the script (inside the script component or in the <em>Assets</em> folder), assuming you set up your respective IDE correctly, it should automatically open the script in said IDE. For me, in VSCode, it looks something like this:</a></h4>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_18.png" alt="Unity Editor Home Page">
 <h4 id="lets-write-some-code-to-allow-player-movement"><a class="header" href="#lets-write-some-code-to-allow-player-movement">Let's write some code to allow player movement!</a></h4>
 <ol start="13">
@@ -328,12 +340,12 @@
 <li><em>public Vector2 move</em>
 <ul>
 <li>If you remember from earlier, our movement (inside our action map) is strictly in 2 directions (that's what we want). We limited our key bindings to Vector2.</li>
-<li>Thus, when we read our player's movements, they will be in a <strong>2D vector</strong> and will be placed inside an onject of type <strong>Vector2</strong></li>
+<li>Thus, when we read our player's movements, they will be in a <strong>2D vector</strong> and will be placed inside an object of type <strong>Vector2</strong></li>
 </ul>
 </li>
 <li><em>public Vector3 movement</em>
 <ul>
-<li>Since our game world is a <strong>3D space</strong>, we need to translate our 2-dimensional movement into a 3D vector w/ the y-axis (straight up) set to 0.
+<li>Since our game world is a <strong>3D space</strong>, we need to translate our 2-dimensional movement into a 3D vector w/ the y-axis (straight up) set to 0. Hence, why we need this variable.
 <ul>
 <li>Bonus question: why would we set the y-axis to 0 in our 3D vector?</li>
 </ul>
@@ -349,23 +361,32 @@
 <li>
 <p>Add the following function after <em>Update()</em>:</p>
 <ul>
-<li>public void OnMove(InputAction.CallbackContext context) {
+<li>
+<p>public void OnMove(InputAction.CallbackContext context) {
 move = context.ReadValue&lt; Vector 2 &gt;();
-}
+}</p>
+</li>
+<li>
+<p>You may also need to import the following library up top:</p>
+<ul>
+<li><strong>using UnityEngine.InputSystem</strong>
 <br/></li>
-<li>Imagine your player asset is a toy remote car:
+</ul>
+</li>
+<li>
+<p>Imagine your player asset is a toy remote car:</p>
 <ul>
 <li>
-<p>Your keyboard/controller is the remote</p>
+<p>Your keyboard/controller is the remote.</p>
 </li>
 <li>
-<p>Unity's Input System is the "messenger"</p>
+<p>Unity's Input System is the "messenger".</p>
 </li>
 <li>
-<p>The function <em>OnMove</em> is the car receiving the message</p>
+<p>The function <em>OnMove</em> is the car receiving the message.</p>
 </li>
 <li>
-<p>The <em>CallbackContext</em> is the message itself (the message that you send to the function upon a button press)</p>
+<p>The <em>CallbackContext</em> is the message itself (the message that you send to the function upon a button press).</p>
 <ul>
 <li>The message says what you (the person controlling the car) want the car to do.
 <ul>
@@ -375,7 +396,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </ul>
 </li>
 <li>
-<p>In this case, the message is a 2D Vector indicating which direction you're moving in.
+<p>In this case, the message is a 2D vector indicating which direction we want to move in.
 <br/></p>
 </li>
 <li>
@@ -386,7 +407,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <li>(0,1) would mean "move in the +y axis" (i.e. upward)</li>
 <li>But now, when we translate this 2 dimensional movement into a 3 dimensional world, we have to be careful.
 <ul>
-<li>The y-axis is now upwards (directly upwards). The newly added z-axis is the new "forward" axis. And x is still for left/right movement.</li>
+<li>The y-axis is now upwards (directly upwards). The newly added z-axis is the new "forward" axis. And the x-axis is still for left/right movement.</li>
 </ul>
 </li>
 <li>So, when we map (0,1) from 2D to 3D, we would have to assign it in some way like this (assume our 2D vector is called "move", like above, and our 3D vector is still "movement"):
@@ -397,8 +418,8 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <li>Why?
 <ul>
 <li>Like I said earlier, we don't move upwards with WASD. We only move along the x and z axes.</li>
-<li>Since our 2D vector is (0,1), our 3D translation of this 2D vector <strong>(0, 0f, 1)</strong>. Which means that we are now moving (in the 3D space) <strong>1 unit in the positive z-axis (AKA forward)</strong></li>
-<li>Now, since this action is repeated every frame, in 60 fps gameplay, our character will have smooth forward movement.</li>
+<li>Since our 2D vector is (0,1), our 3D translation of this 2D vector would be <strong>(0, 0f, 1)</strong>. Which means that we are now moving (in the 3D space) <strong>1 unit in the positive z-axis (AKA forward)</strong></li>
+<li>Since this action is repeated every frame, in 60 fps gameplay, this will result in our character having smooth forward movement.</li>
 </ul>
 </li>
 </ul>
@@ -412,7 +433,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <br/>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_22.png" alt="Unity Editor Home Page">
 <ol start="16">
-<li>We now add a new function which we place inside of <em>Update()</em> (so that it is called every frame). Inside of that function:
+<li>We will now add a new function called <strong>MovePlayer</strong> which we will place inside of <em>Update()</em> (so that it is called every frame). Inside of that function:
 <ul>
 <li>We placed the <em>movement = new Vector3(move.x, 0f, move.y)</em> line</li>
 <li>We also placed a new line:
@@ -421,7 +442,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <ul>
 <li><em>transform</em>
 <ul>
-<li>Refers to this game object (the one that this script is attached to)</li>
+<li>Refers to this game object (the one that this script is attached to).</li>
 </ul>
 </li>
 <li><em>.Translate</em>
@@ -429,33 +450,33 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <li>Allows us to move the object from its current position.</li>
 </ul>
 </li>
-<li><em>movement * speed * time.DeltaTime</em>
+<li><em>movement * speed * time.DeltaTime</em>.
 <ul>
-<li>We multiply our speed value by our movement vector (so that we're not at a speed of 1 unit per frame)</li>
+<li>We multiply our speed value by our movement vector (so that we're not at a speed of 1 unit per frame).</li>
 <li><em>time.deltaTime</em>
 <ul>
 <li>What is that?</li>
-<li>This allows our player movement to be <strong>frame-independent</strong>
+<li>This allows our player movement to be <strong>frame-independent</strong>.
 <ul>
-<li>Imagine that your computer runs the game at 60 fps (frames per second)</li>
-<li>We can calculate the total # of units moved by the player by doing:
+<li>Imagine that your computer runs the game at 60 fps (frames per second).</li>
+<li>We can calculate the total # of units moved by the player by doing the following calculation:
 <ul>
 <li>60 * 5 (our speed, let's say) * movement ([0, 0, 1], let's say)</li>
 <li>Thus, we moved <strong>300 units</strong> in total</li>
 </ul>
 </li>
-<li>Let's assume your buddy's PC runs at 120 fps
+<li>Let's assume your buddy's PC runs at 120 fps.
 <ul>
-<li>Then, by the same calculation (with the same movement), I moved <strong>600 units</strong> in total when I run the game on his PC.
+<li>Then, by the same calculation (with the same movement), we'd move <strong>600 units</strong> in total when I run the game on his PC.
 <ul>
 <li>That's not good! This means that the higher the FPS is, the faster we move.</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>This is why we multiply this expression by <strong>time.deltaTime</strong> (whose value is roughly equal to 1/your fps amount).
+<li>This is why we multiply this entire expression by <strong>time.deltaTime</strong> (whose value is roughly equal to 1/your fps amount).
 <ul>
-<li>60 * 1/60 = 1 &amp; 120 * 1/120 = 1. Therefore, our overall movement stays <strong>consistent</strong> across different machines (since we're just multiplying by 1).</li>
+<li>60 * 1/60 = 1 &amp; 120 * 1/120 = 1. Therefore, our movement stays <strong>consistent</strong> across different machines (since we're just multiplying by 1).</li>
 </ul>
 </li>
 </ul>
@@ -467,7 +488,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <li><em>Space.World</em>
 <ul>
 <li>This allows our player object to move relative to the <strong>game world's global axes.</strong></li>
-<li>This means that, regardless of where I am or what direction I'm facing or what orientation the camera's in, when I press W, I will always move in the positive z-axis.</li>
+<li>This means that, regardless of where I am or what direction I'm facing or what orientation the camera's in, when I press W, I will always move in the direction of the <strong>game world's</strong> positive z-axis.</li>
 </ul>
 </li>
 </ul>
@@ -479,15 +500,59 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <h4 id="now-lets-go-back-to-the-unity-editor"><a class="header" href="#now-lets-go-back-to-the-unity-editor">Now, let's go back to the Unity Editor.</a></h4>
 <br/>
 <ol start="17">
-<li>Now, when you press the play button up top, you should be able to move around (make sure your speed value is not 0)</li>
+<li>
+<p>Click on the <strong>jearl_backwards</strong> (either in the Scene Panel on the left or in the Scene itself) asset to view its components.</p>
+</li>
+<li>
+<p>In the <strong>Player Input</strong> component, find the <strong>Behavior</strong> attribute.</p>
+</li>
+<li>
+<p>Change its value from <strong>Send Messages</strong> to <strong>Invoke Unity Events</strong>.</p>
+</li>
+<li>
+<p>Right underneath, click and open the <strong>Events</strong> dropdown.
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_90.png" alt="Unity Editor Home Page"></p>
+</li>
+<li>
+<p>Click and expand the <strong>Player</strong> dropdown</p>
+</li>
+<li>
+<p>If the previous steps were followed correctly, you should see a box labeled <strong>Movement (CallbackContext)</strong></p>
+</li>
+<li>
+<p>Click the <strong>Plus</strong> icon at the bottom right of the box.</p>
+</li>
+<li>
+<p>In the blank attribute, drag and drop the <strong>jearl_backwards</strong> asset into it.</p>
+</li>
+<li>
+<p>Open the <strong>No Function</strong> dropdown</p>
+</li>
+<li>
+<p>Again, if the previous steps were followed and you <strong>saved</strong> your script, you should see an option called <strong>Player_Movement</strong> (which is the name of one of the functions we created in our movement script)</p>
+<ul>
+<li>Click and expand it</li>
+</ul>
+</li>
+<li>
+<p>In the following menu, at the top, you should see <strong>OnMove</strong> (which is our Input function for movement)</p>
+<ul>
+<li>Click it.</li>
+</ul>
+</li>
+<li>
+<p>What all this did is assign the <strong>OnMove</strong> CallbackContext function to our player object. Now, whenever we press WASD (buttons associated with <strong>movement</strong>), those key inputs will be read and sent to this function.</p>
+</li>
 </ol>
 <h4 id="fatal-error-this-is-me-from-a-couple-minutes-in-the-future-i-just-realized-that-i-placed-down-the-assets-in-the-wrong-way-if-youve-been-following-this-tutorial-when-you-ran-the-game-your-player-is-likely-moving-in-the-complete-opposite-directions"><a class="header" href="#fatal-error-this-is-me-from-a-couple-minutes-in-the-future-i-just-realized-that-i-placed-down-the-assets-in-the-wrong-way-if-youve-been-following-this-tutorial-when-you-ran-the-game-your-player-is-likely-moving-in-the-complete-opposite-directions">Fatal error (this is me from a couple minutes in the future). I just realized that I placed down the assets in the wrong way. If you've been following this tutorial, when you ran the game, your player is likely moving in the complete opposite directions.</a></h4>
-<h4 id="fix-swap-your-jerry-can-and-jearl_backwards-assets-positions-and-also-turn-the-camera-so-it-is-properly-oriented-and-centered-on-our-player-and-it-should-work"><a class="header" href="#fix-swap-your-jerry-can-and-jearl_backwards-assets-positions-and-also-turn-the-camera-so-it-is-properly-oriented-and-centered-on-our-player-and-it-should-work">Fix: Swap your jerry can and jearl_backwards assets' positions and also turn the camera so it is properly oriented and centered on our player. And it should work.</a></h4>
+<h4 id="fix-swap-the-positions-of-your-motor_oil-and-jearl_backwards-assets-and-also-turn-the-camera-so-it-is-properly-oriented-and-centered-on-our-player-the-blue-axis-should-be-facing-away-from-the-camera-like-this"><a class="header" href="#fix-swap-the-positions-of-your-motor_oil-and-jearl_backwards-assets-and-also-turn-the-camera-so-it-is-properly-oriented-and-centered-on-our-player-the-blue-axis-should-be-facing-away-from-the-camera-like-this">Fix: Swap the positions of your <em>motor_oil</em> and <em>jearl_backwards</em> assets and also turn the camera so it is properly oriented and centered on our player (the blue axis should be facing away from the camera). Like this:</a></h4>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_89.png" alt="Unity Editor Home Page">
+<p><br/><br/></p>
+<h4 id="run-the-game-and-you-should-be-able-to-move-but-youll-notice-that-the-player-is-stiff-hes-always-looking-in-the-same-direction-lets-change-that-so-that-the-player-looks-in-the-direction-that-were-moving-in"><a class="header" href="#run-the-game-and-you-should-be-able-to-move-but-youll-notice-that-the-player-is-stiff-hes-always-looking-in-the-same-direction-lets-change-that-so-that-the-player-looks-in-the-direction-that-were-moving-in">Run the game and you should be able to move! But, you'll notice that the player is "stiff". He's always looking in the same direction. Let's change that so that the player looks in the direction that we're moving in!</a></h4>
 <br/>
-<h4 id="youll-notice-that-the-player-is-stiff-hes-always-looking-in-the-same-direction-lets-change-that-so-that-the-player-looks-in-the-direction-that-were-moving-in"><a class="header" href="#youll-notice-that-the-player-is-stiff-hes-always-looking-in-the-same-direction-lets-change-that-so-that-the-player-looks-in-the-direction-that-were-moving-in">You'll notice that the player is "stiff". He's always looking in the same direction. Let's change that so that the player looks in the direction that we're moving in!</a></h4>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_23.png" alt="Unity Editor Home Page">
 <ol start="18">
-<li>Back in our script, add the following line:
+<li>Back in our script, add the following line inside the <strong>MovePlayer</strong>:
 <ul>
 <li><em>transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.1f);</em></li>
 <li>What does this mean?:
@@ -514,7 +579,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </li>
 <li><em>Quaternion.LookRotation(movement)</em>
 <ul>
-<li>The rotation required to face in the direction of the given 3D vector (we used the Quaternion class's built-in function, LookRotation, to achieve this)</li>
+<li>The rotation that's required to face in the direction of the given 3D vector (we used the Quaternion class's built-in function, LookRotation, to achieve this)</li>
 </ul>
 </li>
 <li><em>0.1f</em>
@@ -535,23 +600,30 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </ul>
 </li>
 </ol>
-<h4 id="now-when-you-go-back-to-the-editor-let-the-new-script-update-and-hit-play-you-should-see-movement-and-the-player-object-rotate-ie-look-in-the-direction-of-movement-isnt-that-cool"><a class="header" href="#now-when-you-go-back-to-the-editor-let-the-new-script-update-and-hit-play-you-should-see-movement-and-the-player-object-rotate-ie-look-in-the-direction-of-movement-isnt-that-cool">Now, when you go back to the Editor, let the new script update, and hit Play, you should see movement and the player object rotate (i.e. look) in the direction of movement. Isn't that cool?</a></h4>
+<h4 id="now-when-you-go-back-to-the-editor-let-the-new-script-update-and-hit-play-you-should-see-movement-and-the-player-object-rotate-ie-look-in-the-direction-of-the-movement-isnt-that-cool"><a class="header" href="#now-when-you-go-back-to-the-editor-let-the-new-script-update-and-hit-play-you-should-see-movement-and-the-player-object-rotate-ie-look-in-the-direction-of-the-movement-isnt-that-cool">Now, when you go back to the Editor, let the new script update, and hit Play, you should see movement and the player object rotate (i.e. look) in the direction of the movement. Isn't that cool?</a></h4>
 <h4 id="now-lets-add-some-jumping-functionality"><a class="header" href="#now-lets-add-some-jumping-functionality">Now, let's add some jumping functionality</a></h4>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_24.png" alt="Unity Editor Home Page">
 <ol start="19">
-<li>Back in our action map, right click on the "Player" action map and hit <em>Add Action</em>.
+<li>Open the <strong>Player_Control</strong> action map. Then, right click on the "Player" action map and hit <em>Add Action</em>.
 <br/></li>
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_25.png" alt="Unity Editor Home Page">
-18. Click once on the newly created action, press `Enter`, and rename it to Jump
-    - Also, on the right-hand panel, ensure that the *Action Type* attribute for this action is **button** (we will press the jump button once to jump and that's it)
-<br/>
+<ol start="18">
+<li>Click once on the newly created action, press <code>Enter</code>, and rename it to <strong>Jump</strong>.
+<ul>
+<li>Also, in the right-hand panel, ensure that the <em>Action Type</em> attribute for this action is <strong>button</strong> (we will press the jump button once to jump. not hold it)
+<br/></li>
+</ul>
+</li>
+</ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_26.png" alt="Unity Editor Home Page">
 <ol start="20">
-<li>Open the dropdown menu of "Jump" to access the new empty binding
+<li>In the middle panel, next to <strong>Jump</strong>, click the triangle to view its contents.
 <ul>
-<li>Over to the right, open the <em>Path</em> dropdown and either search for the Spacebar or use the <em>Listen</em> feature (like earlier)</li>
-<li>Select Spacebar from the search results to assign it to the empty key binding
+<li>Click on <strong>&lt; No Binding &gt;</strong>.</li>
+<li>Over to the right, open the <em>Path</em> dropdown and either search for the <strong>Spacebar</strong> key or use the <em>Listen</em> feature (like earlier).</li>
+<li>Select Spacebar from the search results to assign it to the empty key binding.</li>
+<li>Make sure to click <strong>Save Asset</strong> in the top right.
 <br/></li>
 </ul>
 </li>
@@ -574,12 +646,12 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_28.png" alt="Unity Editor Home Page">
 <ol start="22">
-<li>Inside of the Rigidbody component, under the <em>Constraints</em> dropdown, check the boxes for the X and Z axes for <em>Freeze Rotation</em>
+<li>Inside of the Rigidbody component, under the <em>Constraints</em> dropdown, check the boxes for the X and Z axes for <strong>Freeze Rotation</strong>
 <ul>
 <li>Why?
 <ul>
-<li>This will prevent unwanted rotations or leaning when our player interacts with or collides with any uneven surfaces</li>
-<li>Locking these two axes ensures that our jump force is only applied to the y-axis (directly up) and nowhere else
+<li>This will prevent unwanted rotations or leaning when our player interacts with or collides with any uneven surfaces.</li>
+<li>Locking these two axes ensures that our jump force is only applied to the y-axis (directly up) and nowhere else.
 <br/></li>
 </ul>
 </li>
@@ -598,7 +670,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <br/></li>
 <li>Let's take a look at these:
 <ul>
-<li><em>Rigidbody rb</em>
+<li><em>Rigidbody rb;</em>
 <ul>
 <li>This will hold the Rigidbody component of this object (the object that this script is attached to). Which will allow us to add forces to it later</li>
 </ul>
@@ -649,12 +721,12 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_31.png" alt="Unity Editor Home Page">
 <ol start="25">
-<li>Add the inner <em>if</em> statement that you see up above.
+<li>Add the <em>if</em> statement that you see up above <strong>inside</strong> our earlier <em>if</em> statement.
 <ul>
 <li>What does this even mean?:
 <ul>
 <li>
-<p>We <strong>nested</strong> this addition inside of our <em>context.performed</em> if statement</p>
+<p>We <strong>nested</strong> this addition inside of our <em>context.performed</em> if statement.</p>
 <ul>
 <li>This ensures that if we press the jump button while the player object is airborne, we won't add more force to the player (i.e. double jump)
 <ul>
@@ -673,7 +745,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <p><em>rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse)</em></p>
 <ul>
 <li>We will add an impulse force (instantaneous force) to our Rigidbody component, which will, in turn, affect the player object.</li>
-<li>This force will be equal to the 3D up vector (whose value is (0, 1, 0)) multiplied by our jump strength</li>
+<li>This force will be equal to the 3D up vector (whose value is (0, 1, 0)) multiplied by our jump strength.</li>
 </ul>
 </li>
 </ul>
@@ -688,12 +760,12 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <ul>
 <li>This allows us to actually access and store this object's Rigidbody component inside of our variable to use in our script.</li>
 <li>We placed this inside <em>Start()</em> so that this action is only performed once. We access the Rigidbody component once, store it, and that's it.</li>
-<li>EDIT (This is me from the future) --&gt; Change this line from <strong>.GetComponent...</strong> to <strong>= GetComponent...</strong></li>
+<li>EDIT (This is me from the future) --&gt; Change this line from <strong>rb.GetComponent...</strong> to <strong>rb = GetComponent...</strong></li>
 </ul>
 </li>
 </ol>
 <br/>
-<h4 id="but-how-can-we-actually-if-the-object-has-even-landed-to-then-enable-it-to-jump-again"><a class="header" href="#but-how-can-we-actually-if-the-object-has-even-landed-to-then-enable-it-to-jump-again">But, how can we actually if the object has even landed to then enable it to jump again?</a></h4>
+<h4 id="but-how-can-we-actually-check-if-the-object-has-even-landed-to-then-enable-it-to-jump-again"><a class="header" href="#but-how-can-we-actually-check-if-the-object-has-even-landed-to-then-enable-it-to-jump-again">But, how can we actually check if the object has even landed to then enable it to jump again?</a></h4>
 <h4 id="the-answer-with-collisions"><a class="header" href="#the-answer-with-collisions">The answer? With <em>collisions</em></a></h4>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_33.png" alt="Unity Editor Home Page">
 <ol start="27">
@@ -701,7 +773,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <p>Add the following function below our <em>OnJump</em> function.</p>
 <ul>
 <li>Do note that this is a built-in function that we are simply overwriting.</li>
-<li>Intellisense and autocomplete should kick in as soon as you start typing the function name</li>
+<li>Intellisense and autocomplete should kick in as soon as you start typing the function name.</li>
 <li>Upon any collision, Unity, by default, calls this method. The physics engine is fast enough to even call this multiple times per frame.</li>
 </ul>
 </li>
@@ -709,22 +781,22 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <br/>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_34.png" alt="Unity Editor Home Page">
 <ol start="28">
-<li>Add the following line to the function body
+<li>Add the following <em>if</em> statement to the function body.
 <ul>
 <li>What does this mean?
 <ul>
 <li><em>Debug.Log(...)</em>
 <ul>
-<li>This is here to ensure that a). a collision occurred and b). it occurred with the correct object</li>
+<li>This is here to ensure that a). a collision occurred and b). it occurred with the correct object.</li>
 </ul>
 </li>
 <li><em>if (collision.gameObject.CompareTag("Ground")) {</em>
 <ul>
 <li>When a collision occurs, the collision variable in our method signature will be given information about the collision.
 <ul>
-<li>The <em>collision.</em> refers to the collision that just occurred</li>
-<li>The <em>.gameObject</em> refers to the other object that this object collided with</li>
-<li>The <em>.CompareTag</em> checks if that other object held a tag of "Ground" (we'll go over this in just a little bit)</li>
+<li>The <em>"collision."</em> refers to the collision that just occurred.</li>
+<li>The <em>".gameObject"</em> refers to the other object that <strong>this</strong> object collided with</li>
+<li>The <em>.CompareTag</em> checks if that other object held a tag of "Ground" (we'll go over what this is in just a little bit).</li>
 </ul>
 </li>
 <li>So, if the other object in the collision that just happened with our object is tagged with the tag "Ground", then...
@@ -741,20 +813,50 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </ol>
 <br/>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_36.png" alt="Unity Editor Home Page">
-<ol start="29">
-<li>Once you click <em>Add Tag...</em>, hit the plus to create a new tag
+<ol start="28">
+<li>
+<p>Let's add a tag to our <strong>Plane</strong> game object.</p>
 <ul>
-<li>In the pop-up box, name it "Ground" (be sure to name it <strong>EXACTLY</strong> what the name was in our if statement in the script)</li>
-<li>Click <em>Save</em></li>
-<li>Navigate back to the <em>Ground</em> object's component view and, in the <em>Tags</em> dropdown, click on the newly created <em>Ground</em> tag to assign it to this object
+<li>Back in the Editor, click the <strong>Plane</strong> object to view its components.</li>
+<li>In the Component Panel (on the right), up top (underneath the object's name), find the <strong>Tag</strong> attribute.</li>
+<li>Click the dropdown menu next to it to expand it.</li>
+<li>Click <strong>Add Tag...</strong></li>
+<li>In the new window, click the <strong>plus</strong> icon.</li>
+<li>Name your tag <strong>Ground</strong> (name it EXACTLY the name we used in our if statement in the collision function in our script).</li>
+<li>Click <strong>Save</strong>.</li>
+<li>Click on the <strong>Plane</strong> ground object to see its components. Again.</li>
+<li>Find the <strong>Tag</strong> attribute and the dropdown.</li>
+<li>Open the dropdown and you should see your newly created tag in the list.</li>
+<li>Click it to assign it to this object.
 <ul>
-<li>Unity does NOT do this automatically (😔). So, don't forget to do it.</li>
+<li>Unity does <strong>NOT</strong> do this automatically. So, don't forget this step!
+<br/></li>
 </ul>
 </li>
 </ul>
+</li>
+<li>
+<p>You remember earlier when we configured the <strong>OnMove</strong> function in our <strong>Player Input</strong> script? This time, we need to do the exact same thing, but for the <strong>OnJump</strong> function!</p>
+<ul>
+<li>Click on <strong>jearl_backwards</strong> to view its components.</li>
+<li>In the <strong>Player Input</strong> script, open the <strong>Events</strong> dropdown (same as before).</li>
+<li>Open the <strong>Player</strong> dropdown.</li>
+<li>If you see a new box labeled <strong>Jump (CallbackContext)</strong>, repeat the same steps as before:
+<ul>
+<li>Click the <strong>plus</strong> icon</li>
+<li>Drag our player object into the empty box below <strong>Runtime</strong></li>
+<li>In the bigger dropdown, find our movement function.</li>
+<li>Open it.</li>
+<li>You should see an option for <strong>OnJump</strong></li>
+<li>Click that and you're good.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Make sure to add a <strong>Box Collider</strong> component to your game object. The process is that same as any other component. Simply add it and that's it.</p>
 </li>
 </ol>
-<br/>
 <h4 id="so-now-assuming-everything-was-set-up-correctly-upon-running-our-game-you-should-be-able-to-move-and-jump"><a class="header" href="#so-now-assuming-everything-was-set-up-correctly-upon-running-our-game-you-should-be-able-to-move-and-jump">So now, assuming everything was set up correctly, upon running our game, you should be able to move AND jump!</a></h4>
 <h4 id="now-for-a-final-touch-before-moving-on-to-animations-lets-fix-the-position-of-our-camera"><a class="header" href="#now-for-a-final-touch-before-moving-on-to-animations-lets-fix-the-position-of-our-camera">Now, for a final touch (before moving on to animations), let's fix the position of our camera</a></h4>
 <br/>
@@ -762,7 +864,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <ol start="30">
 <li>Let's make a new script for our <em>Main Camera</em> object
 <ul>
-<li>Click on it to open its Component view on the side.</li>
+<li>Click on it to open its Component view on the right side.</li>
 <li>At the bottom, click <em>Add Component</em> and type in the box <em>New Script</em></li>
 <li>Let's name the script <em>Player_Follow</em></li>
 <li>Once created, double-click to open it.</li>
@@ -778,16 +880,16 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <ul>
 <li><em>public Transform player;</em>
 <ul>
-<li>We will need this later to hold information about our player object (we'll just click and drag our player object into this variable in our Editor later)</li>
+<li>We will need this later to hold information about our player object (we'll just click and drag our player object into this variable in our Editor later).</li>
 </ul>
 </li>
 <li><em>public Vector3 offset = new Vector3(...)</em>
 <ul>
 <li>This is the three dimensional position that the camera will be locked at.</li>
-<li>Note: These are coordinates that I decided to use after a bit of trial and error (I just like how the camera sits at this position)
+<li>Note: These are coordinates that I decided to use after a bit of trial and error (I just like how the camera sits at this position).
 <ul>
 <li>You can experiment yourself to find the location that you find better.</li>
-<li>Move the camera to that position. Then, just copy its <em>Position</em> values into this Vector3 variable</li>
+<li>Move the camera to that position. Then, just copy its <em>Position</em> values (from <strong>Transform</strong>) into this Vector3 variable.</li>
 </ul>
 </li>
 </ul>
@@ -806,12 +908,12 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <ul>
 <li><em>transform.position = player.position + offset;</em>
 <ul>
-<li>We're gonna take the position of this game object (the object that this script is attached to) and add to its position (which is in threee dimensions) the offset that we set up above.</li>
+<li>We're gonna take the position of this game object (the object that this script is attached to) and add to its position (which is in three dimensions) the position of the offset that we set up above.</li>
 </ul>
 </li>
 <li><em>transform.LookAt(player);</em>
 <ul>
-<li>This line will apply a rotation to this game object (the camera) that will ensure that its forward vector (the z-axis vector) is pointing directly at the specified game object (which we set to the <em>player</em> variable which, if you remember, we'll set in the Unity Editor)</li>
+<li>This line will apply a rotation to this game object (the camera) that will ensure that its forward vector (the z-axis vector) is pointing directly at the specified game object (which we'll set to our player object in the Unity Editor).</li>
 </ul>
 </li>
 </ul>
@@ -820,7 +922,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </li>
 </ol>
 <br/>
-<h4 id="now-when-you-return-to-the-unity-editor-and-look-at-the-main-cameras-components-make-sure-to-drag-jearl_backwards-into-the-empty-slot-next-to-the-player-variable-run-the-game-and-see-if-the-camera-is-attached-to-the-player-object"><a class="header" href="#now-when-you-return-to-the-unity-editor-and-look-at-the-main-cameras-components-make-sure-to-drag-jearl_backwards-into-the-empty-slot-next-to-the-player-variable-run-the-game-and-see-if-the-camera-is-attached-to-the-player-object">Now, when you return to the Unity Editor and look at the Main Camera's components, make sure to drag <em>jearl_backwards</em> into the empty slot next to the player variable. Run the game and see if the camera is attached to the player object,</a></h4>
+<h4 id="now-when-you-return-to-the-unity-editor-and-look-at-the-main-cameras-components-make-sure-to-drag-jearl_backwards-into-the-empty-slot-next-to-the-player-variable-run-the-game-and-see-if-the-camera-is-attached-to-the-player-object"><a class="header" href="#now-when-you-return-to-the-unity-editor-and-look-at-the-main-cameras-components-make-sure-to-drag-jearl_backwards-into-the-empty-slot-next-to-the-player-variable-run-the-game-and-see-if-the-camera-is-attached-to-the-player-object">Now, when you return to the Unity Editor and look at the Main Camera's components, make sure to drag <em>jearl_backwards</em> into the empty slot next to the <em>Player</em> variable. Run the game and see if the camera is attached to the player object.</a></h4>
 <h2 id="we-are-now-finished-with-the-input-configuration-next-we-will-add-animations-to-the-player-object"><a class="header" href="#we-are-now-finished-with-the-input-configuration-next-we-will-add-animations-to-the-player-object">We are now finished with the input configuration. Next, we will add animations to the player object</a></h2>
 
                     </main>

@@ -24,9 +24,9 @@
         <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
@@ -156,32 +156,61 @@
 <p>Let's start by adding a ground object:</p>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_1.png" alt="Unity Editor Home Page">
 <ol>
-<li>Right-click in the Scene Panel on the left
+<li>Right-click in the Scene Panel on the left.
 <br/></li>
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_2.png" alt="Unity Editor Home Page">
 <ol start="2">
-<li>Click on <em>Cube</em> to create a cube object
+<li>Hover over <strong>3D Object</strong>.
+<br/></li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_85.png" alt="Unity Editor Home Page">
+<ol start="2">
+<li>Click on <strong>Plane</strong> to create a plane.
 <br/></li>
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_3.png" alt="Unity Editor Home Page">
 <ol start="3">
-<li>Double click on the newly created cube object in the scene panel to zoom in on it in the Scene View.
+<li>Double click on the newly created plane object in the <strong>scene panel</strong> (on the left) to zoom in on it in the Scene View (in the center).
 <ul>
-<li>In the component panel, change the scale's x-component and z-component to 50 and 85, respectively. In addition, change all components of transformation to 0.
+<li>On the right, in the component panel, inside the <em>Transform</em> section, change the <em>Scale's</em> <strong>x-component</strong> and <strong>z-component</strong> to 5 and 12, respectively. In addition, set all components of <em>Position</em> and <em>Rotation</em> (inside <em>Transform</em>) to 0.</li>
+<li>Also, ensure that your axes are aligned the same way that they are in the image above.
+<ul>
+<li>The z-axis (in <strong>blue</strong>) should be pointing away, diagonally.
 <br/></li>
+</ul>
+</li>
 </ul>
 </li>
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_4.png" alt="Unity Editor Home Page">
 <ol start="4">
-<li>From within the <em>updated_assets</em>, click and drag <strong>jearl_backwards</strong> onto the ground object.<br />
+<li>From within the <em>updated_assets</em> folder, click and drag <strong>jearl_backwards</strong> onto the ground object (which is the plane we created earlier).<br />
 <br/></li>
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_5.png" alt="Unity Editor Home Page">
 <ol start="4">
-<li>Repeat step 4 but, this time, drag and drop the <em>motor_oil</em> asset onto the ground (Be sure to place it somewhat far away).
+<li>
+<p>Repeat step 4 but, this time, drag and drop the <em>motor_oil</em> asset onto the ground</p>
+<ul>
+<li>Be sure to place it somewhat far away near the <strong>opposite</strong> end of the plane (away from <em>jearl_backwards</em>)
 <br/></li>
+</ul>
+</li>
+<li>
+<p>Another tip:</p>
+<ul>
+<li>In the Scene View, up top, <strong>right-click</strong> on the Scene tab.</li>
+<li>Click on <strong>Overlay Menu</strong></li>
+<li>In the list, click on <strong>Cameras</strong>
+<ul>
+<li>This will toggle a preview window for the camera in this game</li>
+<li>We'll only ever have one camera. Therefore, this is handy for seeing the POV of your camera (i.e. what its looking at)
+<br/></li>
+</ul>
+</li>
+</ul>
+</li>
 </ol>
 <h4 id="this-concludes-our-scene-setup-for-now-we-will-now-proceed-to-the-input-configuration"><a class="header" href="#this-concludes-our-scene-setup-for-now-we-will-now-proceed-to-the-input-configuration">This concludes our scene setup (for now). We will now proceed to the <a href="input_config.html">input configuration</a></a></h4>
 

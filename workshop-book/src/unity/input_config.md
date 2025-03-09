@@ -271,7 +271,7 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_23.png" alt="Unity Editor Home Page">
 
-18. Back in our script, add the following line inside the **MovePlayer**: 
+29. Back in our script, add the following line inside the **MovePlayer**: 
     - *transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.1f);*
     - What does this mean?:
         - *transform.rotation*
@@ -298,20 +298,20 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_24.png" alt="Unity Editor Home Page">
 
-19. Open the **Player_Control** action map. Then, right click on the "Player" action map and hit *Add Action*.
+30. Open the **Player_Control** action map. Then, right click on the "Player" action map and hit *Add Action*.
 <br/>
 
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_25.png" alt="Unity Editor Home Page">
 
-18. Click once on the newly created action, press `Enter`, and rename it to **Jump**.
+31. Click once on the newly created action, press `Enter`, and rename it to **Jump**.
     - Also, in the right-hand panel, ensure that the *Action Type* attribute for this action is **button** (we will press the jump button once to jump. not hold it)
 <br/>
 
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_26.png" alt="Unity Editor Home Page">
 
-20. In the middle panel, next to **Jump**, click the triangle to view its contents.
+32. In the middle panel, next to **Jump**, click the triangle to view its contents.
     - Click on **< No Binding >**.
     - Over to the right, open the *Path* dropdown and either search for the **Spacebar** key or use the *Listen* feature (like earlier).
     - Select Spacebar from the search results to assign it to the empty key binding.
@@ -321,7 +321,7 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_27.png" alt="Unity Editor Home Page">
 
-21. Back in our Scene View, click on **jearl_backwards** to access its components
+33. Back in our Scene View, click on **jearl_backwards** to access its components
     - Click on *Add Component* and, in the search bar, start typing **Rigidbody**. You should see it in the search results. 
     - Click on **Rigidbody** to add it to our player object
     - What's the point?
@@ -332,7 +332,7 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_28.png" alt="Unity Editor Home Page">
 
-22. Inside of the Rigidbody component, under the *Constraints* dropdown, check the boxes for the X and Z axes for **Freeze Rotation**
+34. Inside of the Rigidbody component, under the *Constraints* dropdown, check the boxes for the X and Z axes for **Freeze Rotation**
     - Why?
         - This will prevent unwanted rotations or leaning when our player interacts with or collides with any uneven surfaces.
         - Locking these two axes ensures that our jump force is only applied to the y-axis (directly up) and nowhere else.
@@ -345,7 +345,7 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_29.png" alt="Unity Editor Home Page">
 
-23. Add the following three variables up top:
+35. Add the following three variables up top:
     - *Rigidbody rb;*
     - *public bool isGrounded;*
     - *public float jumpStrength = 7f;*
@@ -365,7 +365,7 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_30.png" alt="Unity Editor Home Page">
 
-24. Underneath our *OnMove* function, add this function.
+36. Underneath our *OnMove* function, add this function.
     - The syntax is mostly the same except for one key difference...
         - **context.performed**
             - Remember, we are not pressing and holding the jump button. This is a one-and-done type of action
@@ -377,7 +377,7 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_31.png" alt="Unity Editor Home Page">
 
-25. Add the *if* statement that you see up above **inside** our earlier *if* statement.
+37. Add the *if* statement that you see up above **inside** our earlier *if* statement.
     - What does this even mean?:
         - We **nested** this addition inside of our *context.performed* if statement.
             - This ensures that if we press the jump button while the player object is airborne, we won't add more force to the player (i.e. double jump)
@@ -394,7 +394,7 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_32.png" alt="Unity Editor Home Page">
 
-26. In our *Start* function, add the above line
+38. In our *Start* function, add the above line
     - This allows us to actually access and store this object's Rigidbody component inside of our variable to use in our script.
     - We placed this inside *Start()* so that this action is only performed once. We access the Rigidbody component once, store it, and that's it.
     - EDIT (This is me from the future) --> Change this line from **rb.GetComponent...** to **rb = GetComponent...**
@@ -408,7 +408,7 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_33.png" alt="Unity Editor Home Page">
 
-27. Add the following function below our *OnJump* function.
+39. Add the following function below our *OnJump* function.
 
     - Do note that this is a built-in function that we are simply overwriting. 
     - Intellisense and autocomplete should kick in as soon as you start typing the function name.
@@ -419,7 +419,7 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_34.png" alt="Unity Editor Home Page">
 
-28. Add the following *if* statement to the function body.
+40. Add the following *if* statement to the function body.
     - What does this mean?
         - *Debug.Log(...)*
             - This is here to ensure that a). a collision occurred and b). it occurred with the correct object.
@@ -435,7 +435,7 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_36.png" alt="Unity Editor Home Page">
 
-28. Let's add a tag to our **Plane** game object.
+41. Let's add a tag to our **Plane** game object.
     - Back in the Editor, click the **Plane** object to view its components.
     - In the Component Panel (on the right), up top (underneath the object's name), find the **Tag** attribute.
     - Click the dropdown menu next to it to expand it.
@@ -450,7 +450,7 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
         - Unity does **NOT** do this automatically. So, don't forget this step!
 <br/>
 
-29. You remember earlier when we configured the **OnMove** function in our **Player Input** script? This time, we need to do the exact same thing, but for the **OnJump** function!
+42. You remember earlier when we configured the **OnMove** function in our **Player Input** script? This time, we need to do the exact same thing, but for the **OnJump** function!
     - Click on **jearl_backwards** to view its components.
     - In the **Player Input** script, open the **Events** dropdown (same as before).
     - Open the **Player** dropdown.
@@ -475,8 +475,8 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_37.png" alt="Unity Editor Home Page">
 
-30. Let's make a new script for our *Main Camera* object
-    - Click on it to open its Component view on the right side.
+43. Let's make a new script for our *Main Camera* object
+    - Click on the **Main Camera** to open its Component view on the right side.
     - At the bottom, click *Add Component* and type in the box *New Script*
     - Let's name the script *Player_Follow*
     - Once created, double-click to open it.
@@ -486,7 +486,7 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_38.png" alt="Unity Editor Home Page">
 
-31. Let's add the following variables first:
+44. Let's add the following variables first:
     - What do they mean?:
         - *public Transform player;*
             - We will need this later to hold information about our player object (we'll just click and drag our player object into this variable in our Editor later).
@@ -502,7 +502,7 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_39.png" alt="Unity Editor Home Page">
 
-32. Now, we'll add the lines up above into the *Update()* method
+45. Now, we'll add the lines up above into the *Update()* method
     - What does this mean?
         - *transform.position = player.position + offset;*
             - We're gonna take the position of this game object (the object that this script is attached to) and add to its position (which is in three dimensions) the position of the offset that we set up above.

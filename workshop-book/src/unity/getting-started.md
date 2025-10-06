@@ -12,7 +12,7 @@
 1. Navigate to [this link.](https://docs.unity3d.com/hub/manual/InstallHub.html)
     - I recommend using the terminal commands that are provided on the page to install Unity Hub.
     
-2. Once installed, installing the editor is simple enough.
+2. Similar to the Windows/Mac installation, once opened, the Hub will automatically prompt you to install the Editor (if you haven't already).
 
 
 

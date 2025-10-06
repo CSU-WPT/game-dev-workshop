@@ -13,8 +13,7 @@
     - I recommend using the terminal commands that are provided on the page to install Unity Hub.
     
 2. Similar to the Windows/Mac installation, once opened, the Hub will automatically prompt you to install the Editor (if you haven't already).
-
-
+    - If not, then navigate to *Install* section and download 
 
 ### Creating a new project
 1. Once Unity Hub is installed, navigate to the "Projects" sidebar

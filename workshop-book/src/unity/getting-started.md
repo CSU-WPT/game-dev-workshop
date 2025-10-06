@@ -8,6 +8,14 @@
 4. Once finished, the Hub should launch automatically and prompt you to download the Unity Editor. Please do so.
 - Caution: This is a **LARGE** installation. Ensure you have ample storage space before proceeding.
 
+**For Linux:**
+1. Navigate to [this link.](https://docs.unity3d.com/hub/manual/InstallHub.html)
+    - I recommend using the terminal commands that are provided on the page to install Unity Hub.
+    
+2. Once installed, installing the editor is simple enough.
+
+
+
 ### Creating a new project
 1. Once Unity Hub is installed, navigate to the "Projects" sidebar
 2. Click "New Project"

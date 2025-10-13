@@ -13,7 +13,24 @@
     - I recommend using the terminal commands that are provided on the page to install Unity Hub.
     
 2. Similar to the Windows/Mac installation, once opened, the Hub will automatically prompt you to install the Editor (if you haven't already).
-    - If not, then navigate to *Install* section and download 
+
+    - Should look something like this:
+    <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/First_startup_linux.png" alt="Unity Editor Home Page">
+
+    - If there isn't one, navigate to *Install* section and click *Install Editor*:
+    <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/Install_section_first_startup.png" alt="Unity Editor Home Page">
+
+    - Next, select the ***LTS (Long-Term Support)*** version.
+        <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/Version_select.png" alt="Unity Editor Home Page">
+
+        - As the name suggests, this version will be more reliable in the long-run.
+
+**<span style="color: red;">FOR <u>ALL</u> INSTALLS:</span>**
+    - When prompted to select which modules to add, select **WebGL Support**.
+    - Exporting the game's playable executable to the web is how groups are expected to present their games during the final evaluations.
+
+<br/>
+
 
 ### Creating a new project
 1. Once Unity Hub is installed, navigate to the "Projects" sidebar

@@ -3,6 +3,8 @@
 1. Download [Visual Studio Code.](https://code.visualstudio.com/download)
 2. In VSCode, navigate to the extensions page on the sidebar and download the following extensions:
     - **C# Dev Kit** (by Microsoft)
+        - You may also need to download the **.NET SDK** as well. Installing this extension without the SDK causes some annoying pop-ups. 
+        - Follow the appropriate tutorial provided by Microsoft using <a href="https://dotnet.microsoft.com/en-us/download">this link</a> to do so.
     - **Unity** (by Microsoft)
 3. Next, open your Unity Project and do the following:
     - For *Mac*

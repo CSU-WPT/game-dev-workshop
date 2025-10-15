@@ -9,7 +9,7 @@
 
 - Unity, as part of the new input system, provides an auto-generated input actions asset called **InputSystem_Actions.inputactions**.
 - This comes with a lot of presets already assigned for character movement and UI navigation.
-- If you prefer to use this, then skip to <a href="#step10">step 10.</a>
+- If you prefer to use it, then skip to step 10. Otherwise, continue onward.
 
 
 ##### Let's get started!
@@ -117,12 +117,12 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
 
 <br/>
 
-#### But, now we need to set up our code editors.
+#### But, first, we need to set up our code editors.
 
 - For Mac, we are gonna have to use [**Visual Studio Code**](./IDE_setup/VSCode_setup.md).
 - For Windows, you guys are free to choose between VS Code and [**Visual Studio**](./IDE_setup/Visual_Studio.md) (the purple one). 
 
-#### For this tutorial, as a Mac user, I will use VS Code. But, you guys are free to use whatever is most convenient for you. 
+#### For this tutorial, as a Mac user, I will use VS Code. But, feel free to use whatever is the most convenient. 
 
 
 <br/>
@@ -148,30 +148,36 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_18.png" alt="Unity Editor Home Page">
 
 
-#### Let's write some code to allow player movement!
-
-
-13. In the Update function, type *MovePlayer()* (we'll define this function later).
-    - This function, as per the description of the Update() function, will run every single frame of the gameplay (which is what we want)
+<br><br>
 
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_19.png" alt="Unity Editor Home Page">
 
+13. In the Update function, type *MovePlayer()* (we'll define this function later).
+    - This function, as per the description of the Update() function, will run once per frame of gameplay.
+
+
+
+
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_20_fixed.png" alt="Unity Editor Home Page">
+
 14. Add three variables before Start() but inside our main method:
     - *public float speed*
-        - This will dictate, well, the speed of our movement (we will be able to set the value of this variable inside our editor before hitting the play button as it is **public**)
+        - This will dictate the speed of our player object's movement 
+        - Since this variable is **public**, we will be able to change the value of this variable on the fly once we're back in the Editor.
     - *public Vector2 move*
         - If you remember from earlier, our movement (inside our action map) is strictly in 2 directions (that's what we want). We limited our key bindings to Vector2. 
         - Thus, when we read our player's movements, they will be in a **2D vector** and will be placed inside an object of type **Vector2**
     - *public Vector3 movement*
-        - Since our game world is a **3D space**, we need to translate our 2-dimensional movement into a 3D vector w/ the y-axis (straight up) set to 0. Hence, why we need this variable.
+        - Since our game world is a **3D space**, we need to translate our 2-dimensional movement into a 3D vector w/ the y-axis (straight up) set to 0. Which is why we need this variable.
             - Bonus question: why would we set the y-axis to 0 in our 3D vector?
 
 <br/>
 
 
 
-<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_20.png" alt="Unity Editor Home Page">
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_22_fixed.png" alt="Unity Editor Home Page">
 
 15. Add the following function after *Update()*:
 
@@ -179,7 +185,7 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
         move = context.ReadValue< Vector 2 >();
     }
 
-    - You may also need to import the following library up top:
+    - You may also need to import the following library up top with this line:
         - **using UnityEngine.InputSystem**
     <br/>
     - Imagine your player asset is a toy remote car:
@@ -192,51 +198,51 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
         - In this case, the message is a 2D vector indicating which direction we want to move in.
         <br/>
 
-        - Consider the following example:
-            - In a 2D space like the one below:
-            <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_21.png" alt="Unity Editor Home Page">
-            - (0,1) would mean "move in the +y axis" (i.e. upward)
-            - But now, when we translate this 2 dimensional movement into a 3 dimensional world, we have to be careful.
-                - The y-axis is now upwards (directly upwards). The newly added z-axis is the new "forward" axis. And the x-axis is still for left/right movement.
-            - So, when we map (0,1) from 2D to 3D, we would have to assign it in some way like this (assume our 2D vector is called "move", like above, and our 3D vector is still "movement"):
-                - movement = new Vector3(move.x, 0f, move.y);
-            - Why?
-                - Like I said earlier, we don't move upwards with WASD. We only move along the x and z axes.
-                - Since our 2D vector is (0,1), our 3D translation of this 2D vector would be **(0, 0f, 1)**. Which means that we are now moving (in the 3D space) **1 unit in the positive z-axis (AKA forward)**
-                - Since this action is repeated every frame, in 60 fps gameplay, this will result in our character having smooth forward movement.
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/Define_MovePlayer.png" alt="Unity Editor Home Page">
 
-#### This is the perfect segue to our next addition to this script!
+16. Define **MovePlayer()** using the image above. 
 
-<br/>
-
-<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_22.png" alt="Unity Editor Home Page">
-
-16. We will now add a new function called **MovePlayer** which we will place inside of *Update()* (so that it is called every frame). Inside of that function:
     - We placed the *movement = new Vector3(move.x, 0f, move.y)* line
+        - What does it mean?:
+            - Consider the following example:
+                - In a 2D space like the one below:
+                <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_21.png" alt="Unity Editor Home Page">
+                - **(0,1)** would mean "move in the positive y axis" (i.e. upward)
+                - But now, when we translate this 2 dimensional movement into a 3 dimensional world, we have to be careful.
+                    - The y-axis is now upwards (directly upwards). The newly added z-axis is the new "forward" axis. And the x-axis is still for left and right movement.
+                - So, when we map (0,1) from 2D to 3D, we would have to assign it like this (assume our 2D vector is called "move", like above, and our 3D vector is still "movement"):
+                    - movement = new Vector3(move.x, 0f, move.y);
+                - Why?
+                    - As stated earlier, we don't move upwards with WASD. We only move along the x and z axes.
+                    - Since our 2D vector is (0,1), our 3D translation of this 2D vector would be **(0, 0f, 1)**. Which means that we are now moving (in the 3D space) **1 unit in the positive z-axis (AKA forward)**
+                    - Since this action is repeated every frame, in 60 fps gameplay, this will result in our character having smooth forward movement.
     - We also placed a new line:
-        *tranform.Translate(movement * speed * Time.deltaTime, Space.World);
-    - What does this mean?
+        **transform.Translate(movement * speed * Time.deltaTime, Space.World);**
+    - What does this line mean?
         - *transform* 
-            - Refers to this game object (the one that this script is attached to).
+            - Refers directly to this game object's **Transform** attribute.
         - *.Translate* 
             - Allows us to move the object from its current position.
         - *movement * speed * time.DeltaTime*.
             - We multiply our speed value by our movement vector (so that we're not at a speed of 1 unit per frame).
-            - *time.deltaTime* 
-                - What is that?
-                - This allows our player movement to be **frame-independent**.
-                    - Imagine that your computer runs the game at 60 fps (frames per second).
-                    - We can calculate the total # of units moved by the player by doing the following calculation:
-                        - 60 * 5 (our speed, let's say) * movement ([0, 0, 1], let's say)
-                        - Thus, we moved **300 units** in total
-                    - Let's assume your buddy's PC runs at 120 fps.
-                        - Then, by the same calculation (with the same movement), we'd move **600 units** in total when I run the game on his PC.
-                            - That's not good! This means that the higher the FPS is, the faster we move.
-                    - This is why we multiply this entire expression by **time.deltaTime** (whose value is roughly equal to 1/your fps amount). 
-                        - 60 * 1/60 = 1 & 120 * 1/120 = 1. Therefore, our movement stays **consistent** across different machines (since we're just multiplying by 1). 
+            - This vector is then continuously added to the game object's position vector to move it.
+        - *time.deltaTime* 
+            - What is that?
+            - This allows our player movement to be **frame-independent**.
+                - Imagine that your computer runs the game at 60 fps (frames per second).
+                - We can calculate the total # of units moved by the player by doing the following calculation:
+                    - 60 * 5 (our speed, let's say) * movement ([0, 0, 1], let's say)
+                    - Thus, we moved **300 units** in total
+                - Let's assume your friend's PC runs the game at 120 fps.
+                    - Then, by the same calculation (with the same movement), we'd move **600 units** in total when the game runs on their PC.
+                        - That's not good! This means that the higher the FPS is, the faster we move.
+                - This is why we multiply this entire expression by **time.deltaTime** (whose value is roughly equal to 1/your fps amount). 
+                    - 60 * 1/60 = 1 
+                    - 120 * 1/120 = 1. 
+                        - Therefore, our movement stays **consistent** across different machines (since we're just multiplying by 1). 
         - *Space.World*
             - This allows our player object to move relative to the **game world's global axes.**
-            - This means that, regardless of where I am or what direction I'm facing or what orientation the camera's in, when I press W, I will always move in the direction of the **game world's** positive z-axis.
+            - This means that, regardless of where the game object is or what direction it's facing or what orientation the camera is in, when we press "W", we will always move in the direction of the **game world's** positive z-axis.
             
 
 <br/>

@@ -3,14 +3,19 @@
 - For this tutorial, we will be using the new Unity Input system.
 - Those w/ prior Unity experience may still know how inputs were taken from the user before the addition of the new system (done mostly within code)
 
-<br/>
-
 - However, with the new system, we can easily configure different actions for our player asset with custom made action maps and key bindings (you can even configure controllers!)
+
+##### Quick disclaimer:
+
+- Unity, as part of the new input system, provides an auto-generated input actions asset called **InputSystem_Actions.inputactions**.
+- This comes with a lot of presets already assigned for character movement and UI navigation.
+- If you prefer to use this, then skip to <a href="#step10">step 10.</a>
 
 
 ##### Let's get started!
 
 <br/>
+
 
 1. Navigate out of the **updated_assets** folder (if you're following along from the previous page) into the **Assets** folder.
 <br/>
@@ -92,7 +97,7 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
 
 <br/>
 
-
+<div id='step_10'>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_15.png" alt="Unity Editor Home Page">
 
 10. Click on the **Scene** tab to navigate back to the Scene View.
@@ -104,6 +109,7 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
     - Notice that Unity will automatically assign our custom-made Input Actions asset here to the **Actions** attribute.
         - If it didn't, drag and drop the newly created Action Map into the **Actions** attribute.
         - In the **Player Input** component, The *Default Map* attribute (below the *Actions* attribute) will be *Player* *(referring to the binding map we made earlier).
+</div>
 <br/>
 
 

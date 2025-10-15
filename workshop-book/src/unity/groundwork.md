@@ -44,11 +44,12 @@ Let's start by adding a ground object:
     - Be sure to place it somewhat far away near the **opposite** end of the plane (away from *jearl_backwards*)
 <br/>
 
-4. Another tip:
+4. Quick tip:
     - In the Scene View, up top, **right-click** on the Scene tab.
     - Click on **Overlay Menu**
     - In the list, click on **Cameras**
         - This will toggle a preview window for the camera in this game
-        - We'll only ever have one camera. Therefore, this is handy for seeing the POV of your camera (i.e. what its looking at)
+        - We'll only ever have one camera in this tutorial. Therefore, this is handy for seeing the POV of your camera (i.e. what its looking at)
+    - Right-click on *Main Camera* and click on **Align with View** to align the camera with your current view (for initial testing).
 <br/>
 #### This concludes our scene setup (for now). We will now proceed to the [input configuration](input_config.md)

@@ -28,7 +28,7 @@
 **<span style="color: red;">FOR <u>ALL</u> INSTALLS:</span>**
 
 - When prompted to select which modules to add, select **WebGL Support**.
-- Exporting the game's playable executable to the web is how groups are expected to present their games during the final evaluations.
+- Exporting the game's playable executable to the web is how all participating groups **MUST** present their games during the final evaluations.
 
 <br/>
 

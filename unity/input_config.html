@@ -177,12 +177,21 @@
                     <main>
                         <h3 id="input-configuration"><a class="header" href="#input-configuration">Input Configuration</a></h3>
 <ul>
-<li>For this tutorial, we will be using the new Unity Input system.</li>
-<li>Those w/ prior Unity experience may still know how inputs were taken from the user before the addition of the new system (done mostly within code)</li>
+<li>
+<p>For this tutorial, we will be using the new Unity Input system.</p>
+</li>
+<li>
+<p>Those w/ prior Unity experience may still know how inputs were taken from the user before the addition of the new system (done mostly within code)</p>
+</li>
+<li>
+<p>However, with the new system, we can easily configure different actions for our player asset with custom made action maps and key bindings (you can even configure controllers!)</p>
+</li>
 </ul>
-<br/>
+<h5 id="quick-disclaimer"><a class="header" href="#quick-disclaimer">Quick disclaimer:</a></h5>
 <ul>
-<li>However, with the new system, we can easily configure different actions for our player asset with custom made action maps and key bindings (you can even configure controllers!)</li>
+<li>Unity, as part of the new input system, provides an auto-generated input actions asset called <strong>InputSystem_Actions.inputactions</strong>.</li>
+<li>This comes with a lot of presets already assigned for character movement and UI navigation.</li>
+<li>If you prefer to use this, then skip to <a href="#step10">step 10.</a></li>
 </ul>
 <h5 id="lets-get-started"><a class="header" href="#lets-get-started">Let's get started!</a></h5>
 <br/>
@@ -291,6 +300,7 @@
 <br/></li>
 </ol>
 <br/>
+<div id='step_10'>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_15.png" alt="Unity Editor Home Page">
 <ol start="10">
 <li>Click on the <strong>Scene</strong> tab to navigate back to the Scene View.
@@ -306,13 +316,14 @@
 <li>Notice that Unity will automatically assign our custom-made Input Actions asset here to the <strong>Actions</strong> attribute.
 <ul>
 <li>If it didn't, drag and drop the newly created Action Map into the <strong>Actions</strong> attribute.</li>
-<li>In the <strong>Player Input</strong> component, The <em>Default Map</em> attribute (below the <em>Actions</em> attribute) will be <em>Player</em> *(referring to the binding map we made earlier).
-<br/></li>
+<li>In the <strong>Player Input</strong> component, The <em>Default Map</em> attribute (below the <em>Actions</em> attribute) will be <em>Player</em> *(referring to the binding map we made earlier).</li>
 </ul>
 </li>
 </ul>
 </li>
 </ol>
+</div>
+<br/>
 <h4 id="now-its-time-to-put-all-this-together-in-a-c-script"><a class="header" href="#now-its-time-to-put-all-this-together-in-a-c-script">Now, it's time to put all this together in a C# script.</a></h4>
 <br/>
 <h4 id="but-now-we-need-to-set-up-our-code-editors"><a class="header" href="#but-now-we-need-to-set-up-our-code-editors">But, now we need to set up our code editors.</a></h4>

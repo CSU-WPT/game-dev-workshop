@@ -191,7 +191,7 @@
 <ul>
 <li>Unity, as part of the new input system, provides an auto-generated input actions asset called <strong>InputSystem_Actions.inputactions</strong>.</li>
 <li>This comes with a lot of presets already assigned for character movement and UI navigation.</li>
-<li>If you prefer to use this, then skip to <a href="#step10">step 10.</a></li>
+<li>If you prefer to use it, then skip to step 10. Otherwise, continue onward.</li>
 </ul>
 <h5 id="lets-get-started"><a class="header" href="#lets-get-started">Let's get started!</a></h5>
 <br/>
@@ -326,12 +326,12 @@
 <br/>
 <h4 id="now-its-time-to-put-all-this-together-in-a-c-script"><a class="header" href="#now-its-time-to-put-all-this-together-in-a-c-script">Now, it's time to put all this together in a C# script.</a></h4>
 <br/>
-<h4 id="but-now-we-need-to-set-up-our-code-editors"><a class="header" href="#but-now-we-need-to-set-up-our-code-editors">But, now we need to set up our code editors.</a></h4>
+<h4 id="but-first-we-need-to-set-up-our-code-editors"><a class="header" href="#but-first-we-need-to-set-up-our-code-editors">But, first, we need to set up our code editors.</a></h4>
 <ul>
 <li>For Mac, we are gonna have to use <a href="./IDE_setup/VSCode_setup.html"><strong>Visual Studio Code</strong></a>.</li>
 <li>For Windows, you guys are free to choose between VS Code and <a href="./IDE_setup/Visual_Studio.html"><strong>Visual Studio</strong></a> (the purple one).</li>
 </ul>
-<h4 id="for-this-tutorial-as-a-mac-user-i-will-use-vs-code-but-you-guys-are-free-to-use-whatever-is-most-convenient-for-you"><a class="header" href="#for-this-tutorial-as-a-mac-user-i-will-use-vs-code-but-you-guys-are-free-to-use-whatever-is-most-convenient-for-you">For this tutorial, as a Mac user, I will use VS Code. But, you guys are free to use whatever is most convenient for you.</a></h4>
+<h4 id="for-this-tutorial-as-a-mac-user-i-will-use-vs-code-but-feel-free-to-use-whatever-is-the-most-convenient"><a class="header" href="#for-this-tutorial-as-a-mac-user-i-will-use-vs-code-but-feel-free-to-use-whatever-is-the-most-convenient">For this tutorial, as a Mac user, I will use VS Code. But, feel free to use whatever is the most convenient.</a></h4>
 <br/>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_16.png" alt="Unity Editor Home Page">
 <ol start="11">
@@ -354,21 +354,23 @@
 <br/>
 <h4 id="now-when-you-double-click-the-script-inside-the-script-component-or-in-the-assets-folder-assuming-you-set-up-your-respective-ide-correctly-it-should-automatically-open-the-script-in-said-ide-for-me-in-vscode-it-looks-something-like-this"><a class="header" href="#now-when-you-double-click-the-script-inside-the-script-component-or-in-the-assets-folder-assuming-you-set-up-your-respective-ide-correctly-it-should-automatically-open-the-script-in-said-ide-for-me-in-vscode-it-looks-something-like-this">Now, when you double-click the script (inside the script component or in the <em>Assets</em> folder), assuming you set up your respective IDE correctly, it should automatically open the script in said IDE. For me, in VSCode, it looks something like this:</a></h4>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_18.png" alt="Unity Editor Home Page">
-<h4 id="lets-write-some-code-to-allow-player-movement"><a class="header" href="#lets-write-some-code-to-allow-player-movement">Let's write some code to allow player movement!</a></h4>
+<p><br><br></p>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_19.png" alt="Unity Editor Home Page">
 <ol start="13">
 <li>In the Update function, type <em>MovePlayer()</em> (we'll define this function later).
 <ul>
-<li>This function, as per the description of the Update() function, will run every single frame of the gameplay (which is what we want)</li>
+<li>This function, as per the description of the Update() function, will run once per frame of gameplay.</li>
 </ul>
 </li>
 </ol>
-<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_19.png" alt="Unity Editor Home Page">
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_20_fixed.png" alt="Unity Editor Home Page">
 <ol start="14">
 <li>Add three variables before Start() but inside our main method:
 <ul>
 <li><em>public float speed</em>
 <ul>
-<li>This will dictate, well, the speed of our movement (we will be able to set the value of this variable inside our editor before hitting the play button as it is <strong>public</strong>)</li>
+<li>This will dictate the speed of our player object's movement</li>
+<li>Since this variable is <strong>public</strong>, we will be able to change the value of this variable on the fly once we're back in the Editor.</li>
 </ul>
 </li>
 <li><em>public Vector2 move</em>
@@ -379,7 +381,7 @@
 </li>
 <li><em>public Vector3 movement</em>
 <ul>
-<li>Since our game world is a <strong>3D space</strong>, we need to translate our 2-dimensional movement into a 3D vector w/ the y-axis (straight up) set to 0. Hence, why we need this variable.
+<li>Since our game world is a <strong>3D space</strong>, we need to translate our 2-dimensional movement into a 3D vector w/ the y-axis (straight up) set to 0. Which is why we need this variable.
 <ul>
 <li>Bonus question: why would we set the y-axis to 0 in our 3D vector?</li>
 </ul>
@@ -390,7 +392,7 @@
 </li>
 </ol>
 <br/>
-<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_20.png" alt="Unity Editor Home Page">
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_22_fixed.png" alt="Unity Editor Home Page">
 <ol start="15">
 <li>
 <p>Add the following function after <em>Update()</em>:</p>
@@ -401,7 +403,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 }</p>
 </li>
 <li>
-<p>You may also need to import the following library up top:</p>
+<p>You may also need to import the following library up top with this line:</p>
 <ul>
 <li><strong>using UnityEngine.InputSystem</strong>
 <br/></li>
@@ -410,17 +412,10 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <li>
 <p>Imagine your player asset is a toy remote car:</p>
 <ul>
-<li>
-<p>Your keyboard/controller is the remote.</p>
-</li>
-<li>
-<p>Unity's Input System is the "messenger".</p>
-</li>
-<li>
-<p>The function <em>OnMove</em> is the car receiving the message.</p>
-</li>
-<li>
-<p>The <em>CallbackContext</em> is the message itself (the message that you send to the function upon a button press).</p>
+<li>Your keyboard/controller is the remote.</li>
+<li>Unity's Input System is the "messenger".</li>
+<li>The function <em>OnMove</em> is the car receiving the message.</li>
+<li>The <em>CallbackContext</em> is the message itself (the message that you send to the function upon a button press).
 <ul>
 <li>The message says what you (the person controlling the car) want the car to do.
 <ul>
@@ -429,29 +424,40 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </li>
 </ul>
 </li>
-<li>
-<p>In this case, the message is a 2D vector indicating which direction we want to move in.
-<br/></p>
+<li>In this case, the message is a 2D vector indicating which direction we want to move in.
+<br/></li>
+</ul>
 </li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/Define_MovePlayer.png" alt="Unity Editor Home Page">
+<ol start="16">
 <li>
-<p>Consider the following example:</p>
+<p>Define <strong>MovePlayer()</strong> using the image above.</p>
+<ul>
+<li>We placed the <em>movement = new Vector3(move.x, 0f, move.y)</em> line
+<ul>
+<li>What does it mean?:
+<ul>
+<li>Consider the following example:
 <ul>
 <li>In a 2D space like the one below:
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_21.png" alt="Unity Editor Home Page"></li>
-<li>(0,1) would mean "move in the +y axis" (i.e. upward)</li>
+<li><strong>(0,1)</strong> would mean "move in the positive y axis" (i.e. upward)</li>
 <li>But now, when we translate this 2 dimensional movement into a 3 dimensional world, we have to be careful.
 <ul>
-<li>The y-axis is now upwards (directly upwards). The newly added z-axis is the new "forward" axis. And the x-axis is still for left/right movement.</li>
+<li>The y-axis is now upwards (directly upwards). The newly added z-axis is the new "forward" axis. And the x-axis is still for left and right movement.</li>
 </ul>
 </li>
-<li>So, when we map (0,1) from 2D to 3D, we would have to assign it in some way like this (assume our 2D vector is called "move", like above, and our 3D vector is still "movement"):
+<li>So, when we map (0,1) from 2D to 3D, we would have to assign it like this (assume our 2D vector is called "move", like above, and our 3D vector is still "movement"):
 <ul>
 <li>movement = new Vector3(move.x, 0f, move.y);</li>
 </ul>
 </li>
 <li>Why?
 <ul>
-<li>Like I said earlier, we don't move upwards with WASD. We only move along the x and z axes.</li>
+<li>As stated earlier, we don't move upwards with WASD. We only move along the x and z axes.</li>
 <li>Since our 2D vector is (0,1), our 3D translation of this 2D vector would be <strong>(0, 0f, 1)</strong>. Which means that we are now moving (in the 3D space) <strong>1 unit in the positive z-axis (AKA forward)</strong></li>
 <li>Since this action is repeated every frame, in 60 fps gameplay, this will result in our character having smooth forward movement.</li>
 </ul>
@@ -462,21 +468,13 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </li>
 </ul>
 </li>
-</ol>
-<h4 id="this-is-the-perfect-segue-to-our-next-addition-to-this-script"><a class="header" href="#this-is-the-perfect-segue-to-our-next-addition-to-this-script">This is the perfect segue to our next addition to this script!</a></h4>
-<br/>
-<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_22.png" alt="Unity Editor Home Page">
-<ol start="16">
-<li>We will now add a new function called <strong>MovePlayer</strong> which we will place inside of <em>Update()</em> (so that it is called every frame). Inside of that function:
-<ul>
-<li>We placed the <em>movement = new Vector3(move.x, 0f, move.y)</em> line</li>
 <li>We also placed a new line:
-*tranform.Translate(movement * speed * Time.deltaTime, Space.World);</li>
-<li>What does this mean?
+<strong>transform.Translate(movement * speed * Time.deltaTime, Space.World);</strong></li>
+<li>What does this line mean?
 <ul>
 <li><em>transform</em>
 <ul>
-<li>Refers to this game object (the one that this script is attached to).</li>
+<li>Refers directly to this game object's <strong>Transform</strong> attribute.</li>
 </ul>
 </li>
 <li><em>.Translate</em>
@@ -487,6 +485,9 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <li><em>movement * speed * time.DeltaTime</em>.
 <ul>
 <li>We multiply our speed value by our movement vector (so that we're not at a speed of 1 unit per frame).</li>
+<li>This vector is then continuously added to the game object's position vector to move it.</li>
+</ul>
+</li>
 <li><em>time.deltaTime</em>
 <ul>
 <li>What is that?</li>
@@ -499,9 +500,9 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <li>Thus, we moved <strong>300 units</strong> in total</li>
 </ul>
 </li>
-<li>Let's assume your buddy's PC runs at 120 fps.
+<li>Let's assume your friend's PC runs the game at 120 fps.
 <ul>
-<li>Then, by the same calculation (with the same movement), we'd move <strong>600 units</strong> in total when I run the game on his PC.
+<li>Then, by the same calculation (with the same movement), we'd move <strong>600 units</strong> in total when the game runs on their PC.
 <ul>
 <li>That's not good! This means that the higher the FPS is, the faster we move.</li>
 </ul>
@@ -510,7 +511,10 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </li>
 <li>This is why we multiply this entire expression by <strong>time.deltaTime</strong> (whose value is roughly equal to 1/your fps amount).
 <ul>
-<li>60 * 1/60 = 1 &amp; 120 * 1/120 = 1. Therefore, our movement stays <strong>consistent</strong> across different machines (since we're just multiplying by 1).</li>
+<li>60 * 1/60 = 1</li>
+<li>120 * 1/120 = 1.
+<ul>
+<li>Therefore, our movement stays <strong>consistent</strong> across different machines (since we're just multiplying by 1).</li>
 </ul>
 </li>
 </ul>
@@ -522,7 +526,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <li><em>Space.World</em>
 <ul>
 <li>This allows our player object to move relative to the <strong>game world's global axes.</strong></li>
-<li>This means that, regardless of where I am or what direction I'm facing or what orientation the camera's in, when I press W, I will always move in the direction of the <strong>game world's</strong> positive z-axis.</li>
+<li>This means that, regardless of where the game object is or what direction it's facing or what orientation the camera is in, when we press "W", we will always move in the direction of the <strong>game world's</strong> positive z-axis.</li>
 </ul>
 </li>
 </ul>

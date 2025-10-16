@@ -30,6 +30,7 @@
         <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/style.css">
 
 
         <!-- Provide site root and default themes to javascript -->
@@ -177,7 +178,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
-<h4 id="welcome-to-the-cleveland-state-university-fall-2025-game-jam"><a class="header" href="#welcome-to-the-cleveland-state-university-fall-2025-game-jam">Welcome to the Cleveland State University Fall 2025 Game Jam!!!</a></h4>
+<h4 id="welcome-to-the-computer-peer-teacher-game-development-workshop"><a class="header" href="#welcome-to-the-computer-peer-teacher-game-development-workshop">Welcome to the Computer Peer Teacher Game Development Workshop!</a></h4>
 <h4 id="here-youll-find-instructions-on-how-to-setup-a-basic-topdown-game-in-two-engines-unity-and-godot"><a class="header" href="#here-youll-find-instructions-on-how-to-setup-a-basic-topdown-game-in-two-engines-unity-and-godot">Here, you'll find instructions on how to setup a basic, topdown game in two engines: Unity and Godot</a></h4>
 <h4 id="these-will-help-build-a-foundation-off-of-which-you-and-your-team-will-build-your-own-custom-awesome-game"><a class="header" href="#these-will-help-build-a-foundation-off-of-which-you-and-your-team-will-build-your-own-custom-awesome-game">These will help build a foundation off of which you and your team will build your own, custom, awesome game!</a></h4>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="what-is-unity"><a class="header" href="#what-is-unity">What is Unity?</a></h1>
@@ -2046,7 +2047,7 @@ Also, in the <strong>Shape Settings</strong> for the stairs, adjust the number o
 <p>There are a few major parts of the UI here, let's go through them one by one:</p>
 <ul>
 <li>Scene tree - This is the top left window, it contains a hierarchical representation of every node in the scene (we'll go over what nodes are later)</li>
-<li>Filesystem - This is the botton left window, it contains all the files in your project</li>
+<li>File system - This is the botton left window, it contains all the files in your project</li>
 <li>Properties editor - This is the window on the right, if you have a node selected in the scene tree, it will show all the properties of that node for you to edit</li>
 <li>Scene viewer - This is the large pane in the middle, it has four modes, <code>2D</code>, <code>3D</code>, <code>Script</code>, and <code>AssetLib</code>. <code>2D</code> Allows you to view and edit the 2D component of the scene (this can be a menu, a 2D game, or a GUI on top of the 3D game). <code>3D</code> allows you to view and edit the 3D component of the scene. <code>Script</code> opens the script editor and allows you to write code in GDScript (you will need an external program if you choose to use a different language). And <code>AssetLib</code> allows you to download community assets and plugins to give you access to more features.</li>
 </ul>
@@ -2102,7 +2103,7 @@ Also, in the <strong>Shape Settings</strong> for the stairs, adjust the number o
 <img style="display: block; margin-left: auto; margin-right: auto;" src="godot/4-3.png" alt="Selecting the Child Node">
 <ul>
 <li>
-<p>Rename this new node to <code>Map</code>. Nodes can also be used like folders in a filesystem for organizational purposes. It doesn't change anything functionally about the scene, but it allows us to organize the different parts of the scene. In this case, this node will contain all the terrain.</p>
+<p>Rename this new node to <code>Map</code>. Nodes can also be used like folders in a file system for organizational purposes. It doesn't change anything functionally about the scene, but it allows us to organize the different parts of the scene. In this case, this node will contain all the terrain.</p>
 </li>
 <li>
 <p>Under the <code>Map</code> node, add a <code>CSGBox3D</code>. This is a node type that acts as both a rendered mesh, and a collidable box, and a static physics object, whereas normally you would need seperate nodes for these things. The benifit of CSG objects is they allow you to rapidly prototype levels, but they have poor performance when you use enough for a full scale game. Nonetheless, they're perfect for a game jam.</p>
@@ -2115,7 +2116,7 @@ Also, in the <strong>Shape Settings</strong> for the stairs, adjust the number o
 <h3 id="texturing-the-box"><a class="header" href="#texturing-the-box">Texturing the Box</a></h3>
 <ul>
 <li>
-<p>You may also notice there is now a bunch of stuff in the properties editor. Find where it says <code>Material &lt;empty&gt;</code> and drag the <code>tile.png</code> from the filesystem in the bottom left onto the <code>&lt;empty&gt;</code> text. The box should now have a material assigned to it, and the tile texture should be blurry and streched out across the faces of the box. Let's fix that.</p>
+<p>You may also notice there is now a bunch of stuff in the properties editor. Find where it says <code>Material &lt;empty&gt;</code> and drag the <code>tile.png</code> from the file system in the bottom left onto the <code>&lt;empty&gt;</code> text. The box should now have a material assigned to it, and the tile texture should be blurry and streched out across the faces of the box. Let's fix that.</p>
 </li>
 <li>
 <p>Click on the new material (it will show up as a sphere in the properties editor), you should see a bunch of subcategories appear. Find <code>UV1</code> and enable <code>Triplanar</code>. Then find <code>Sampling</code> and set <code>Filter</code> to <code>Nearest</code>.</p>
@@ -2220,7 +2221,7 @@ func _input(event: InputEvent) -&gt; void:
 </ul>
 <h3 id="testing-the-camera"><a class="header" href="#testing-the-camera">Testing the Camera</a></h3>
 <ul>
-<li>Now if you run the game, you can pivot the camera by moving your mouse, and you can zoom in and out. Also when you go low enough, the camera slides across the floor instead of clipping through it. That's the benifit of the <code>SpringArm3D</code>. This stops working at very sharp angles, which is why the <code>clamp</code> function is in the script.</li>
+<li>Now if you run the game, you can pivot the camera by moving your mouse, and you can zoom in and out. Also when you go low enough, the camera slides across the floor instead of clipping through it. That's the benefit of the <code>SpringArm3D</code>. This stops working at very sharp angles, which is why the <code>clamp</code> function is in the script.</li>
 </ul>
 <h3 id="player-movement"><a class="header" href="#player-movement">Player Movement</a></h3>
 <ul>
@@ -2252,10 +2253,10 @@ var gravity = 5
 func _process(delta: float) -&gt; void:
 	var input_dir = Input.get_vector("walk_left", "walk_right", "walk_forward", "walk_backward")
 	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	direction = direction.rotated(Vector3.UP, camera.global_rotation.y)
+	direction = direction.rotated(Vector3.UP, camera.global_rotation.y) # Remove me and see what happens!
 
 	if input_dir:
-		model.rotation.y = lerp_angle(model.rotation.y, atan2(-direction.x, -direction.z), ANGULAR_VELOCITY * delta)
+		model.rotation.y = lerp_angle(model.rotation.y, atan2(-direction.x, -direction.z), ANGULAR_VELOCITY * delta) # Change me to `model.rotation.y = atan2(-direction.x, -direction.z)` and see what happens!
 	
 	if not direction and is_on_floor():
 		current_state = PlayerState.IDLE
@@ -2302,6 +2303,100 @@ func update_animation() -&gt; void:
 		animations.play("falling")
 		did_fall_anim = true
 </code></pre>
+<h3 id="breaking-down-the-player-script"><a class="header" href="#breaking-down-the-player-script">Breaking Down the Player Script</a></h3>
+<ul>
+<li>
+<p>The first handful of lines sets up globals needed throughout the script. The only notable thing here is the <code>PlayerState</code> enum. An enum is a datatype that can be one of a set of predefined states. In this case, there are defined states for being idle, running, jumping and falling. The <code>current_state</code> variable can therefore be in one of those states at a given time.</p>
+</li>
+<li>
+<p>The <code>_process</code> function is a callback that is called many times per second, and is used for general game logic. The frequency that this function is tied to the framerate, but since that can fluxuate depending on PC specs and how intensive the game is, it also provides an arguement. The <code>delta</code> argument is a float that describes how long ago in seconds the <code>_process</code> function was previously called. This is used to normalize game bevahiors across PCs and when the framerate changes.</p>
+</li>
+<li>
+<p>In it, the player input is read (specifically a vector from the WASD keys), is applied to the player's basis, rotated in relation to the camera, then stored for later. Then the player model is rotated along the y-axis in accordance with the direction of input. Note that the direction is smoothed out with <code>lerp_angle</code> to prevent snapping. Finally some conditions related to the player being on the floor, and whether the player is rising or falling to correctly set the animation state.</p>
+</li>
+<li>
+<p>The <code>_physics_process</code> function is a callback that unlike <code>_process</code> is guaranteed to run at regular intervals, which makes it suitable for physics operations. In it, the following logic is done:</p>
+<ul>
+<li>Player is in the air? → Apply gravity to the player</li>
+<li>Player is on the ground and has hit the jump button? → Give the player an upward force</li>
+<li>Player is rising in the air and has let go of the jump button? → Slow down the player's velocity</li>
+<li>Is the direction calculated in <code>_process</code> nonzero? → Apply it to the X and Z axes of velocity</li>
+<li>Finally, the <code>move_and_slide</code> function is called, which applies the set velocity to the Player's physics object in the game world, accounting for collisions and other forces.</li>
+</ul>
+</li>
+<li>
+<p>The <code>update_animation</code> function is not a callback, but is called at the end of the <code>_process</code> function after the player state is set. Depending on the player's current state, it plays the relevant animation. The <code>play</code> function does not restart the same animation if it is already playing, so this setup effectively loops animations. Note the extra logic needed for jumping and falling in order to play those animations once per cycle.</p>
+<div class="note">Try changing the lines with comments in the code. You might get a better idea of what exactly they do.</div>
+</li>
+</ul>
+<p>Let's move on to <a href="godot/making-props.html">making props.</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="making-props"><a class="header" href="#making-props">Making Props</a></h1>
+<h3 id="creating-a-spike"><a class="header" href="#creating-a-spike">Creating a Spike</a></h3>
+<ul>
+<li>The first prop to make is a spike. This is a very simple object with a hitbox that resets the scene when the player touches it.</li>
+<li>Create an <code>Area3D</code>, drag the <code>spike.gltf</code> model onto it, then add a <code>CollisionShape3D</code> and fit it to the spike's model. The object should look like this:</li>
+</ul>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="godot/6-1.png" alt="Spike node">
+<ul>
+<li>Add this script to it:</li>
+</ul>
+<pre><code class="language-gdscript">extends Area3D
+
+func collision(body: Node3D):
+	if body.name == "Player":
+		get_tree().call_deferred("reload_current_scene")
+</code></pre>
+<ul>
+<li>The <code>collision</code> function gets called whenever something collides with this <code>Area3D</code>, then we check the node to make sure it is the player, and if so, we reset the scene. Note the <code>call_deferred</code> function. Godot will switch between several major tasks many times every second to create a cohesive experience. That can include rendering, input polling, physics, and more. Certain tasks may have specific requirements while they are running, one example is that the node tree cannot be modified during the physics cycle. Since the <code>collision</code> function is called during the physics cycle, and reloading the scene completely destroys and rebuilds the node tree, the physics engine throws an error. Using <code>call_deferred</code> tells the engine to wait to call the specified function until it is valid.</li>
+<li>Running the game and walking into the spikes shows that nothing happens. That's because <code>collision</code> is not a built-in callback, it's a custom defined function that is called nowhere. In fact, there is no callback for collisions on an <code>Area3D</code>. Instead, it has a signal.</li>
+<li>Signals are messages that emit in reaction to specific events. The signal needed here is called <code>body_entered</code>. In the top right next to the <code>Inspector</code> tab, switch to the <code>Node</code> tab and double click the <code>body_entered</code> signal. In the pop-up dialog, select the spike node and link it to the <code>collision</code> function (the <code>Pick</code> button can be helpful here).</li>
+</ul>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="godot/6-2.png" alt="Linking a signal">
+<ul>
+<li>After that, the collision function should be called whenever something collides with the spike, and the logic within it will reset the scene if the collider is the player.</li>
+<li>Finally, click and drag the spike node from the scene tree, and drag it into the file system. Name the file <code>spike.tscn</code>. This turns the node into a scene (or the equivelant in Unity, a "prefab"). When the file is dragged back to the scene tree, it creates a copy that is linked to the original. That means that if the <code>spike.tscn</code> scene is changed, all existing copies of the spike change to match it. This allows for faster, more modular, and more flexible game development.</li>
+</ul>
+<h3 id="creating-motor-oil"><a class="header" href="#creating-motor-oil">Creating Motor Oil</a></h3>
+<ul>
+<li>The motor oil model will be used for the "win level" object. It is nearly identical to the spike, but changes the scene to a different one instead of resetting it.</li>
+<li>The process will be the same as the spike, with the following differences.
+<ul>
+<li>Node name will be <code>Win</code></li>
+<li>Scene name will be <code>win.tscn</code></li>
+<li>Script will look like this:</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-gdscript">extends Area3D
+
+@export var next_level: PackedScene
+
+const SPIN_SPEED = 2
+
+var time = 0
+@onready var start_y = position.y
+
+func _process(delta: float) -&gt; void:
+	rotate_y(SPIN_SPEED * delta)
+	time += wrapf(delta, 0, 2*PI)
+	position.y = start_y + sin(2 * time) * 0.125
+
+func collision(body: Node3D):
+	if body.name == "Player":
+		get_tree().call_deferred("change_scene_to_packed", next_level)
+</code></pre>
+<ul>
+<li>The code in <code>_process</code> is to make the prop spin around, and float up and down.</li>
+<li>Notice the line that starts with <code>@export</code> at the top. That exposes that variable to the editor, meaning its value can be modified in the properties editor. In this case, another scene can be dragged in, setting the target scene that the player will be sent to after winning. Exported variables are not shared across prefab copies, which means you can have multiple win props in different levels, each which point to different targets.</li>
+</ul>
+<h3 id="congratulations"><a class="header" href="#congratulations">Congratulations!</a></h3>
+<ul>
+<li>You've created a basic platformer with lose and win conditions! Play it and take a look at what you made. Experiment with the scripts to see what you can change and how it impacts the game.</li>
+</ul>
+<h3 id="what-now"><a class="header" href="#what-now">What Now?</a></h3>
+<ul>
+<li>Keep practicing! You can build on the project made from this guide, or you can start a new project. The internet is also full of resources to help you, like <a href="https://www.gdquest.com/tutorial/godot/learning-paths/beginner/">GDQuest</a>, <a href="https://godotdevacademy.com/">Godot Game Dev Academy</a>, and the <a href="https://docs.godotengine.org/en/stable/getting_started/step_by_step/index.html">Official Godot Docs</a>.</li>
+</ul>
 
                     </main>
 

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Making a Game - The CPT&#x27;s Game Development Workshop</title>
+        <title>Making Props - The CPT&#x27;s Game Development Workshop</title>
 
 
         <!-- Custom HTML head -->
@@ -176,35 +176,82 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="making-a-game"><a class="header" href="#making-a-game">Making a Game</a></h1>
-<h3 id="getting-the-assets"><a class="header" href="#getting-the-assets">Getting the Assets</a></h3>
-<ol>
-<li>Download the premade assets <a href="https://github.com/CSU-WPT/game-dev-workshop/releases/">here</a>, get the <code>assets.zip</code> file.</li>
-<li>Extract the zip file and drag the files into Godot's filesystem, it should now look like this:</li>
-</ol>
-<img style="display: block; margin-left: auto; margin-right: auto;" src="3-1.png" alt="Assets in Godot">
+                        <h1 id="making-props"><a class="header" href="#making-props">Making Props</a></h1>
+<h3 id="creating-a-spike"><a class="header" href="#creating-a-spike">Creating a Spike</a></h3>
 <ul>
-<li>Notice how the gltf files (which contain models) were split into png images, since Godot converts models to scenes which reference the textures externally.</li>
-<li>There is a problem though, Godot automatically compresses imported textures to save space. This is fine most of the time, since most textures are large and single pixels won't make a difference, but these assets use pixel art, which involves small textures where each pixel matters. This causes the model to look wrong. To fix this you can change the import settings of the textures.</li>
+<li>The first prop to make is a spike. This is a very simple object with a hitbox that resets the scene when the player touches it.</li>
+<li>Create an <code>Area3D</code>, drag the <code>spike.gltf</code> model onto it, then add a <code>CollisionShape3D</code> and fit it to the spike's model. The object should look like this:</li>
 </ul>
-<h3 id="fixing-the-assets"><a class="header" href="#fixing-the-assets">Fixing the Assets</a></h3>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="6-1.png" alt="Spike node">
 <ul>
-<li>Select a texture,  go to the "Import" tab, change the "Mode" to "Lossless", then hit "Reimport (*)". Repeat this process for all the textures.</li>
+<li>Add this script to it:</li>
 </ul>
-<img style="display: block; margin-left: auto; margin-right: auto;" src="3-2.png" alt="Reimporting the textures">
-<p>Now that our assets are ready, let's <a href="setting-the-scene.html">set the scene.</a></p>
+<pre><code class="language-gdscript">extends Area3D
+
+func collision(body: Node3D):
+	if body.name == "Player":
+		get_tree().call_deferred("reload_current_scene")
+</code></pre>
+<ul>
+<li>The <code>collision</code> function gets called whenever something collides with this <code>Area3D</code>, then we check the node to make sure it is the player, and if so, we reset the scene. Note the <code>call_deferred</code> function. Godot will switch between several major tasks many times every second to create a cohesive experience. That can include rendering, input polling, physics, and more. Certain tasks may have specific requirements while they are running, one example is that the node tree cannot be modified during the physics cycle. Since the <code>collision</code> function is called during the physics cycle, and reloading the scene completely destroys and rebuilds the node tree, the physics engine throws an error. Using <code>call_deferred</code> tells the engine to wait to call the specified function until it is valid.</li>
+<li>Running the game and walking into the spikes shows that nothing happens. That's because <code>collision</code> is not a built-in callback, it's a custom defined function that is called nowhere. In fact, there is no callback for collisions on an <code>Area3D</code>. Instead, it has a signal.</li>
+<li>Signals are messages that emit in reaction to specific events. The signal needed here is called <code>body_entered</code>. In the top right next to the <code>Inspector</code> tab, switch to the <code>Node</code> tab and double click the <code>body_entered</code> signal. In the pop-up dialog, select the spike node and link it to the <code>collision</code> function (the <code>Pick</code> button can be helpful here).</li>
+</ul>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="6-2.png" alt="Linking a signal">
+<ul>
+<li>After that, the collision function should be called whenever something collides with the spike, and the logic within it will reset the scene if the collider is the player.</li>
+<li>Finally, click and drag the spike node from the scene tree, and drag it into the file system. Name the file <code>spike.tscn</code>. This turns the node into a scene (or the equivelant in Unity, a "prefab"). When the file is dragged back to the scene tree, it creates a copy that is linked to the original. That means that if the <code>spike.tscn</code> scene is changed, all existing copies of the spike change to match it. This allows for faster, more modular, and more flexible game development.</li>
+</ul>
+<h3 id="creating-motor-oil"><a class="header" href="#creating-motor-oil">Creating Motor Oil</a></h3>
+<ul>
+<li>The motor oil model will be used for the "win level" object. It is nearly identical to the spike, but changes the scene to a different one instead of resetting it.</li>
+<li>The process will be the same as the spike, with the following differences.
+<ul>
+<li>Node name will be <code>Win</code></li>
+<li>Scene name will be <code>win.tscn</code></li>
+<li>Script will look like this:</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-gdscript">extends Area3D
+
+@export var next_level: PackedScene
+
+const SPIN_SPEED = 2
+
+var time = 0
+@onready var start_y = position.y
+
+func _process(delta: float) -&gt; void:
+	rotate_y(SPIN_SPEED * delta)
+	time += wrapf(delta, 0, 2*PI)
+	position.y = start_y + sin(2 * time) * 0.125
+
+func collision(body: Node3D):
+	if body.name == "Player":
+		get_tree().call_deferred("change_scene_to_packed", next_level)
+</code></pre>
+<ul>
+<li>The code in <code>_process</code> is to make the prop spin around, and float up and down.</li>
+<li>Notice the line that starts with <code>@export</code> at the top. That exposes that variable to the editor, meaning its value can be modified in the properties editor. In this case, another scene can be dragged in, setting the target scene that the player will be sent to after winning. Exported variables are not shared across prefab copies, which means you can have multiple win props in different levels, each which point to different targets.</li>
+</ul>
+<h3 id="congratulations"><a class="header" href="#congratulations">Congratulations!</a></h3>
+<ul>
+<li>You've created a basic platformer with lose and win conditions! Play it and take a look at what you made. Experiment with the scripts to see what you can change and how it impacts the game.</li>
+</ul>
+<h3 id="what-now"><a class="header" href="#what-now">What Now?</a></h3>
+<ul>
+<li>Keep practicing! You can build on the project made from this guide, or you can start a new project. The internet is also full of resources to help you, like <a href="https://www.gdquest.com/tutorial/godot/learning-paths/beginner/">GDQuest</a>, <a href="https://godotdevacademy.com/">Godot Game Dev Academy</a>, and the <a href="https://docs.godotengine.org/en/stable/getting_started/step_by_step/index.html">Official Godot Docs</a>.</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../godot/getting-started.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../godot/making-a-player.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../godot/setting-the-scene.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -212,13 +259,10 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../godot/getting-started.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../godot/making-a-player.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../godot/setting-the-scene.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>

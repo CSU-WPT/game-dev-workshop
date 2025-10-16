@@ -29,6 +29,7 @@
         <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../theme/style.css">
 
 
         <!-- Provide site root and default themes to javascript -->
@@ -203,7 +204,7 @@
 <img style="display: block; margin-left: auto; margin-right: auto;" src="4-3.png" alt="Selecting the Child Node">
 <ul>
 <li>
-<p>Rename this new node to <code>Map</code>. Nodes can also be used like folders in a filesystem for organizational purposes. It doesn't change anything functionally about the scene, but it allows us to organize the different parts of the scene. In this case, this node will contain all the terrain.</p>
+<p>Rename this new node to <code>Map</code>. Nodes can also be used like folders in a file system for organizational purposes. It doesn't change anything functionally about the scene, but it allows us to organize the different parts of the scene. In this case, this node will contain all the terrain.</p>
 </li>
 <li>
 <p>Under the <code>Map</code> node, add a <code>CSGBox3D</code>. This is a node type that acts as both a rendered mesh, and a collidable box, and a static physics object, whereas normally you would need seperate nodes for these things. The benifit of CSG objects is they allow you to rapidly prototype levels, but they have poor performance when you use enough for a full scale game. Nonetheless, they're perfect for a game jam.</p>
@@ -216,7 +217,7 @@
 <h3 id="texturing-the-box"><a class="header" href="#texturing-the-box">Texturing the Box</a></h3>
 <ul>
 <li>
-<p>You may also notice there is now a bunch of stuff in the properties editor. Find where it says <code>Material &lt;empty&gt;</code> and drag the <code>tile.png</code> from the filesystem in the bottom left onto the <code>&lt;empty&gt;</code> text. The box should now have a material assigned to it, and the tile texture should be blurry and streched out across the faces of the box. Let's fix that.</p>
+<p>You may also notice there is now a bunch of stuff in the properties editor. Find where it says <code>Material &lt;empty&gt;</code> and drag the <code>tile.png</code> from the file system in the bottom left onto the <code>&lt;empty&gt;</code> text. The box should now have a material assigned to it, and the tile texture should be blurry and streched out across the faces of the box. Let's fix that.</p>
 </li>
 <li>
 <p>Click on the new material (it will show up as a sphere in the properties editor), you should see a bunch of subcategories appear. Find <code>UV1</code> and enable <code>Triplanar</code>. Then find <code>Sampling</code> and set <code>Filter</code> to <code>Nearest</code>.</p>

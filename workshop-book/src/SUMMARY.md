@@ -21,3 +21,4 @@
 - [Making a Game](./godot/making-a-game.md)
   - [Setting the Scene](./godot/setting-the-scene.md)
   - [Making a Player](./godot/making-a-player.md)
+  - [Making Props](./godot/making-props.md)

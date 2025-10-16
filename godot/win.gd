@@ -6,7 +6,7 @@ const SPIN_SPEED = 2
 
 var time = 0
 @onready var start_y = position.y
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta: float) -> void:
 	rotate_y(SPIN_SPEED * delta)
 	time += wrapf(delta, 0, 2*PI)

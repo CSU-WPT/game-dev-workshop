@@ -62,7 +62,7 @@ func _input(event: InputEvent) -> void:
 - The `_input` function is another callback that is called whenever the engine sees a player input. It also gives information about the input with the `event` argument. If the event is a mouse motion, then apply that motion to the spring arm's rotation. If it matches one of the zooming events then increase or decrease the spring length. Notice the use of the `clamp` functions, which prevent looking to high or low, and zooming too far in or out.
 
 ### Testing the Camera
-- Now if you run the game, you can pivot the camera by moving your mouse, and you can zoom in and out. Also when you go low enough, the camera slides across the floor instead of clipping through it. That's the benifit of the `SpringArm3D`. This stops working at very sharp angles, which is why the `clamp` function is in the script.
+- Now if you run the game, you can pivot the camera by moving your mouse, and you can zoom in and out. Also when you go low enough, the camera slides across the floor instead of clipping through it. That's the benefit of the `SpringArm3D`. This stops working at very sharp angles, which is why the `clamp` function is in the script.
 
 ### Player Movement
 - Next, add a script to the player node, it will look like this:
@@ -94,10 +94,10 @@ var gravity = 5
 func _process(delta: float) -> void:
 	var input_dir = Input.get_vector("walk_left", "walk_right", "walk_forward", "walk_backward")
 	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	direction = direction.rotated(Vector3.UP, camera.global_rotation.y)
+	direction = direction.rotated(Vector3.UP, camera.global_rotation.y) # Remove me and see what happens!
 
 	if input_dir:
-		model.rotation.y = lerp_angle(model.rotation.y, atan2(-direction.x, -direction.z), ANGULAR_VELOCITY * delta)
+		model.rotation.y = lerp_angle(model.rotation.y, atan2(-direction.x, -direction.z), ANGULAR_VELOCITY * delta) # Change me to `model.rotation.y = atan2(-direction.x, -direction.z)` and see what happens!
 	
 	if not direction and is_on_floor():
 		current_state = PlayerState.IDLE
@@ -144,3 +144,19 @@ func update_animation() -> void:
 		animations.play("falling")
 		did_fall_anim = true
 ```
+
+### Breaking Down the Player Script
+- The first handful of lines sets up globals needed throughout the script. The only notable thing here is the `PlayerState` enum. An enum is a datatype that can be one of a set of predefined states. In this case, there are defined states for being idle, running, jumping and falling. The `current_state` variable can therefore be in one of those states at a given time.
+- The `_process` function is a callback that is called many times per second, and is used for general game logic. The frequency that this function is tied to the framerate, but since that can fluxuate depending on PC specs and how intensive the game is, it also provides an arguement. The `delta` argument is a float that describes how long ago in seconds the `_process` function was previously called. This is used to normalize game bevahiors across PCs and when the framerate changes.
+- In it, the player input is read (specifically a vector from the WASD keys), is applied to the player's basis, rotated in relation to the camera, then stored for later. Then the player model is rotated along the y-axis in accordance with the direction of input. Note that the direction is smoothed out with `lerp_angle` to prevent snapping. Finally some conditions related to the player being on the floor, and whether the player is rising or falling to correctly set the animation state.
+- The `_physics_process` function is a callback that unlike `_process` is guaranteed to run at regular intervals, which makes it suitable for physics operations. In it, the following logic is done:
+  - Player is in the air? &rarr; Apply gravity to the player
+  - Player is on the ground and has hit the jump button? &rarr; Give the player an upward force
+  - Player is rising in the air and has let go of the jump button? &rarr; Slow down the player's velocity
+  - Is the direction calculated in `_process` nonzero? &rarr; Apply it to the X and Z axes of velocity
+  - Finally, the `move_and_slide` function is called, which applies the set velocity to the Player's physics object in the game world, accounting for collisions and other forces.
+- The `update_animation` function is not a callback, but is called at the end of the `_process` function after the player state is set. Depending on the player's current state, it plays the relevant animation. The `play` function does not restart the same animation if it is already playing, so this setup effectively loops animations. Note the extra logic needed for jumping and falling in order to play those animations once per cycle.
+  
+  <div class="note">Try changing the lines with comments in the code. You might get a better idea of what exactly they do.</div>
+
+Let's move on to [making props.](making-props.md) 

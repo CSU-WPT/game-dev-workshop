@@ -17,7 +17,7 @@
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="4-3.png" alt="Selecting the Child Node">
 
-- Rename this new node to `Map`. Nodes can also be used like folders in a filesystem for organizational purposes. It doesn't change anything functionally about the scene, but it allows us to organize the different parts of the scene. In this case, this node will contain all the terrain.
+- Rename this new node to `Map`. Nodes can also be used like folders in a file system for organizational purposes. It doesn't change anything functionally about the scene, but it allows us to organize the different parts of the scene. In this case, this node will contain all the terrain.
 
 - Under the `Map` node, add a `CSGBox3D`. This is a node type that acts as both a rendered mesh, and a collidable box, and a static physics object, whereas normally you would need seperate nodes for these things. The benifit of CSG objects is they allow you to rapidly prototype levels, but they have poor performance when you use enough for a full scale game. Nonetheless, they're perfect for a game jam.
 
@@ -26,7 +26,7 @@
 <img style="display: block; margin-left: auto; margin-right: auto;" src="4-4.png" alt="Resizing the Box">
 
 ### Texturing the Box
-- You may also notice there is now a bunch of stuff in the properties editor. Find where it says `Material <empty>` and drag the `tile.png` from the filesystem in the bottom left onto the `<empty>` text. The box should now have a material assigned to it, and the tile texture should be blurry and streched out across the faces of the box. Let's fix that.
+- You may also notice there is now a bunch of stuff in the properties editor. Find where it says `Material <empty>` and drag the `tile.png` from the file system in the bottom left onto the `<empty>` text. The box should now have a material assigned to it, and the tile texture should be blurry and streched out across the faces of the box. Let's fix that.
 
 - Click on the new material (it will show up as a sphere in the properties editor), you should see a bunch of subcategories appear. Find `UV1` and enable `Triplanar`. Then find `Sampling` and set `Filter` to `Nearest`.
 

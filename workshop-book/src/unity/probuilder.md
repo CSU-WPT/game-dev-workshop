@@ -85,7 +85,7 @@
     - You should all the edges turn dark black and when you hover, they should change colors.
         - Pick an edge (I'll start with the one that's selected in the image).
         - Right-click with the edge selected to open a menu
-        - In that menu, find and click**Insert Edge Loop**.
+        - In that menu, find and click **Insert Edge Loop**.
             - Here, you'll also see a shortcut to invoke this option. I suggest you use this shortcut because we'll be making a couple of these
 <br/>
 
@@ -95,14 +95,6 @@
 9. Once you click **Insert Edge Loop**...
     - ProBuilder will introduce a new edge **perpendicular** to the one you selected. 
         - I double-clicked on the *Scene* to make it full-screen.
-<br/>
-
-
-<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_65.png" alt="Unity Editor Home Page">
-
-10. Once you click **Insert Edge Loop**...
-    - ProBuilder will introduce a new edge **perpendicular** to the one you selected. 
-        - I double-click on the *Scene* to make the scene full-screen.
 <br/>
 
 

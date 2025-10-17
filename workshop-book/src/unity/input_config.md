@@ -278,7 +278,11 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
 
 <br/><br/>
 
-#### Run the game and you should be able to move! But, you'll notice that the player is "stiff". He's always looking in the same direction. Let's change that so that the player looks in the direction that we're moving in!
+#### Anyways...
+
+#### Run the game and you should be able to move! 
+
+#### But, you'll notice that the player is "stiff". He's always looking in the same direction. Let's change that so that the player looks in the direction that we're moving in!
 <br/>
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_23.png" alt="Unity Editor Home Page">
@@ -350,7 +354,7 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
         - Locking these two axes ensures that our jump force is only applied to the y-axis (directly up) and nowhere else.
 <br/>
 
-#### Let's make a few changes to our script
+#### Let's make a few changes to our script, Player_Movement.cs (or whatever you named it)
 
 <br/>
 
@@ -364,13 +368,13 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
     <br/>
     - Let's take a look at these:
         - *Rigidbody rb;*
-            - This will hold the Rigidbody component of this object (the object that this script is attached to). Which will allow us to add forces to it later
+            - This variable will hold the Rigidbody component of the object that this script is attached to. This will allow us to add forces to it later.
         - *public bool isGrounded;*
             - This ensures that we can only jump again once we have landed (and not at any other time)
             - Simply relying on collisions can cause some errors.
             - Without this check, we could either fall through the ground or keep jumping up forever and never land.
         - *public float jumpStrength = 7f;*
-            - Self-explanatory. Allows us to tweak the strength of our jump (we can also give custom values in the editor itself)
+            - Self-explanatory. Allows us to modify the strength of our jump. We can change this value in the Editor as well.
 
 <br/>
 
@@ -380,10 +384,10 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
 36. Underneath our *OnMove* function, add this function.
     - The syntax is mostly the same except for one key difference...
         - **context.performed**
-            - Remember, we are not pressing and holding the jump button. This is a one-and-done type of action
+            - Remember, we are not pressing and holding the jump button. This is a one-and-done type of action.
             - Therefore, we do not need to constantly read a value from the action map (like *OnMove*)
                 - We just need to check, once, whether or not we received a context (message) from our key binding (the jump button)
-                    - If we did, we print a message to the console
+                    - If we did, we print a message to the console.
 <br/>
 
 
@@ -406,8 +410,8 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_32.png" alt="Unity Editor Home Page">
 
-38. In our *Start* function, add the above line
-    - This allows us to actually access and store this object's Rigidbody component inside of our variable to use in our script.
+38. In our *Start* function, add the line in the image above.
+    - This allows us to actually access and store this object's Rigidbody component inside of our variable for use in our script.
     - We placed this inside *Start()* so that this action is only performed once. We access the Rigidbody component once, store it, and that's it.
     - EDIT (This is me from the future) --> Change this line from **rb.GetComponent...** to **rb = GetComponent...**
 
@@ -431,7 +435,7 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_34.png" alt="Unity Editor Home Page">
 
-40. Add the following *if* statement to the function body.
+40. Add the following code to the function body of *OnCollisionEnter*.
     - What does this mean?
         - *Debug.Log(...)*
             - This is here to ensure that a). a collision occurred and b). it occurred with the correct object.
@@ -443,12 +447,24 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
             - So, if the other object in the collision that just happened with our object is tagged with the tag "Ground", then...
                 - We set *isGrounded* to true (i.e. we have landed). 
 
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/OnCollisionExit.png" alt="Unity Editor Home Page">
+
+41. Add the following method after OnCollisionEnter()
+    - Why?
+        - If you comb through the rest of the code, you realize that there's nothing that sets the isGrounded flag to **False**
+        - Once we jump and it's set to **True**, it remains **True**.
+            - The result? **Unlimited jumps**
+            - Fun, but it should be implemented in a better manner (I'll leave that up to you if you want to do that)
+        - This method is called in Unity when two GameObjects' colliders are not in contact with each other.
+            - Once they separate, this method is called. 
+            - The game engine can determine if they've separated. This method just allows **US** to determine that as well and update our script's logic as necessary.
+
 <br/>
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_36.png" alt="Unity Editor Home Page">
 
-41. Let's add a tag to our **Plane** game object.
-    - Back in the Editor, click the **Plane** object to view its components.
+42. Back in the Editor, let's add a tag to our **Plane** game object.
+    - Click the **Plane** object to view its components.
     - In the Component Panel (on the right), up top (underneath the object's name), find the **Tag** attribute.
     - Click the dropdown menu next to it to expand it.
     - Click **Add Tag...**
@@ -456,13 +472,13 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
     - Name your tag **Ground** (name it EXACTLY the name we used in our if statement in the collision function in our script).
     - Click **Save**.
     - Click on the **Plane** ground object to see its components. Again.
-    - Find the **Tag** attribute and the dropdown.
-    - Open the dropdown and you should see your newly created tag in the list.
+    - Find the **Tag** attribute and open the dropdown.
+    - You should see your newly created tag in the list.
     - Click it to assign it to this object.
         - Unity does **NOT** do this automatically. So, don't forget this step!
 <br/>
 
-42. You remember earlier when we configured the **OnMove** function in our **Player Input** script? This time, we need to do the exact same thing, but for the **OnJump** function!
+43. You remember earlier when we configured the **OnMove** function in our **Player Input** script? This time, we need to do the exact same thing, but for the **OnJump** function!
     - Click on **jearl_backwards** to view its components.
     - In the **Player Input** script, open the **Events** dropdown (same as before).
     - Open the **Player** dropdown.
@@ -473,7 +489,8 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
         - Open it.
         - You should see an option for **OnJump**
         - Click that and you're good.
-30. Make sure to add a **Box Collider** component to your game object. The process is that same as any other component. Simply add it and that's it.
+
+44. Make sure to add a **Box Collider** component to your game object. The process is that same as any other component. Simply add it and that's it.
 
 
 
@@ -496,17 +513,20 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
 <br/>
 
 
-<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_38.png" alt="Unity Editor Home Page">
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/Fixed_CameraFollowLogic.png" alt="Unity Editor Home Page">
 
 44. Let's add the following variables first:
     - What do they mean?:
         - *public Transform player;*
             - We will need this later to hold information about our player object (we'll just click and drag our player object into this variable in our Editor later).
-        - *public Vector3 offset = new Vector3(...)*
+        - *Vector3 desired_distance = new Vector3(...)*
             - This is the three dimensional position that the camera will be locked at.
-            - Note: These are coordinates that I decided to use after a bit of trial and error (I just like how the camera sits at this position).
-                - You can experiment yourself to find the location that you find better.
+            - This is how much distance you want to maintain between the camera and the player at all times.
+            - **Note**: These are coordinates that I decided to use after a bit of trial and error (I just like how the camera sits at this position).
+                - Feel free to experiment yourself to find the location that you find better.
                 - Move the camera to that position. Then, just copy its *Position* values (from **Transform**) into this Vector3 variable.
+        - *Vector3 offset*
+            - This is where we'll store the offset value (calculated as the difference between the player's position and the camera's position)
     
 
 <br/>
@@ -517,17 +537,27 @@ Now, double-click **Player_Control** to open it in a separate window and dock it
 45. Now, we'll add the lines up above into the *Update()* method
     - What does this mean?
         - *transform.position = player.position + offset;*
-            - We're gonna take the position of this game object (the object that this script is attached to) and add to its position (which is in three dimensions) the position of the offset that we set up above.
+            - We're gonna take the position of this game object (the camera) and set it to the position of the player + the offset vector that we manually set up above.
         - *transform.LookAt(player);*
             - This line will apply a rotation to this game object (the camera) that will ensure that its forward vector (the z-axis vector) is pointing directly at the specified game object (which we'll set to our player object in the Unity Editor).
+
+<br/>
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/Offset_calculate.png" alt="Unity Editor Home Page">
+
+46. Now, we'll add this line into the *Start()* method
+    - What does this mean?
+        - This is how we calculate how much offset (distance) we need to maintain at each frame of gameplay.
 
 <br/>
 
 
 #### Now, when you return to the Unity Editor and look at the Main Camera's components, make sure to drag *jearl_backwards* into the empty slot next to the *Player* variable. Run the game and see if the camera is attached to the player object.
 
+<br>
+<br>
 
-## We are now finished with the input configuration. Next, we will add animations to the player object
+## We are now finished with the input configuration. Next, we will add [animations](animation.md) to the player object.
 
 
 

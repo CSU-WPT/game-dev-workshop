@@ -28,7 +28,7 @@
 
 3. Click and drag, in build mode, to see a grid pop up.
     - This grid represents the base of our shape (a cube, in this case). As you hold down the left-click, you can drag that shape to whatever dimensions you want to size our base.
-        - For this tutorial, ensure that your base is somewhat of an **rectangle** which is longer on the **z-axis** than the **y-axis**.
+        - For this tutorial, ensure that your base is somewhat of a **rectangle** which is longer on the **z-axis** than the **y-axis**.
             - Think of a football field!
             - If its not perfect, don't worry! We can resize its transformation values with numbers later.
 <br/>

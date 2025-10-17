@@ -5,7 +5,7 @@
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_40.png" alt="Unity Editor Home Page">
 
-1. In our *Assets* view, right-click then hover over *Create*. In the next menu, hover over the *Animation* menu. Then, in the next menu, click on **Animator Controller**.
+1. Down below, in the *Assets* section, create an **Animator Controller** by following: Right-click --> Create --> Animation --> Animator Controller
     - Be sure to name it something like "Player_Animate"
     - What is this and why do we need it?
         - The **Animator Controller** is an asset in Unity that handles the logic of which animations will play for a particular object, what the transitions are, when the transitions occur, and so on.
@@ -17,10 +17,10 @@
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_41.png" alt="Unity Editor Home Page">
 
-2. Double click on the newly created Animator Controller below in your *Assets*. You will see the window (in the image above) open up.
+2. Double click on the newly created Animator Controller. You will see the window (in the image above) open up.
     - When gameplay is initiated, the first node, the first animation that we place (which will act as a **node** on a **graph**) will connect to the *Start* node.
         - This animation will play **first** upon initiating gameplay.
-    - From here on out, even though we won't make explicit node connections, we will still place all of our animations here (starting with **idle** animation first).
+    - From here on out, even though we won't make explicit node connections, we will still place all of our animations here (starting with the **idle** animation first).
 <br/>
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_42.png" alt="Unity Editor Home Page">
@@ -87,17 +87,17 @@
             - animation
                 - This is the **name** of the animation to transition to.
             - crossfade
-                - This is the length (in seconds) over which we will transition between two animations.
+                - This is the length (in seconds) over which we will transition between the two animations.
         - Let's go over each line:
             - *if (currentAnimation != animation) {*
-                - If the current animation is **NOT** the new animation which we wish to transition to.
+                - **Meaning**: If the current animation is **NOT** the new animation which we wish to transition to.
                 - This if statement ensures that we skip the body of the function *if* *animation* ever equals *currentAnimation*.
             - *currentAnimation = animation*
-                - If the transition is a valid transition, then we take the name of the current animation and set it to the name of the new animation.
+                - **Meaning**: If the transition is a valid transition, then we take the name of the current animation and set it to the name of the new animation.
                     - Essentially, that String variable keeps track of the animation that is currently playing.
             - *animator.CrossFade(animation, crossfade)*
                 - This is the line performing the transitions.
-                - Since our *animator* variable is of type *Animator*, we can call the built-in function **CrossFade** on that variable (which, remember, is going to hold our Animator Controller) to switch from one animation to another.
+                - Since our *animator* variable is of type *Animator*, we can call the built-in function **CrossFade** on that variable to switch from one animation to another.
                     - The first parameter is the **name** of the animation to transition to.
                     - The second parameter is the fade length in seconds.
     - We will now call this function in a variety of situations.
@@ -118,7 +118,7 @@
             - Recall that our *movement* variable is a 3D vector whose **only** changing values are for the x-axis and z-axis (we don't move upwards, along the y-axis, with WASD).
                 - So, we check these two. See if one is non-zero, the other is non-zero, or both are non-zero. If any one of these conditions is true, we change the animation to the walking animation.
         - *else { ChangeAnimation("idle"); }*
-            - If we aren't moving at all, change the animation to *idle*. Pretty-self explanatory.
+            - If we aren't moving at all, change the animation to *idle*.
 <br/>
 
 
@@ -132,20 +132,26 @@
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_54.png" alt="Unity Editor Home Page">
 
-13. Lastly, add a function call for the *CheckAnimation()* function in the *Update()* function.
+13. Add a function call for the *CheckAnimation()* function in the *Update()* function.
     - We need this function to run every frame so that our animation changes dynamically and **constantly**.
+<br/>
+
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/Get_Animator.png" alt="Unity Editor Home Page">
+
+14. Lastly, retrieve the GameObject's animator component by adding second line inside **Start()**
+    - Without this line, animator will be null (or empty) and cause issues.
 <br/>
 
 
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_55.png" alt="Unity Editor Home Page">
 
-14. Back in our editor, drag and drop the Animator Controller object we created into the blank space in the Animator component of *jearl_backwards* in our **Script** component.
+15. Back in our editor, drag and drop the Animator Controller object we created into the blank space in the Animator component of *jearl_backwards* in our **Script** component.
 <br/>
 
 
 
-#### One last note --> add a ChangeAnimation() call for the "jumping" animation inside of our isGrounded (if (isGrounded) {...}) check in "OnJump"
-
+#### One last note --> add "ChangeAnimation("jumping")" inside if(isGrounded){...} in the OnJump function.
 <br/>
 
 

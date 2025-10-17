@@ -873,7 +873,9 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <h4 id="fix-swap-the-positions-of-your-motor_oil-and-jearl_backwards-assets-and-also-turn-the-camera-so-it-is-properly-oriented-and-centered-on-our-player-the-blue-axis-should-be-facing-away-from-the-camera-like-this"><a class="header" href="#fix-swap-the-positions-of-your-motor_oil-and-jearl_backwards-assets-and-also-turn-the-camera-so-it-is-properly-oriented-and-centered-on-our-player-the-blue-axis-should-be-facing-away-from-the-camera-like-this">Fix: Swap the positions of your <em>motor_oil</em> and <em>jearl_backwards</em> assets and also turn the camera so it is properly oriented and centered on our player (the blue axis should be facing away from the camera). Like this:</a></h4>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_89.png" alt="Unity Editor Home Page">
 <p><br/><br/></p>
-<h4 id="run-the-game-and-you-should-be-able-to-move-but-youll-notice-that-the-player-is-stiff-hes-always-looking-in-the-same-direction-lets-change-that-so-that-the-player-looks-in-the-direction-that-were-moving-in"><a class="header" href="#run-the-game-and-you-should-be-able-to-move-but-youll-notice-that-the-player-is-stiff-hes-always-looking-in-the-same-direction-lets-change-that-so-that-the-player-looks-in-the-direction-that-were-moving-in">Run the game and you should be able to move! But, you'll notice that the player is "stiff". He's always looking in the same direction. Let's change that so that the player looks in the direction that we're moving in!</a></h4>
+<h4 id="anyways"><a class="header" href="#anyways">Anyways...</a></h4>
+<h4 id="run-the-game-and-you-should-be-able-to-move"><a class="header" href="#run-the-game-and-you-should-be-able-to-move">Run the game and you should be able to move!</a></h4>
+<h4 id="but-youll-notice-that-the-player-is-stiff-hes-always-looking-in-the-same-direction-lets-change-that-so-that-the-player-looks-in-the-direction-that-were-moving-in"><a class="header" href="#but-youll-notice-that-the-player-is-stiff-hes-always-looking-in-the-same-direction-lets-change-that-so-that-the-player-looks-in-the-direction-that-were-moving-in">But, you'll notice that the player is "stiff". He's always looking in the same direction. Let's change that so that the player looks in the direction that we're moving in!</a></h4>
 <br/>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_23.png" alt="Unity Editor Home Page">
 <ol start="29">
@@ -983,7 +985,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </ul>
 </li>
 </ol>
-<h4 id="lets-make-a-few-changes-to-our-script"><a class="header" href="#lets-make-a-few-changes-to-our-script">Let's make a few changes to our script</a></h4>
+<h4 id="lets-make-a-few-changes-to-our-script-player_movementcs-or-whatever-you-named-it"><a class="header" href="#lets-make-a-few-changes-to-our-script-player_movementcs-or-whatever-you-named-it">Let's make a few changes to our script, Player_Movement.cs (or whatever you named it)</a></h4>
 <br/>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_29.png" alt="Unity Editor Home Page">
 <ol start="35">
@@ -997,7 +999,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <ul>
 <li><em>Rigidbody rb;</em>
 <ul>
-<li>This will hold the Rigidbody component of this object (the object that this script is attached to). Which will allow us to add forces to it later</li>
+<li>This variable will hold the Rigidbody component of the object that this script is attached to. This will allow us to add forces to it later.</li>
 </ul>
 </li>
 <li><em>public bool isGrounded;</em>
@@ -1009,7 +1011,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </li>
 <li><em>public float jumpStrength = 7f;</em>
 <ul>
-<li>Self-explanatory. Allows us to tweak the strength of our jump (we can also give custom values in the editor itself)</li>
+<li>Self-explanatory. Allows us to modify the strength of our jump. We can change this value in the Editor as well.</li>
 </ul>
 </li>
 </ul>
@@ -1026,12 +1028,12 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <ul>
 <li><strong>context.performed</strong>
 <ul>
-<li>Remember, we are not pressing and holding the jump button. This is a one-and-done type of action</li>
+<li>Remember, we are not pressing and holding the jump button. This is a one-and-done type of action.</li>
 <li>Therefore, we do not need to constantly read a value from the action map (like <em>OnMove</em>)
 <ul>
 <li>We just need to check, once, whether or not we received a context (message) from our key binding (the jump button)
 <ul>
-<li>If we did, we print a message to the console
+<li>If we did, we print a message to the console.
 <br/></li>
 </ul>
 </li>
@@ -1081,9 +1083,9 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <br/>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_32.png" alt="Unity Editor Home Page">
 <ol start="38">
-<li>In our <em>Start</em> function, add the above line
+<li>In our <em>Start</em> function, add the line in the image above.
 <ul>
-<li>This allows us to actually access and store this object's Rigidbody component inside of our variable to use in our script.</li>
+<li>This allows us to actually access and store this object's Rigidbody component inside of our variable for use in our script.</li>
 <li>We placed this inside <em>Start()</em> so that this action is only performed once. We access the Rigidbody component once, store it, and that's it.</li>
 <li>EDIT (This is me from the future) --&gt; Change this line from <strong>rb.GetComponent...</strong> to <strong>rb = GetComponent...</strong></li>
 </ul>
@@ -1106,7 +1108,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <br/>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_34.png" alt="Unity Editor Home Page">
 <ol start="40">
-<li>Add the following <em>if</em> statement to the function body.
+<li>Add the following code to the function body of <em>OnCollisionEnter</em>.
 <ul>
 <li>What does this mean?
 <ul>
@@ -1136,13 +1138,37 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </ul>
 </li>
 </ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/OnCollisionExit.png" alt="Unity Editor Home Page">
+<ol start="41">
+<li>Add the following method after OnCollisionEnter()
+<ul>
+<li>Why?
+<ul>
+<li>If you comb through the rest of the code, you realize that there's nothing that sets the isGrounded flag to <strong>False</strong></li>
+<li>Once we jump and it's set to <strong>True</strong>, it remains <strong>True</strong>.
+<ul>
+<li>The result? <strong>Unlimited jumps</strong></li>
+<li>Fun, but it should be implemented in a better manner (I'll leave that up to you if you want to do that)</li>
+</ul>
+</li>
+<li>This method is called in Unity when two GameObjects' colliders are not in contact with each other.
+<ul>
+<li>Once they separate, this method is called.</li>
+<li>The game engine can determine if they've separated. This method just allows <strong>US</strong> to determine that as well and update our script's logic as necessary.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
 <br/>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_36.png" alt="Unity Editor Home Page">
-<ol start="41">
+<ol start="42">
 <li>
-<p>Let's add a tag to our <strong>Plane</strong> game object.</p>
+<p>Back in the Editor, let's add a tag to our <strong>Plane</strong> game object.</p>
 <ul>
-<li>Back in the Editor, click the <strong>Plane</strong> object to view its components.</li>
+<li>Click the <strong>Plane</strong> object to view its components.</li>
 <li>In the Component Panel (on the right), up top (underneath the object's name), find the <strong>Tag</strong> attribute.</li>
 <li>Click the dropdown menu next to it to expand it.</li>
 <li>Click <strong>Add Tag...</strong></li>
@@ -1150,8 +1176,8 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <li>Name your tag <strong>Ground</strong> (name it EXACTLY the name we used in our if statement in the collision function in our script).</li>
 <li>Click <strong>Save</strong>.</li>
 <li>Click on the <strong>Plane</strong> ground object to see its components. Again.</li>
-<li>Find the <strong>Tag</strong> attribute and the dropdown.</li>
-<li>Open the dropdown and you should see your newly created tag in the list.</li>
+<li>Find the <strong>Tag</strong> attribute and open the dropdown.</li>
+<li>You should see your newly created tag in the list.</li>
 <li>Click it to assign it to this object.
 <ul>
 <li>Unity does <strong>NOT</strong> do this automatically. So, don't forget this step!
@@ -1197,7 +1223,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </li>
 </ol>
 <br/>
-<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_38.png" alt="Unity Editor Home Page">
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/Fixed_CameraFollowLogic.png" alt="Unity Editor Home Page">
 <ol start="44">
 <li>Let's add the following variables first:
 <ul>
@@ -1208,15 +1234,21 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <li>We will need this later to hold information about our player object (we'll just click and drag our player object into this variable in our Editor later).</li>
 </ul>
 </li>
-<li><em>public Vector3 offset = new Vector3(...)</em>
+<li><em>Vector3 desired_distance = new Vector3(...)</em>
 <ul>
 <li>This is the three dimensional position that the camera will be locked at.</li>
-<li>Note: These are coordinates that I decided to use after a bit of trial and error (I just like how the camera sits at this position).
+<li>This is how much distance you want to maintain between the camera and the player at all times.</li>
+<li><strong>Note</strong>: These are coordinates that I decided to use after a bit of trial and error (I just like how the camera sits at this position).
 <ul>
-<li>You can experiment yourself to find the location that you find better.</li>
+<li>Feel free to experiment yourself to find the location that you find better.</li>
 <li>Move the camera to that position. Then, just copy its <em>Position</em> values (from <strong>Transform</strong>) into this Vector3 variable.</li>
 </ul>
 </li>
+</ul>
+</li>
+<li><em>Vector3 offset</em>
+<ul>
+<li>This is where we'll store the offset value (calculated as the difference between the player's position and the camera's position)</li>
 </ul>
 </li>
 </ul>
@@ -1233,7 +1265,7 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 <ul>
 <li><em>transform.position = player.position + offset;</em>
 <ul>
-<li>We're gonna take the position of this game object (the object that this script is attached to) and add to its position (which is in three dimensions) the position of the offset that we set up above.</li>
+<li>We're gonna take the position of this game object (the camera) and set it to the position of the player + the offset vector that we manually set up above.</li>
 </ul>
 </li>
 <li><em>transform.LookAt(player);</em>
@@ -1247,8 +1279,23 @@ move = context.ReadValue&lt; Vector 2 &gt;();
 </li>
 </ol>
 <br/>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/Offset_calculate.png" alt="Unity Editor Home Page">
+<ol start="46">
+<li>Now, we'll add this line into the <em>Start()</em> method
+<ul>
+<li>What does this mean?
+<ul>
+<li>This is how we calculate how much offset (distance) we need to maintain at each frame of gameplay.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br/>
 <h4 id="now-when-you-return-to-the-unity-editor-and-look-at-the-main-cameras-components-make-sure-to-drag-jearl_backwards-into-the-empty-slot-next-to-the-player-variable-run-the-game-and-see-if-the-camera-is-attached-to-the-player-object"><a class="header" href="#now-when-you-return-to-the-unity-editor-and-look-at-the-main-cameras-components-make-sure-to-drag-jearl_backwards-into-the-empty-slot-next-to-the-player-variable-run-the-game-and-see-if-the-camera-is-attached-to-the-player-object">Now, when you return to the Unity Editor and look at the Main Camera's components, make sure to drag <em>jearl_backwards</em> into the empty slot next to the <em>Player</em> variable. Run the game and see if the camera is attached to the player object.</a></h4>
-<h2 id="we-are-now-finished-with-the-input-configuration-next-we-will-add-animations-to-the-player-object"><a class="header" href="#we-are-now-finished-with-the-input-configuration-next-we-will-add-animations-to-the-player-object">We are now finished with the input configuration. Next, we will add animations to the player object</a></h2>
+<br>
+<br>
+<h2 id="we-are-now-finished-with-the-input-configuration-next-we-will-add-animations-to-the-player-object"><a class="header" href="#we-are-now-finished-with-the-input-configuration-next-we-will-add-animations-to-the-player-object">We are now finished with the input configuration. Next, we will add <a href="unity/animation.html">animations</a> to the player object.</a></h2>
 <div style="break-before: page; page-break-before: always;"></div><h3 id="lets-get-visual-studio-code-set-up"><a class="header" href="#lets-get-visual-studio-code-set-up">Let's get Visual Studio Code set up!</a></h3>
 <ol>
 <li>
@@ -1377,7 +1424,7 @@ and pick whatever theme you want.</p>
 <h4 id="to-start-lets-set-up-an-animator-for-our-object"><a class="header" href="#to-start-lets-set-up-an-animator-for-our-object">To start, let's set up an <strong>animator</strong> for our object!</a></h4>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_40.png" alt="Unity Editor Home Page">
 <ol>
-<li>In our <em>Assets</em> view, right-click then hover over <em>Create</em>. In the next menu, hover over the <em>Animation</em> menu. Then, in the next menu, click on <strong>Animator Controller</strong>.
+<li>Down below, in the <em>Assets</em> section, create an <strong>Animator Controller</strong> by following: Right-click --&gt; Create --&gt; Animation --&gt; Animator Controller
 <ul>
 <li>Be sure to name it something like "Player_Animate"</li>
 <li>What is this and why do we need it?
@@ -1401,14 +1448,14 @@ and pick whatever theme you want.</p>
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_41.png" alt="Unity Editor Home Page">
 <ol start="2">
-<li>Double click on the newly created Animator Controller below in your <em>Assets</em>. You will see the window (in the image above) open up.
+<li>Double click on the newly created Animator Controller. You will see the window (in the image above) open up.
 <ul>
 <li>When gameplay is initiated, the first node, the first animation that we place (which will act as a <strong>node</strong> on a <strong>graph</strong>) will connect to the <em>Start</em> node.
 <ul>
 <li>This animation will play <strong>first</strong> upon initiating gameplay.</li>
 </ul>
 </li>
-<li>From here on out, even though we won't make explicit node connections, we will still place all of our animations here (starting with <strong>idle</strong> animation first).
+<li>From here on out, even though we won't make explicit node connections, we will still place all of our animations here (starting with the <strong>idle</strong> animation first).
 <br/></li>
 </ul>
 </li>
@@ -1501,7 +1548,7 @@ and pick whatever theme you want.</p>
 </li>
 <li>crossfade
 <ul>
-<li>This is the length (in seconds) over which we will transition between two animations.</li>
+<li>This is the length (in seconds) over which we will transition between the two animations.</li>
 </ul>
 </li>
 </ul>
@@ -1510,13 +1557,13 @@ and pick whatever theme you want.</p>
 <ul>
 <li><em>if (currentAnimation != animation) {</em>
 <ul>
-<li>If the current animation is <strong>NOT</strong> the new animation which we wish to transition to.</li>
+<li><strong>Meaning</strong>: If the current animation is <strong>NOT</strong> the new animation which we wish to transition to.</li>
 <li>This if statement ensures that we skip the body of the function <em>if</em> <em>animation</em> ever equals <em>currentAnimation</em>.</li>
 </ul>
 </li>
 <li><em>currentAnimation = animation</em>
 <ul>
-<li>If the transition is a valid transition, then we take the name of the current animation and set it to the name of the new animation.
+<li><strong>Meaning</strong>: If the transition is a valid transition, then we take the name of the current animation and set it to the name of the new animation.
 <ul>
 <li>Essentially, that String variable keeps track of the animation that is currently playing.</li>
 </ul>
@@ -1526,7 +1573,7 @@ and pick whatever theme you want.</p>
 <li><em>animator.CrossFade(animation, crossfade)</em>
 <ul>
 <li>This is the line performing the transitions.</li>
-<li>Since our <em>animator</em> variable is of type <em>Animator</em>, we can call the built-in function <strong>CrossFade</strong> on that variable (which, remember, is going to hold our Animator Controller) to switch from one animation to another.
+<li>Since our <em>animator</em> variable is of type <em>Animator</em>, we can call the built-in function <strong>CrossFade</strong> on that variable to switch from one animation to another.
 <ul>
 <li>The first parameter is the <strong>name</strong> of the animation to transition to.</li>
 <li>The second parameter is the fade length in seconds.</li>
@@ -1572,7 +1619,7 @@ and pick whatever theme you want.</p>
 </li>
 <li><em>else { ChangeAnimation("idle"); }</em>
 <ul>
-<li>If we aren't moving at all, change the animation to <em>idle</em>. Pretty-self explanatory.
+<li>If we aren't moving at all, change the animation to <em>idle</em>.
 <br/></li>
 </ul>
 </li>
@@ -1596,19 +1643,28 @@ and pick whatever theme you want.</p>
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_54.png" alt="Unity Editor Home Page">
 <ol start="13">
-<li>Lastly, add a function call for the <em>CheckAnimation()</em> function in the <em>Update()</em> function.
+<li>Add a function call for the <em>CheckAnimation()</em> function in the <em>Update()</em> function.
 <ul>
 <li>We need this function to run every frame so that our animation changes dynamically and <strong>constantly</strong>.
 <br/></li>
 </ul>
 </li>
 </ol>
-<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_55.png" alt="Unity Editor Home Page">
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/Get_Animator.png" alt="Unity Editor Home Page">
 <ol start="14">
+<li>Lastly, retrieve the GameObject's animator component by adding second line inside <strong>Start()</strong>
+<ul>
+<li>Without this line, animator will be null (or empty) and cause issues.
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="unity/./groundwork_photos/step_55.png" alt="Unity Editor Home Page">
+<ol start="15">
 <li>Back in our editor, drag and drop the Animator Controller object we created into the blank space in the Animator component of <em>jearl_backwards</em> in our <strong>Script</strong> component.
 <br/></li>
 </ol>
-<h4 id="one-last-note----add-a-changeanimation-call-for-the-jumping-animation-inside-of-our-isgrounded-if-isgrounded--check-in-onjump"><a class="header" href="#one-last-note----add-a-changeanimation-call-for-the-jumping-animation-inside-of-our-isgrounded-if-isgrounded--check-in-onjump">One last note --&gt; add a ChangeAnimation() call for the "jumping" animation inside of our isGrounded (if (isGrounded) {...}) check in "OnJump"</a></h4>
+<h4 id="one-last-note----add-changeanimationjumping-inside-ifisgrounded-in-the-onjump-function"><a class="header" href="#one-last-note----add-changeanimationjumping-inside-ifisgrounded-in-the-onjump-function">One last note --&gt; add "ChangeAnimation("jumping")" inside if(isGrounded){...} in the OnJump function.</a></h4>
 <br/>
 <h4 id="now-with-the-changes-made-upon-running-our-game-you-should-see-animations-for-movement-idling-jumping-and-falling"><a class="header" href="#now-with-the-changes-made-upon-running-our-game-you-should-see-animations-for-movement-idling-jumping-and-falling">Now, with the changes made, upon running our game, you should see animations for movement, idling, jumping and falling</a></h4>
 <div style="break-before: page; page-break-before: always;"></div><h3 id="now-well-discuss-a-particular-tool-that-we-downloaded-a-while-back"><a class="header" href="#now-well-discuss-a-particular-tool-that-we-downloaded-a-while-back">Now, we'll discuss a particular tool that we downloaded a while back:</a></h3>
@@ -1649,7 +1705,7 @@ and pick whatever theme you want.</p>
 <ul>
 <li>This grid represents the base of our shape (a cube, in this case). As you hold down the left-click, you can drag that shape to whatever dimensions you want to size our base.
 <ul>
-<li>For this tutorial, ensure that your base is somewhat of an <strong>rectangle</strong> which is longer on the <strong>z-axis</strong> than the <strong>y-axis</strong>.
+<li>For this tutorial, ensure that your base is somewhat of a <strong>rectangle</strong> which is longer on the <strong>z-axis</strong> than the <strong>y-axis</strong>.
 <ul>
 <li>Think of a football field!</li>
 <li>If its not perfect, don't worry! We can resize its transformation values with numbers later.

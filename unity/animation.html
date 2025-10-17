@@ -180,7 +180,7 @@
 <h4 id="to-start-lets-set-up-an-animator-for-our-object"><a class="header" href="#to-start-lets-set-up-an-animator-for-our-object">To start, let's set up an <strong>animator</strong> for our object!</a></h4>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_40.png" alt="Unity Editor Home Page">
 <ol>
-<li>In our <em>Assets</em> view, right-click then hover over <em>Create</em>. In the next menu, hover over the <em>Animation</em> menu. Then, in the next menu, click on <strong>Animator Controller</strong>.
+<li>Down below, in the <em>Assets</em> section, create an <strong>Animator Controller</strong> by following: Right-click --&gt; Create --&gt; Animation --&gt; Animator Controller
 <ul>
 <li>Be sure to name it something like "Player_Animate"</li>
 <li>What is this and why do we need it?
@@ -204,14 +204,14 @@
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_41.png" alt="Unity Editor Home Page">
 <ol start="2">
-<li>Double click on the newly created Animator Controller below in your <em>Assets</em>. You will see the window (in the image above) open up.
+<li>Double click on the newly created Animator Controller. You will see the window (in the image above) open up.
 <ul>
 <li>When gameplay is initiated, the first node, the first animation that we place (which will act as a <strong>node</strong> on a <strong>graph</strong>) will connect to the <em>Start</em> node.
 <ul>
 <li>This animation will play <strong>first</strong> upon initiating gameplay.</li>
 </ul>
 </li>
-<li>From here on out, even though we won't make explicit node connections, we will still place all of our animations here (starting with <strong>idle</strong> animation first).
+<li>From here on out, even though we won't make explicit node connections, we will still place all of our animations here (starting with the <strong>idle</strong> animation first).
 <br/></li>
 </ul>
 </li>
@@ -304,7 +304,7 @@
 </li>
 <li>crossfade
 <ul>
-<li>This is the length (in seconds) over which we will transition between two animations.</li>
+<li>This is the length (in seconds) over which we will transition between the two animations.</li>
 </ul>
 </li>
 </ul>
@@ -313,13 +313,13 @@
 <ul>
 <li><em>if (currentAnimation != animation) {</em>
 <ul>
-<li>If the current animation is <strong>NOT</strong> the new animation which we wish to transition to.</li>
+<li><strong>Meaning</strong>: If the current animation is <strong>NOT</strong> the new animation which we wish to transition to.</li>
 <li>This if statement ensures that we skip the body of the function <em>if</em> <em>animation</em> ever equals <em>currentAnimation</em>.</li>
 </ul>
 </li>
 <li><em>currentAnimation = animation</em>
 <ul>
-<li>If the transition is a valid transition, then we take the name of the current animation and set it to the name of the new animation.
+<li><strong>Meaning</strong>: If the transition is a valid transition, then we take the name of the current animation and set it to the name of the new animation.
 <ul>
 <li>Essentially, that String variable keeps track of the animation that is currently playing.</li>
 </ul>
@@ -329,7 +329,7 @@
 <li><em>animator.CrossFade(animation, crossfade)</em>
 <ul>
 <li>This is the line performing the transitions.</li>
-<li>Since our <em>animator</em> variable is of type <em>Animator</em>, we can call the built-in function <strong>CrossFade</strong> on that variable (which, remember, is going to hold our Animator Controller) to switch from one animation to another.
+<li>Since our <em>animator</em> variable is of type <em>Animator</em>, we can call the built-in function <strong>CrossFade</strong> on that variable to switch from one animation to another.
 <ul>
 <li>The first parameter is the <strong>name</strong> of the animation to transition to.</li>
 <li>The second parameter is the fade length in seconds.</li>
@@ -375,7 +375,7 @@
 </li>
 <li><em>else { ChangeAnimation("idle"); }</em>
 <ul>
-<li>If we aren't moving at all, change the animation to <em>idle</em>. Pretty-self explanatory.
+<li>If we aren't moving at all, change the animation to <em>idle</em>.
 <br/></li>
 </ul>
 </li>
@@ -399,19 +399,28 @@
 </ol>
 <img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_54.png" alt="Unity Editor Home Page">
 <ol start="13">
-<li>Lastly, add a function call for the <em>CheckAnimation()</em> function in the <em>Update()</em> function.
+<li>Add a function call for the <em>CheckAnimation()</em> function in the <em>Update()</em> function.
 <ul>
 <li>We need this function to run every frame so that our animation changes dynamically and <strong>constantly</strong>.
 <br/></li>
 </ul>
 </li>
 </ol>
-<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_55.png" alt="Unity Editor Home Page">
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/Get_Animator.png" alt="Unity Editor Home Page">
 <ol start="14">
+<li>Lastly, retrieve the GameObject's animator component by adding second line inside <strong>Start()</strong>
+<ul>
+<li>Without this line, animator will be null (or empty) and cause issues.
+<br/></li>
+</ul>
+</li>
+</ol>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="./groundwork_photos/step_55.png" alt="Unity Editor Home Page">
+<ol start="15">
 <li>Back in our editor, drag and drop the Animator Controller object we created into the blank space in the Animator component of <em>jearl_backwards</em> in our <strong>Script</strong> component.
 <br/></li>
 </ol>
-<h4 id="one-last-note----add-a-changeanimation-call-for-the-jumping-animation-inside-of-our-isgrounded-if-isgrounded--check-in-onjump"><a class="header" href="#one-last-note----add-a-changeanimation-call-for-the-jumping-animation-inside-of-our-isgrounded-if-isgrounded--check-in-onjump">One last note --&gt; add a ChangeAnimation() call for the "jumping" animation inside of our isGrounded (if (isGrounded) {...}) check in "OnJump"</a></h4>
+<h4 id="one-last-note----add-changeanimationjumping-inside-ifisgrounded-in-the-onjump-function"><a class="header" href="#one-last-note----add-changeanimationjumping-inside-ifisgrounded-in-the-onjump-function">One last note --&gt; add "ChangeAnimation("jumping")" inside if(isGrounded){...} in the OnJump function.</a></h4>
 <br/>
 <h4 id="now-with-the-changes-made-upon-running-our-game-you-should-see-animations-for-movement-idling-jumping-and-falling"><a class="header" href="#now-with-the-changes-made-upon-running-our-game-you-should-see-animations-for-movement-idling-jumping-and-falling">Now, with the changes made, upon running our game, you should see animations for movement, idling, jumping and falling</a></h4>
 

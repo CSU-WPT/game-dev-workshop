@@ -24,10 +24,10 @@ var gravity = 5
 func _process(delta: float) -> void:
 	var input_dir = Input.get_vector("walk_left", "walk_right", "walk_forward", "walk_backward")
 	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	direction = direction.rotated(Vector3.UP, camera.global_rotation.y)
+	direction = direction.rotated(Vector3.UP, camera.global_rotation.y) # Remove me and see what happens!
 
 	if input_dir:
-		model.rotation.y = lerp_angle(model.rotation.y, atan2(-direction.x, -direction.z), ANGULAR_VELOCITY * delta)
+		model.rotation.y = lerp_angle(model.rotation.y, atan2(-direction.x, -direction.z), ANGULAR_VELOCITY * delta) # Change me to `model.rotation.y = atan2(-direction.x, -direction.z)` and see what happens!
 	
 	if not direction and is_on_floor():
 		current_state = PlayerState.IDLE
